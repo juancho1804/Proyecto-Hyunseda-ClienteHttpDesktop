@@ -1,0 +1,43 @@
+package com.unicauca.clientproducthttpclient.domain.services;
+
+import com.unicauca.clientproducthttpclient.access.IProductRepository;
+import com.unicauca.clientproducthttpclient.domain.entities.Product;
+import java.util.List;
+
+public class ProductService implements IProductService{
+
+    private IProductRepository repo;
+
+    public ProductService(IProductRepository repo) {
+        this.repo = repo;
+    }
+
+    @Override
+    public List<Product> findAll() {
+        return repo.findAll();
+    }
+    @Override
+    public void create(Product product){
+        repo.create(product);
+    }
+    @Override
+    public void edit(int id,Product productUpdated){
+        repo.edit(id, productUpdated);
+    }
+    
+    @Override
+    public void delete(int id){
+        repo.delete(id);
+    }
+
+    @Override
+    public Product findById(int id) {
+        return repo.findById(id);
+    }
+    @Override
+    public Product findByName(String name) {
+        return repo.findByName(name);
+    }
+    
+
+}
