@@ -279,6 +279,9 @@ public class GUIProducts extends javax.swing.JFrame {
     
     private void editProduct(){
         Product productUpdated = new Product(txtNombre.getText() , Integer.parseInt(txtPrecio.getText()));
+        productUpdated.setDescription(txtDescripcion.getText());
+        String nombreCategoria= cboCategoria.getSelectedItem().toString();
+        productUpdated.setCategory(categoryController.findByName(nombreCategoria));
         productController.edit(Integer.parseInt(txtId.getText()), productUpdated);
         cleanControls();
         stateInitial();

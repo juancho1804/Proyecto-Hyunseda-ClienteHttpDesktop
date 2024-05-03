@@ -176,6 +176,8 @@ public class ProductRestRepository implements IProductRepository {
             System.out.println("Response status: " + response.getStatusLine());
             System.out.println("Response body: " + responseBody);
 
+            Messages.showMessageDialog("El producto ha sido agregado exitosamente","Producto agregado");
+
             // Cerrar el cliente HttpClient
             httpClient.close();
 
@@ -234,6 +236,8 @@ public class ProductRestRepository implements IProductRepository {
              System.out.println("Response body: " + responseBody);
              if(statusCode!=200){
              Messages.showMessageDialog("Verifique el id del producto" , "Producto no encontrado");    
+             }else{
+                 Messages.showMessageDialog("El producto ha sido modificado exitosamente","El producto modificado");
              }
              
             // Cerrar el cliente HttpClient
@@ -272,6 +276,9 @@ public class ProductRestRepository implements IProductRepository {
             String responseBody = EntityUtils.toString(response.getEntity());
             System.out.println("Response body: " + responseBody);
 
+            if(statusCode==200){
+                Messages.showMessageDialog("El producto ha sido eliminado exitosamente.","El producto  eliminado ");
+            }
             // Cerrar el cliente HttpClient
             httpClient.close();
 
