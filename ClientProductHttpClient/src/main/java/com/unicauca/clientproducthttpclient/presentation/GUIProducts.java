@@ -49,6 +49,7 @@ public class GUIProducts extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         pnlSur = new javax.swing.JPanel();
         btnGrabar = new javax.swing.JButton();
@@ -69,6 +70,8 @@ public class GUIProducts extends javax.swing.JFrame {
         txtPrecio = new javax.swing.JTextField();
         lblCategoria = new javax.swing.JLabel();
         cboCategoria = new javax.swing.JComboBox<>();
+        lblImagen = new javax.swing.JLabel();
+        txtImagen = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -135,7 +138,7 @@ public class GUIProducts extends javax.swing.JFrame {
 
         getContentPane().add(pnlSur, java.awt.BorderLayout.PAGE_END);
 
-        pnlCentro.setLayout(new java.awt.GridLayout(5, 2));
+        pnlCentro.setLayout(new java.awt.GridLayout(6, 2));
 
         jLabel2.setText("Id:");
         pnlCentro.add(jLabel2);
@@ -170,6 +173,10 @@ public class GUIProducts extends javax.swing.JFrame {
         });
         pnlCentro.add(cboCategoria);
 
+        lblImagen.setText("URL Imagen:");
+        pnlCentro.add(lblImagen);
+        pnlCentro.add(txtImagen);
+
         getContentPane().add(pnlCentro, java.awt.BorderLayout.CENTER);
 
         pack();
@@ -202,6 +209,7 @@ public class GUIProducts extends javax.swing.JFrame {
         txtNombre.setEnabled(true);
         txtDescripcion.setEnabled(true);
         txtPrecio.setEnabled(true);
+        txtImagen.setEnabled(true);
     }
     private void stateEdit() {
         btnAgregar.setVisible(false);
@@ -215,6 +223,7 @@ public class GUIProducts extends javax.swing.JFrame {
         txtNombre.setEnabled(true);
         txtDescripcion.setEnabled(true);
         txtPrecio.setEnabled(true);
+        txtImagen.setEnabled(true);
     }
     private void stateDelete(){
         btnAgregar.setVisible(false);
@@ -230,6 +239,7 @@ public class GUIProducts extends javax.swing.JFrame {
         txtPrecio.setEnabled(false);
         cboCategoria.setVisible(false);
         lblCategoria.setVisible(false);
+        txtImagen.setEnabled(false);
         
     }
     
@@ -246,6 +256,7 @@ public class GUIProducts extends javax.swing.JFrame {
         txtNombre.setText("");
         txtDescripcion.setText("");
         txtPrecio.setText("");
+        txtImagen.setText("");
     }
             
     
@@ -266,10 +277,14 @@ public class GUIProducts extends javax.swing.JFrame {
         product.setPrice(Integer.parseInt(txtPrecio.getText()));
         product.setDescription(txtDescripcion.getText());
         String nombreCategoria= cboCategoria.getSelectedItem().toString();
+        product.setImage(txtImagen.getText());
+        
         product.setCategory(categoryController.findByName(nombreCategoria));
         productController.create(product);
         cleanControls();
         stateInitial();
+        
+        
     }
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         stateCreate();
@@ -281,6 +296,7 @@ public class GUIProducts extends javax.swing.JFrame {
         Product productUpdated = new Product(txtNombre.getText() , Integer.parseInt(txtPrecio.getText()));
         productUpdated.setDescription(txtDescripcion.getText());
         String nombreCategoria= cboCategoria.getSelectedItem().toString();
+        productUpdated.setImage(txtImagen.getText());
         productUpdated.setCategory(categoryController.findByName(nombreCategoria));
         productController.edit(Integer.parseInt(txtId.getText()), productUpdated);
         cleanControls();
@@ -404,12 +420,15 @@ public class GUIProducts extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblCategoria;
     private javax.swing.JLabel lblDescripcion;
+    private javax.swing.JLabel lblImagen;
     private javax.swing.JPanel pnlCentro;
     private javax.swing.JPanel pnlSur;
     private javax.swing.JTextField txtDescripcion;
     private javax.swing.JTextField txtId;
+    private javax.swing.JTextField txtImagen;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtPrecio;
     // End of variables declaration//GEN-END:variables
