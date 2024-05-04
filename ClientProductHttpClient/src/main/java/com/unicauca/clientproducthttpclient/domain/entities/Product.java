@@ -21,6 +21,10 @@ public class Product {
     @JsonProperty("category")
     private Category category;
     
+    // Nuevo atributo para la imagen
+    @JsonProperty("image")
+    private String image;
+    
 
     public Product(String name,double price){
         this.name=name;
@@ -36,6 +40,13 @@ public class Product {
         this.name = name;
         this.description=description;
         this.price = price;
+    }
+        public Product(int id, String name, String description, double price, String image) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.image = image;
     }
 
     public Product() {
@@ -81,7 +92,14 @@ public class Product {
     public void setCategory(Category category) {
         this.category = category;
     }
-    
+    // Getters y Setters para el atributo de la imagen
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
     
 
 }

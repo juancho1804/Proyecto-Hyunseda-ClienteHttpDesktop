@@ -6,6 +6,8 @@ import java.util.List;
 import com.unicauca.clientproducthttpclient.domain.entities.Product;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import com.unicauca.clientproducthttpclient.util.Utilities;
+import javax.swing.ImageIcon;
 /**
  *
  * @author libardo
@@ -43,6 +45,8 @@ public class GUIProductsList extends javax.swing.JDialog {
         pnlCentral = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblProducts = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
+        lblImagen = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         btnCerrar = new javax.swing.JButton();
 
@@ -93,22 +97,43 @@ public class GUIProductsList extends javax.swing.JDialog {
 
         pnlCentral.setMinimumSize(new java.awt.Dimension(16, 20));
         pnlCentral.setPreferredSize(new java.awt.Dimension(452, 402));
-        pnlCentral.setLayout(new java.awt.BorderLayout());
 
         tblProducts.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title 1", "Title 2", "Title 3"
             }
         ));
         jScrollPane1.setViewportView(tblProducts);
 
-        pnlCentral.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+        lblImagen.setMaximumSize(new java.awt.Dimension(10, 23));
+        lblImagen.setMinimumSize(new java.awt.Dimension(10, 23));
+        jPanel2.add(lblImagen);
+
+        javax.swing.GroupLayout pnlCentralLayout = new javax.swing.GroupLayout(pnlCentral);
+        pnlCentral.setLayout(pnlCentralLayout);
+        pnlCentralLayout.setHorizontalGroup(
+            pnlCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlCentralLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 662, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pnlCentralLayout.setVerticalGroup(
+            pnlCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlCentralLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCentralLayout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         getContentPane().add(pnlCentral, java.awt.BorderLayout.CENTER);
 
@@ -174,6 +199,10 @@ public class GUIProductsList extends javax.swing.JDialog {
                         DefaultTableModel model = (DefaultTableModel) tblProducts.getModel();
                         model.setRowCount(0); // Limpiar la tabla
                         model.addRow(new Object[]{foundProduct.getId(), foundProduct.getName(),foundProduct.getPrice()});
+                    
+                         // Cargar la imagen correspondiente al producto
+                        ImageIcon productImage = Utilities.loadImageFromCloud(foundProduct.getImage()); // Supongo que hay un atributo 'image' en la clase Product que contiene la URL de la imagen
+                        lblImagen.setIcon(productImage);
                     } else {
                         // Mostrar un mensaje indicando que no se encontró el producto
                         JOptionPane.showMessageDialog(this, "No se encontró ningún producto con el ID especificado.", "Producto no encontrado", JOptionPane.INFORMATION_MESSAGE);
@@ -196,6 +225,10 @@ public class GUIProductsList extends javax.swing.JDialog {
                         DefaultTableModel model = (DefaultTableModel) tblProducts.getModel();
                         model.setRowCount(0); // Limpiar la tabla
                         model.addRow(new Object[]{foundProduct.getId(), foundProduct.getName(), foundProduct.getPrice()});
+                    
+                        // Cargar la imagen correspondiente al producto
+                        ImageIcon productImage = Utilities.loadImageFromCloud(foundProduct.getImage()); // Supongo que hay un atributo 'image' en la clase Product que contiene la URL de la imagen
+                        lblImagen.setIcon(productImage);
                     } else {
                         // Mostrar un mensaje indicando que no se encontró el producto
                         JOptionPane.showMessageDialog(this, "No se encontró ningún producto con el nombre especificado.", "Producto no encontrado", JOptionPane.INFORMATION_MESSAGE);
@@ -215,9 +248,7 @@ public class GUIProductsList extends javax.swing.JDialog {
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnCerrarActionPerformed
-
-
-
+    
     private void InitializeTable() {
         tblProducts.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{},
@@ -226,6 +257,24 @@ public class GUIProductsList extends javax.swing.JDialog {
                 }
         ));
     }
+    /*
+    private void InitializeTable() {
+    tblProducts.setModel(new javax.swing.table.DefaultTableModel(
+        new Object[][]{},
+        new String[]{"Id", "Nombre", "Precio", "Imagen"}
+    ) {
+        Class[] types = new Class[]{
+            java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.awt.Image.class
+        };
+
+        @Override
+        public Class getColumnClass(int columnIndex) {
+            return types[columnIndex];
+        }
+    });
+
+        tblProducts.getColumnModel().getColumn(3).setCellRenderer(new Utilities());
+    }*/
 
     private void loadData() {
         InitializeTable();
@@ -238,6 +287,7 @@ public class GUIProductsList extends javax.swing.JDialog {
             rowData[0] = result.get(i).getId();
             rowData[1] = result.get(i).getName();
             rowData[2] = "" + result.get(i).getPrice();
+            //rowData[3] = result.get(i).getImage(); // Agrega la URL de la imagen
 
             model.addRow(rowData);
         }
@@ -249,8 +299,10 @@ public class GUIProductsList extends javax.swing.JDialog {
     private javax.swing.JButton btnBuscarTodos;
     private javax.swing.JButton btnCerrar;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblBuscar;
+    private javax.swing.JLabel lblImagen;
     private javax.swing.JPanel pnlCentral;
     private javax.swing.JPanel pnlNorte;
     private javax.swing.JRadioButton rdoId;
