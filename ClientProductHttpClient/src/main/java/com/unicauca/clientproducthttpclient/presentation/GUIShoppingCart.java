@@ -4,17 +4,36 @@
  */
 package com.unicauca.clientproducthttpclient.presentation;
 
+import com.unicauca.clientproducthttpclient.controllers.ProductController;
+import com.unicauca.clientproducthttpclient.controllers.ShoppingCartController;
+import com.unicauca.clientproducthttpclient.domain.entities.Item;
+import com.unicauca.clientproducthttpclient.domain.entities.Product;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Juan
  */
 public class GUIShoppingCart extends javax.swing.JFrame {
+    
+    private ShoppingCartController shopControler;
+    List<Product> products;
 
     /**
      * Creates new form GUIShoppingCart
      */
-    public GUIShoppingCart() {
+    public GUIShoppingCart(ProductController productController, ShoppingCartController shopCartControler) {
+        
         initComponents();
+
+        this.products=productController.findAll();
+        this.shopControler=shopCartControler;
+        initializeComboBox();
+        initializeTable();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -26,57 +45,357 @@ public class GUIShoppingCart extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        pnlNorte = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        cboProducto = new javax.swing.JComboBox<>();
+        spnCantidad = new javax.swing.JSpinner();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        btnAgregar = new javax.swing.JButton();
+        lblPrecio = new javax.swing.JLabel();
+        lblImporte = new javax.swing.JLabel();
+        pnlCentro = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblProducts = new javax.swing.JTable();
+        pnlSur = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        lblSubtotal = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        lblIva = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        lblTotal = new javax.swing.JLabel();
+        btnPagar = new javax.swing.JButton();
+        btnCerrar = new javax.swing.JButton();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(120, 120));
+
+        pnlNorte.setMinimumSize(new java.awt.Dimension(120, 160));
+        pnlNorte.setPreferredSize(new java.awt.Dimension(634, 160));
+
+        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLabel1.setText("PRODUCTO");
+
+        jLabel2.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLabel2.setText("CANTIDAD");
+
+        cboProducto.setEditable(true);
+        cboProducto.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        cboProducto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboProductoActionPerformed(evt);
+            }
+        });
+
+        spnCantidad.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        spnCantidad.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                spnCantidadStateChanged(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLabel3.setText("PRECIO:");
+
+        jLabel4.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLabel4.setText("IMPORTE:");
+
+        btnAgregar.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        btnAgregar.setText("Agregar");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
+
+        lblPrecio.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblPrecio.setText("$0 COP");
+
+        lblImporte.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblImporte.setText("$0 COP");
+
+        javax.swing.GroupLayout pnlNorteLayout = new javax.swing.GroupLayout(pnlNorte);
+        pnlNorte.setLayout(pnlNorteLayout);
+        pnlNorteLayout.setHorizontalGroup(
+            pnlNorteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlNorteLayout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addGroup(pnlNorteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addGap(47, 47, 47)
+                .addGroup(pnlNorteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cboProducto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(spnCantidad))
+                .addGap(53, 53, 53)
+                .addGroup(pnlNorteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(pnlNorteLayout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblPrecio))
+                    .addGroup(pnlNorteLayout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblImporte)))
+                .addGap(205, 205, 205))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlNorteLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAgregar)
+                .addGap(61, 61, 61))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        pnlNorteLayout.setVerticalGroup(
+            pnlNorteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlNorteLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(pnlNorteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(cboProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(lblPrecio))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAgregar)
+                .addGap(4, 4, 4)
+                .addGroup(pnlNorteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(spnCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(lblImporte))
+                .addGap(39, 39, 39))
         );
+
+        getContentPane().add(pnlNorte, java.awt.BorderLayout.PAGE_START);
+
+        pnlCentro.setMinimumSize(new java.awt.Dimension(144, 110));
+        pnlCentro.setPreferredSize(new java.awt.Dimension(144, 110));
+        pnlCentro.setLayout(new java.awt.BorderLayout());
+
+        jScrollPane1.setMinimumSize(new java.awt.Dimension(16, 20));
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(452, 402));
+
+        tblProducts.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        tblProducts.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tblProducts.setMinimumSize(new java.awt.Dimension(150, 150));
+        jScrollPane1.setViewportView(tblProducts);
+
+        pnlCentro.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+
+        getContentPane().add(pnlCentro, java.awt.BorderLayout.CENTER);
+
+        pnlSur.setMinimumSize(new java.awt.Dimension(150, 150));
+        pnlSur.setPreferredSize(new java.awt.Dimension(150, 150));
+
+        jPanel1.setLayout(new java.awt.GridLayout(3, 2));
+
+        jLabel7.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLabel7.setText("SUBTOTAL:");
+        jPanel1.add(jLabel7);
+
+        lblSubtotal.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        lblSubtotal.setText("        $0 COP");
+        jPanel1.add(lblSubtotal);
+
+        jLabel8.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLabel8.setText("IVA:");
+        jPanel1.add(jLabel8);
+
+        lblIva.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        lblIva.setText("        $0 COP");
+        jPanel1.add(lblIva);
+
+        jLabel9.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLabel9.setText("TOTAL:");
+        jPanel1.add(jLabel9);
+
+        lblTotal.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        lblTotal.setText("        $0 COP");
+        jPanel1.add(lblTotal);
+
+        btnPagar.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        btnPagar.setText("Pagar");
+        btnPagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPagarActionPerformed(evt);
+            }
+        });
+
+        btnCerrar.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        btnCerrar.setText("Cerrar");
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlSurLayout = new javax.swing.GroupLayout(pnlSur);
+        pnlSur.setLayout(pnlSurLayout);
+        pnlSurLayout.setHorizontalGroup(
+            pnlSurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlSurLayout.createSequentialGroup()
+                .addGap(134, 134, 134)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
+                .addComponent(btnPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnCerrar)
+                .addGap(39, 39, 39))
+        );
+        pnlSurLayout.setVerticalGroup(
+            pnlSurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlSurLayout.createSequentialGroup()
+                .addGroup(pnlSurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlSurLayout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlSurLayout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addGroup(pnlSurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCerrar))))
+                .addContainerGap(41, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(pnlSur, java.awt.BorderLayout.PAGE_END);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+    private void cboProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboProductoActionPerformed
+        recolectarInfoItem();
+    }//GEN-LAST:event_cboProductoActionPerformed
+
+    private void spnCantidadStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spnCantidadStateChanged
+        recolectarInfoItem();
+    }//GEN-LAST:event_spnCantidadStateChanged
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        if (cboProducto.getSelectedItem() != null) {
+            String nombreProducto = cboProducto.getSelectedItem().toString();
+            Product productoSeleccionado = products.stream().filter(p -> p.getName().equals(nombreProducto)).findFirst().orElse(null);
+
+            if (productoSeleccionado != null) {
+                int cantidad = (int) spnCantidad.getValue();
+                if (shopControler.actualizarCantidadItem(productoSeleccionado, cantidad)) {
+                    actualizarTabla();
+                } else {
+                    shopControler.agregarProducto(productoSeleccionado, cantidad);
+                    actualizarTabla();
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GUIShoppingCart.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GUIShoppingCart.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GUIShoppingCart.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GUIShoppingCart.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } else {
+            JOptionPane.showMessageDialog(this, "Por favor seleccione un producto", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        //</editor-fold>
+    }//GEN-LAST:event_btnAgregarActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GUIShoppingCart().setVisible(true);
-            }
-        });
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnCerrarActionPerformed
+
+    private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
+        // TO DO new GUIPago(shopControler.getShoppingCart().getItems()).setVisible(true);
+    }//GEN-LAST:event_btnPagarActionPerformed
+
+    private void initializeComboBox() {
+        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
+        for (Product product : products) {
+            model.addElement(product.getName());
+        }
+        cboProducto.setModel(model);
     }
+    
+    private void initializeTable() {
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("DESCRIPCIÓN");
+        model.addColumn("PRECIO UNITARIO");
+        model.addColumn("CANTIDAD");
+        model.addColumn("IMPORTE");
+        tblProducts.setModel(model);
+    }
+    
+    public void update() {
+        actualizarTabla();
+    }
+    
+    public void recolectarInfoItem() {
+        String nombreProducto = cboProducto.getSelectedItem().toString();
+        Product productoSeleccionado = products.stream().filter(p -> p.getName().equals(nombreProducto)).findFirst().orElse(null);
+
+        if (productoSeleccionado != null) {
+            int cantidad = (int) spnCantidad.getValue();
+            
+            Item item = new Item(productoSeleccionado, cantidad);
+            lblPrecio.setText(aMoneda(item.getProduct().getPrice()));
+            lblImporte.setText(aMoneda(item.getImporte()));
+        }
+    }
+    
+    public void actualizarTabla() {
+        DefaultTableModel model = (DefaultTableModel) tblProducts.getModel();
+        model.setRowCount(0);
+
+        List<Item> items = shopControler.getShoppingCart().getItems();
+
+        for (Item item : items) {
+            Object[] fila = new Object[4];
+            fila[0] = item.getProduct().getName();
+            fila[1] = item.getProduct().getPrice();
+            fila[2] = item.getCantidad();
+            fila[3] = item.getImporte();
+
+            shopControler.actualizarSubTotal();
+            model.addRow(fila);
+        }
+
+        lblSubtotal.setText(aMoneda(shopControler.getShoppingCart().getSubtotal()));
+        lblIva.setText(aMoneda(shopControler.obtenerIva()));
+        lblTotal.setText(aMoneda(shopControler.obtenerTotal()));
+
+    }
+    
+    public String aMoneda(double precio) {
+        return "$" + Math.round(precio * 100.0) / 100.0 + " COP";
+    }
+    
+ 
+   
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnCerrar;
+    private javax.swing.JButton btnPagar;
+    private javax.swing.JComboBox<String> cboProducto;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblImporte;
+    private javax.swing.JLabel lblIva;
+    private javax.swing.JLabel lblPrecio;
+    private javax.swing.JLabel lblSubtotal;
+    private javax.swing.JLabel lblTotal;
+    private javax.swing.JPanel pnlCentro;
+    private javax.swing.JPanel pnlNorte;
+    private javax.swing.JPanel pnlSur;
+    private javax.swing.JSpinner spnCantidad;
+    private javax.swing.JTable tblProducts;
     // End of variables declaration//GEN-END:variables
 }

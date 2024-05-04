@@ -6,6 +6,7 @@ package com.unicauca.clientproducthttpclient.presentation;
 
 import com.unicauca.clientproducthttpclient.controllers.CategoryController;
 import com.unicauca.clientproducthttpclient.controllers.ProductController;
+import com.unicauca.clientproducthttpclient.controllers.ShoppingCartController;
 
 /**
  *
@@ -15,14 +16,16 @@ public class GUIInicio extends javax.swing.JFrame {
     
     private ProductController productController;
     private CategoryController categoryController;
+    private ShoppingCartController shoppingCartController;
     //ShopCartController TO DO
     /**
      * Creates new form GUIInicio
      */
-    public GUIInicio(ProductController productController,CategoryController categoryController) {
+    public GUIInicio(ProductController productController,CategoryController categoryController, ShoppingCartController shoppingCartController) {
         // TO DO INCLUIR EN CONSTRUCTOR SHOPCARTCONTROLLER
         this.productController=productController;
         this.categoryController=categoryController;
+        this.shoppingCartController=shoppingCartController;
         initComponents();
     }
 
@@ -39,6 +42,7 @@ public class GUIInicio extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         btnCategorias = new javax.swing.JButton();
         btnProducts = new javax.swing.JButton();
+        btnShoppingCart = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,27 +52,77 @@ public class GUIInicio extends javax.swing.JFrame {
         jLabel1.setMaximumSize(new java.awt.Dimension(194, 24));
         jLabel1.setMinimumSize(new java.awt.Dimension(194, 24));
         jLabel1.setPreferredSize(new java.awt.Dimension(194, 24));
-        getContentPane().add(jLabel1, java.awt.BorderLayout.PAGE_START);
 
-        jPanel1.setLayout(new java.awt.GridLayout(1, 2));
-
-        btnCategorias.setText("CATEGORIAS");
+        btnCategorias.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        btnCategorias.setText("Categorias");
         btnCategorias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCategoriasActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCategorias);
 
-        btnProducts.setText("PRODUCTOS");
+        btnProducts.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        btnProducts.setText("Productos");
         btnProducts.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnProductsActionPerformed(evt);
             }
         });
-        jPanel1.add(btnProducts);
 
-        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
+        btnShoppingCart.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        btnShoppingCart.setText("Carrito");
+        btnShoppingCart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnShoppingCartActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(94, 94, 94)
+                .addComponent(btnShoppingCart, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnCategorias)
+                .addGap(48, 48, 48)
+                .addComponent(btnProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 14, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(btnShoppingCart, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(84, Short.MAX_VALUE))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -83,10 +137,16 @@ public class GUIInicio extends javax.swing.JFrame {
         guiCategory.setVisible(true);
     }//GEN-LAST:event_btnCategoriasActionPerformed
 
+    private void btnShoppingCartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShoppingCartActionPerformed
+        GUIShoppingCart instance = new GUIShoppingCart(productController, shoppingCartController);
+        instance.setVisible(true);
+    }//GEN-LAST:event_btnShoppingCartActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCategorias;
     private javax.swing.JButton btnProducts;
+    private javax.swing.JButton btnShoppingCart;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

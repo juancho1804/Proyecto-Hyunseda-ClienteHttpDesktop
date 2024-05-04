@@ -6,11 +6,14 @@ import com.unicauca.clientproducthttpclient.access.IProductRepository;
 import com.unicauca.clientproducthttpclient.access.ProductRestRepository;
 import com.unicauca.clientproducthttpclient.controllers.CategoryController;
 import com.unicauca.clientproducthttpclient.controllers.ProductController;
+import com.unicauca.clientproducthttpclient.controllers.ShoppingCartController;
 import com.unicauca.clientproducthttpclient.domain.services.CategoryService;
 import com.unicauca.clientproducthttpclient.domain.services.ICategoryService;
 import com.unicauca.clientproducthttpclient.domain.services.IProductService;
 import com.unicauca.clientproducthttpclient.domain.services.ProductService;
+import com.unicauca.clientproducthttpclient.domain.services.ShoppingCartService;
 import com.unicauca.clientproducthttpclient.presentation.GUIInicio;
+import com.unicauca.clientproducthttpclient.presentation.GUIShoppingCart;
 
 
 /**
@@ -31,8 +34,15 @@ public class Main {
         ProductController productController=new ProductController(productService);
         CategoryController categoryController =new CategoryController(categoryService);
         
-        GUIInicio guiInicio=new GUIInicio(productController,categoryController);
+        ShoppingCartService shoppingCartService = new ShoppingCartService();
+        ShoppingCartController ShopCartControler = new ShoppingCartController(shoppingCartService);
+        
+        GUIInicio guiInicio=new GUIInicio(productController,categoryController,ShopCartControler);
         guiInicio.setVisible(true);
+        //GUIShoppingCart gUIShoppingCart= new GUIShoppingCart();
+        //gUIShoppingCart.setVisible(true);
+                
+        
 
     }
 }
