@@ -13,6 +13,7 @@ import com.unicauca.clientproducthttpclient.domain.entities.ShoppingCart;
  * @author Juan
  */
 public interface IShoppingCartService {
+    
     public void agregarProducto(Product producto, int cantidad);
 
     public void eliminarProducto(Item item);

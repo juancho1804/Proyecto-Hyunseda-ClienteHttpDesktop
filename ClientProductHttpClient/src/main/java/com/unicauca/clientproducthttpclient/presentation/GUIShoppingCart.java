@@ -8,6 +8,7 @@ import com.unicauca.clientproducthttpclient.controllers.ProductController;
 import com.unicauca.clientproducthttpclient.controllers.ShoppingCartController;
 import com.unicauca.clientproducthttpclient.domain.entities.Item;
 import com.unicauca.clientproducthttpclient.domain.entities.Product;
+import com.unicauca.clientproducthttpclient.util.Messages;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -20,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
 public class GUIShoppingCart extends javax.swing.JFrame {
     
     private ShoppingCartController shopControler;
+    private ProductController productController;
     List<Product> products;
 
     /**
@@ -28,7 +30,7 @@ public class GUIShoppingCart extends javax.swing.JFrame {
     public GUIShoppingCart(ProductController productController, ShoppingCartController shopCartControler) {
         
         initComponents();
-
+        this.productController = productController;
         this.products=productController.findAll();
         this.shopControler=shopCartControler;
         initializeComboBox();
@@ -81,7 +83,6 @@ public class GUIShoppingCart extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel2.setText("CANTIDAD");
 
-        cboProducto.setEditable(true);
         cboProducto.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         cboProducto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cboProducto.addActionListener(new java.awt.event.ActionListener() {
@@ -290,10 +291,11 @@ public class GUIShoppingCart extends javax.swing.JFrame {
                 if (shopControler.actualizarCantidadItem(productoSeleccionado, cantidad)) {
                     actualizarTabla();
                 } else {
-                    shopControler.agregarProducto(productoSeleccionado, cantidad);
+                    shopControler.agregarItem(productoSeleccionado, cantidad);
                     actualizarTabla();
                 }
             }
+            
         } else {
             JOptionPane.showMessageDialog(this, "Por favor seleccione un producto", "Error", JOptionPane.ERROR_MESSAGE);
         }

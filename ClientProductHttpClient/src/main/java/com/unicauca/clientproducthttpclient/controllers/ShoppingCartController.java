@@ -21,7 +21,7 @@ public class ShoppingCartController {
         this.shopService = shoppingCartService;
     }
 
-    public void agregarProducto(Product producto, int cantidad) {
+    public void agregarItem(Product producto, int cantidad) {
         this.shopService.agregarProducto(producto, cantidad);
     }
 

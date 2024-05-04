@@ -13,6 +13,7 @@ import com.unicauca.clientproducthttpclient.domain.services.IProductService;
 import com.unicauca.clientproducthttpclient.domain.services.ProductService;
 import com.unicauca.clientproducthttpclient.domain.services.ShoppingCartService;
 import com.unicauca.clientproducthttpclient.presentation.GUIInicio;
+import com.unicauca.clientproducthttpclient.presentation.GUIOtherview;
 import com.unicauca.clientproducthttpclient.presentation.GUIShoppingCart;
 
 
@@ -41,6 +42,13 @@ public class Main {
         guiInicio.setVisible(true);
         //GUIShoppingCart gUIShoppingCart= new GUIShoppingCart();
         //gUIShoppingCart.setVisible(true);
+        
+        GUIOtherview guiOtherView = new GUIOtherview();
+
+        shoppingCartService.addObserver(guiOtherView);
+
+        guiOtherView.setVisible(true);
+        
                 
         
 

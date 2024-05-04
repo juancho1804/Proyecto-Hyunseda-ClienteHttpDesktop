@@ -120,7 +120,6 @@
         </Component>
         <Component class="javax.swing.JComboBox" name="cboProducto">
           <Properties>
-            <Property name="editable" type="boolean" value="true"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="SansSerif" size="18" style="1"/>
             </Property>
