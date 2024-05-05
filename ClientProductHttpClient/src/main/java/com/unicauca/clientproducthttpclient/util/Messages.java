@@ -20,7 +20,7 @@ import java.net.http.HttpResponse.BodyHandlers;
  */
 public class Messages {
     private static final String WHATSAPP_API_URL = "https://graph.facebook.com/v13.0/299365229927110/messages";
-    private static final String WHATSAPP_AUTH_TOKEN = "EAALpUGDBp1ABOxMkNhE8G5nOCqrLZCtwmN8IOd28nNJju5PfXfZBy14IanogQsaPmpHXspPvNMVpslvjIBjcFMJrY7sK0z3jodMsAFydSRwV6SZAjJpZCZBJncRnEKGHumk56mTi9f4ZAGyFyvRxg72CPjH0ZCUZCgmFlCB4SQOQnc1WZBQhTAGOdY4fMS2ZCGlBrTfIZAbtBakKASiUiB5QdYZD";
+    private static final String WHATSAPP_AUTH_TOKEN = "EAALpUGDBp1ABOwLf4dDQEl5ZB9nvUIGWiZBQYfn0rwNoqpIGWaToCmGWOfGnfVnvPOypDqcqoGqaUEGnInuSYWUB5HZChXtKQlrFz5up4VBvESAPDhFjk9Y7qgW1ZCWAGltiJyekM23LsZAl7YiZAhbRBuRcu9gx4d12F87rK80wXkJfpueHqZAo2YAg6B7MXZBnP5auOKUMsZBVD5jdcrRsZD";
     private static final String RECIPIENT_PHONE_NUMBER = "573209825275";
 
     

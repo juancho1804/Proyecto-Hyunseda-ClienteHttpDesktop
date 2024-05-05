@@ -91,7 +91,9 @@ public class GUIConfirmarPago extends javax.swing.JFrame implements Observer {
         getContentPane().add(pnlNorte, java.awt.BorderLayout.PAGE_START);
 
         jButton1.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/confrmar.png"))); // NOI18N
         jButton1.setText("Confirmar");
+        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -100,7 +102,9 @@ public class GUIConfirmarPago extends javax.swing.JFrame implements Observer {
         jPanel3.add(jButton1);
 
         jButton2.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
         jButton2.setText("Atras");
+        jButton2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel3.add(jButton2);
 
         getContentPane().add(jPanel3, java.awt.BorderLayout.PAGE_END);

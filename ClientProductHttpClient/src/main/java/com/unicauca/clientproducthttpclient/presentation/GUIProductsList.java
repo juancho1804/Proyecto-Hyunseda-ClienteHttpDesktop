@@ -2,6 +2,8 @@
 package com.unicauca.clientproducthttpclient.presentation;
 
 import com.unicauca.clientproducthttpclient.controllers.ProductController;
+
+import java.awt.*;
 import java.util.List;
 import com.unicauca.clientproducthttpclient.domain.entities.Product;
 import javax.swing.JOptionPane;
@@ -48,7 +50,6 @@ public class GUIProductsList extends javax.swing.JDialog {
         pnlCentral = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblProducts = new javax.swing.JTable();
-        jPanel2 = new javax.swing.JPanel();
         lblImagen = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         btnCerrar = new javax.swing.JButton();
@@ -80,7 +81,9 @@ public class GUIProductsList extends javax.swing.JDialog {
         txtBuscar.setPreferredSize(new java.awt.Dimension(62, 32));
         pnlNorte.add(txtBuscar);
 
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar.png"))); // NOI18N
         btnBuscar.setText("Buscar");
+        btnBuscar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
@@ -88,7 +91,9 @@ public class GUIProductsList extends javax.swing.JDialog {
         });
         pnlNorte.add(btnBuscar);
 
+        btnBuscarTodos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscartodos.png"))); // NOI18N
         btnBuscarTodos.setText("Buscar todos");
+        btnBuscarTodos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnBuscarTodos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarTodosActionPerformed(evt);
@@ -100,6 +105,7 @@ public class GUIProductsList extends javax.swing.JDialog {
 
         pnlCentral.setMinimumSize(new java.awt.Dimension(16, 20));
         pnlCentral.setPreferredSize(new java.awt.Dimension(452, 402));
+        pnlCentral.setLayout(new java.awt.GridLayout(1, 0));
 
         tblProducts.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -114,31 +120,17 @@ public class GUIProductsList extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(tblProducts);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel2.setLayout(new java.awt.BorderLayout());
+        pnlCentral.add(jScrollPane1);
 
         lblImagen.setAlignmentX(0.5F);
-        jPanel2.add(lblImagen, java.awt.BorderLayout.CENTER);
-
-        javax.swing.GroupLayout pnlCentralLayout = new javax.swing.GroupLayout(pnlCentral);
-        pnlCentral.setLayout(pnlCentralLayout);
-        pnlCentralLayout.setHorizontalGroup(
-            pnlCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlCentralLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 662, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        pnlCentralLayout.setVerticalGroup(
-            pnlCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
+        lblImagen.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+        pnlCentral.add(lblImagen);
 
         getContentPane().add(pnlCentral, java.awt.BorderLayout.CENTER);
 
+        btnCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/close.png"))); // NOI18N
         btnCerrar.setText("Cerrar");
+        btnCerrar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCerrarActionPerformed(evt);
@@ -305,8 +297,13 @@ public class GUIProductsList extends javax.swing.JDialog {
                         Product selectedProduct = productController.findById(productId);
                         if (selectedProduct != null) {
                             // Load and display the image of the selected product
+                            /*
                             ImageIcon productImage = Utilities.loadImageFromCloud(selectedProduct.getImage());
-                            lblImagen.setIcon(productImage);
+                            lblImagen.setIcon(productImage);*/
+
+                            ImageIcon productImage = Utilities.loadImageFromCloud(selectedProduct.getImage());
+                            Image scaledImage = productImage.getImage().getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), Image.SCALE_SMOOTH);
+                            lblImagen.setIcon(new ImageIcon(scaledImage));
                         }
                     }
                 }
@@ -320,7 +317,6 @@ public class GUIProductsList extends javax.swing.JDialog {
     private javax.swing.JButton btnBuscarTodos;
     private javax.swing.JButton btnCerrar;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblBuscar;
     private javax.swing.JLabel lblImagen;

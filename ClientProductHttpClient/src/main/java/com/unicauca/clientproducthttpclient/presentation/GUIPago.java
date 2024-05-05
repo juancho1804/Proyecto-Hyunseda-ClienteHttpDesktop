@@ -64,57 +64,70 @@ public class GUIPago extends javax.swing.JFrame {
      */
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        setTitle("Método de Pago"); // Establece el título de la ventana
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Cierra la ventana cuando se presiona la X
 
-        // Crea un panel principal con GridBagLayout para organizar los componentes
-        JPanel mainPanel = new JPanel(new GridBagLayout());
-        getContentPane().add(mainPanel, BorderLayout.CENTER);
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        btnCerrar = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        btnPagar = new javax.swing.JButton();
 
-        // Crea los componentes
-        jLabel2 = new JLabel("Método de Pago");
-        jLabel2.setFont(new Font("SansSerif", Font.BOLD, 18));
+        jLabel2.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLabel2.setText("Metodo de Pago");
+        jPanel1.add(jLabel2);
 
-        jComboBox2 = new JComboBox<>(new String[]{"PSE", "Efecty", "MasterCard"});
+        getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
-        btnPagar = new JButton("Pagar");
+        btnCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/close.png"))); // NOI18N
+        btnCerrar.setText("Cerrar");
+        btnCerrar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnCerrar);
+
+        getContentPane().add(jPanel2, java.awt.BorderLayout.PAGE_END);
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PSE", "Efecty", "MasterCard" }));
+        jComboBox2.setMaximumSize(new java.awt.Dimension(30, 30));
+        jComboBox2.setMinimumSize(new java.awt.Dimension(30, 30));
+
+        btnPagar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/pagar.png"))); // NOI18N
+        btnPagar.setText("Pagar");
+        btnPagar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnPagar.setMaximumSize(new java.awt.Dimension(20, 23));
+        btnPagar.setMinimumSize(new java.awt.Dimension(20, 23));
         btnPagar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPagarActionPerformed(evt);
             }
         });
 
-        btnCerrar = new JButton("Cerrar");
-        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCerrarActionPerformed(evt);
-            }
-        });
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(70, 70, 70)
+                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(btnPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnPagar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(49, 49, 49))
+        );
 
-        // Agrega los componentes al panel principal usando GridBagConstraints
-        GridBagConstraints constraints = new GridBagConstraints();
-        constraints.gridx = 0;
-        constraints.gridy = 0;
-        constraints.anchor = GridBagConstraints.CENTER;
-        constraints.insets = new Insets(10, 10, 10, 10);
-        mainPanel.add(jLabel2, constraints);
-
-        constraints.gridy = 1;
-        constraints.gridx = 0;
-        constraints.gridwidth = 1;
-        mainPanel.add(jComboBox2, constraints);
-
-        constraints.gridx = 1;
-        mainPanel.add(btnPagar, constraints);
-
-        constraints.gridy = 2;
-        constraints.gridx = 0;
-        constraints.gridwidth = GridBagConstraints.REMAINDER;
-        constraints.anchor = GridBagConstraints.CENTER;
-        mainPanel.add(btnCerrar, constraints);
-
-        pack(); // Ajusta el tamaño de la ventana según los componentes
-        setLocationRelativeTo(null); // Centra la ventana en la pantalla
+        getContentPane().add(jPanel3, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
@@ -165,5 +178,6 @@ public class GUIPago extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
 }

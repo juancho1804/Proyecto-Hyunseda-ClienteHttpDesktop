@@ -36,6 +36,7 @@ public class GUICategoryList extends javax.swing.JDialog {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         btngBuscar = new javax.swing.ButtonGroup();
         pnlNorte = new javax.swing.JPanel();
@@ -56,9 +57,15 @@ public class GUICategoryList extends javax.swing.JDialog {
 
         pnlNorte.setMinimumSize(new java.awt.Dimension(427, 33));
         pnlNorte.setPreferredSize(new java.awt.Dimension(425, 42));
+        pnlNorte.setLayout(new java.awt.GridBagLayout());
 
         lblBuscar.setText("Buscar por:");
-        pnlNorte.add(lblBuscar);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(15, 81, 0, 0);
+        pnlNorte.add(lblBuscar, gridBagConstraints);
 
         btngBuscar.add(rdbId);
         rdbId.setText("Id");
@@ -67,7 +74,13 @@ public class GUICategoryList extends javax.swing.JDialog {
                 rdbIdActionPerformed(evt);
             }
         });
-        pnlNorte.add(rdbId);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(12, 5, 0, 0);
+        pnlNorte.add(rdbId, gridBagConstraints);
 
         btngBuscar.add(rdbNombre);
         rdbNombre.setText("Nombre");
@@ -76,28 +89,57 @@ public class GUICategoryList extends javax.swing.JDialog {
                 rdbNombreActionPerformed(evt);
             }
         });
-        pnlNorte.add(rdbNombre);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(12, 5, 0, 0);
+        pnlNorte.add(rdbNombre, gridBagConstraints);
 
         txtBuscar.setPreferredSize(new java.awt.Dimension(62, 32));
-        pnlNorte.add(txtBuscar);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.ipady = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(7, 5, 0, 0);
+        pnlNorte.add(txtBuscar, gridBagConstraints);
 
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar.png"))); // NOI18N
         btnBuscar.setText("Buscar");
+        btnBuscar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
             }
         });
-        pnlNorte.add(btnBuscar);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 4;
+        gridBagConstraints.ipadx = 12;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 1, 0);
+        pnlNorte.add(btnBuscar, gridBagConstraints);
 
+        btnBuscarTodos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscartodos.png"))); // NOI18N
         btnBuscarTodos.setText("Buscar todos");
+        btnBuscarTodos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnBuscarTodos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarTodosActionPerformed(evt);
             }
         });
-        pnlNorte.add(btnBuscarTodos);
-
-        getContentPane().add(pnlNorte, java.awt.BorderLayout.PAGE_START);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 4;
+        gridBagConstraints.ipadx = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 6, 1, 58);
+        pnlNorte.add(btnBuscarTodos, gridBagConstraints);
 
         pnlCenter.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
         pnlCenter.setMinimumSize(new java.awt.Dimension(16, 20));
@@ -119,12 +161,12 @@ public class GUICategoryList extends javax.swing.JDialog {
 
         pnlCenter.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
-        getContentPane().add(pnlCenter, java.awt.BorderLayout.CENTER);
-
         pnlSur.setMinimumSize(new java.awt.Dimension(82, 33));
         pnlSur.setPreferredSize(new java.awt.Dimension(82, 33));
 
+        btnCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/close.png"))); // NOI18N
         btnCerrar.setText("Cerrar");
+        btnCerrar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCerrarActionPerformed(evt);
@@ -132,7 +174,23 @@ public class GUICategoryList extends javax.swing.JDialog {
         });
         pnlSur.add(btnCerrar);
 
-        getContentPane().add(pnlSur, java.awt.BorderLayout.PAGE_END);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnlNorte, javax.swing.GroupLayout.PREFERRED_SIZE, 591, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(pnlCenter, javax.swing.GroupLayout.PREFERRED_SIZE, 591, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(pnlSur, javax.swing.GroupLayout.PREFERRED_SIZE, 591, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(pnlNorte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(pnlCenter, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnlSur, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
