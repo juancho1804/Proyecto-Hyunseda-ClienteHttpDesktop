@@ -54,16 +54,19 @@ public class Utilities{
      */
     public static ImageIcon loadImageFromCloud(String name) {
 
-        String imageUrl = name;
+        if (name != null && !name.isEmpty()) { // Verificar que la URL no sea null ni esté vacía
+            String imageUrl = name;
 
-        try {
-            URL url = new URL(imageUrl);
-            ImageIcon icon = new ImageIcon(ImageIO.read(url));
-            return icon;
-        } catch (IOException e) {
-            e.printStackTrace();
+            try {
+                URL url = new URL(imageUrl);
+                ImageIcon icon = new ImageIcon(ImageIO.read(url));
+                return icon;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.err.println("La URL es nula o está vacía.");
         }
         return null;
-
     }
 }

@@ -8,6 +8,8 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import com.unicauca.clientproducthttpclient.util.Utilities;
 import javax.swing.ImageIcon;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 /**
  *
  * @author libardo
@@ -22,6 +24,7 @@ public class GUIProductsList extends javax.swing.JDialog {
         this.productController = productController;
         initComponents();
         InitializeTable();
+        addTableSelectionListener();
     }
 
     /**
@@ -111,9 +114,11 @@ public class GUIProductsList extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(tblProducts);
 
-        lblImagen.setMaximumSize(new java.awt.Dimension(10, 23));
-        lblImagen.setMinimumSize(new java.awt.Dimension(10, 23));
-        jPanel2.add(lblImagen);
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel2.setLayout(new java.awt.BorderLayout());
+
+        lblImagen.setAlignmentX(0.5F);
+        jPanel2.add(lblImagen, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout pnlCentralLayout = new javax.swing.GroupLayout(pnlCentral);
         pnlCentral.setLayout(pnlCentralLayout);
@@ -127,12 +132,8 @@ public class GUIProductsList extends javax.swing.JDialog {
         );
         pnlCentralLayout.setVerticalGroup(
             pnlCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlCentralLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCentralLayout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         getContentPane().add(pnlCentral, java.awt.BorderLayout.CENTER);
@@ -184,6 +185,8 @@ public class GUIProductsList extends javax.swing.JDialog {
         if (rdoId.isSelected()) {
             // Obtener el texto ingresado por el usuario en la casilla de búsqueda
             String searchText = txtBuscar.getText().trim();
+             // Imprimir la URL ingresada por el usuario en la consola
+            System.out.println("URL ingresada: " + searchText);
 
             // Verificar si el campo de búsqueda no está vacío
             if (!searchText.isEmpty()) {
@@ -287,10 +290,28 @@ public class GUIProductsList extends javax.swing.JDialog {
             rowData[0] = result.get(i).getId();
             rowData[1] = result.get(i).getName();
             rowData[2] = "" + result.get(i).getPrice();
-            //rowData[3] = result.get(i).getImage(); // Agrega la URL de la imagen
 
             model.addRow(rowData);
         }
+    }
+    private void addTableSelectionListener() {
+        tblProducts.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    int selectedRow = tblProducts.getSelectedRow();
+                    if (selectedRow != -1) {
+                        int productId = (int) tblProducts.getValueAt(selectedRow, 0);
+                        Product selectedProduct = productController.findById(productId);
+                        if (selectedProduct != null) {
+                            // Load and display the image of the selected product
+                            ImageIcon productImage = Utilities.loadImageFromCloud(selectedProduct.getImage());
+                            lblImagen.setIcon(productImage);
+                        }
+                    }
+                }
+            }
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

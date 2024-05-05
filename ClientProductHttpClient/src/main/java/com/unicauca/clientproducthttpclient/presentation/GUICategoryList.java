@@ -229,9 +229,7 @@ public class GUICategoryList extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_btnCerrarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+
     private void InitializeTable() {
         tblCategory.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{},

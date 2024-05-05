@@ -271,6 +271,10 @@ public class GUIProducts extends javax.swing.JFrame {
     }//GEN-LAST:event_btnListarActionPerformed
 
     private void addProduct(){
+        if (!validateURL(txtImagen.getText())) {
+            Messages.showMessageDialog("La URL de la imagen es inválida", "Error");
+            return;
+        }
         Product product=new Product();
         product.setId(0);
         product.setName(txtNombre.getText());
@@ -285,6 +289,10 @@ public class GUIProducts extends javax.swing.JFrame {
         stateInitial();
         
         
+    }
+    private boolean validateURL(String url) {
+        // Verifica si la URL no es nula o está vacía
+        return url != null && !url.isEmpty();
     }
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         stateCreate();
