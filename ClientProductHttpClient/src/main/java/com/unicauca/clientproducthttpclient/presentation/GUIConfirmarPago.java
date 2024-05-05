@@ -7,6 +7,7 @@ package com.unicauca.clientproducthttpclient.presentation;
 import com.unicauca.clientproducthttpclient.controllers.ShoppingCartController;
 import com.unicauca.clientproducthttpclient.designpatterns.observer.Observer;
 import com.unicauca.clientproducthttpclient.domain.entities.Item;
+import com.unicauca.clientproducthttpclient.presentation.GUIPago;
 import com.unicauca.clientproducthttpclient.domain.services.IShoppingCartService;
 import java.util.List;
 
@@ -15,12 +16,14 @@ import java.util.List;
  * @author Juan
  */
 public class GUIConfirmarPago extends javax.swing.JFrame implements Observer {
+    private GUIPago gUIPago;
 
     /**
      * Creates new form GUIOtherview
      */
     public GUIConfirmarPago() {
         initComponents();
+        this.gUIPago = new GUIPago();
     }
 
     /**
@@ -89,6 +92,11 @@ public class GUIConfirmarPago extends javax.swing.JFrame implements Observer {
 
         jButton1.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jButton1.setText("Confirmar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jButton1);
 
         jButton2.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
@@ -99,6 +107,15 @@ public class GUIConfirmarPago extends javax.swing.JFrame implements Observer {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        if (this.gUIPago != null) {
+            this.gUIPago.setVisible(true);
+        } else {
+            System.out.println("gUIPago is not initialized");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
 

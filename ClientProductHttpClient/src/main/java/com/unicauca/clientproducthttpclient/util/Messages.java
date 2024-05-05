@@ -4,13 +4,26 @@
  */
 package com.unicauca.clientproducthttpclient.util;
 
+import javax.swing.*;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import javax.swing.JOptionPane;
+import java.net.http.HttpResponse.BodyHandlers;
 
 /**
  *
  * @author Juan
  */
 public class Messages {
+    private static final String WHATSAPP_API_URL = "https://graph.facebook.com/v13.0/299365229927110/messages";
+    private static final String WHATSAPP_AUTH_TOKEN = "EAALpUGDBp1ABOxMkNhE8G5nOCqrLZCtwmN8IOd28nNJju5PfXfZBy14IanogQsaPmpHXspPvNMVpslvjIBjcFMJrY7sK0z3jodMsAFydSRwV6SZAjJpZCZBJncRnEKGHumk56mTi9f4ZAGyFyvRxg72CPjH0ZCUZCgmFlCB4SQOQnc1WZBQhTAGOdY4fMS2ZCGlBrTfIZAbtBakKASiUiB5QdYZD";
+    private static final String RECIPIENT_PHONE_NUMBER = "573209825275";
+
+    
     public static void showMessageDialog(String message, String title) {
         JOptionPane.showMessageDialog(null, message, title, JOptionPane.INFORMATION_MESSAGE);
     }
@@ -20,6 +33,23 @@ public class Messages {
     }
     public static void showMessageError(String message, String title){
          JOptionPane.showMessageDialog(null, message,title,JOptionPane.ERROR_MESSAGE);
+    }
+    
+    
+    public static void sendPaymentConfirmationMessage() {
+        try {
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(new URI(WHATSAPP_API_URL))
+                    .header("Authorization", "Bearer " + WHATSAPP_AUTH_TOKEN)
+                    .header("Content-Type", "application/json")
+                    .POST(HttpRequest.BodyPublishers.ofString("{ \"messaging_product\": \"whatsapp\", \"recipient_type\": \"individual\", \"to\": \"" + RECIPIENT_PHONE_NUMBER + "\", \"type\": \"template\", \"template\": { \"name\": \"factura\", \"language\": { \"code\": \"es\" }, \"components\":[{\"type\":\"header\",\"parameters\":[{\"type\":\"image\",\"image\":{\"link\":\"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkEBUhWAQkK2D_4PxGFsIMT3fl7vqJbndbkiLuSbbR9A&s\"}}]}] } }"))
+                    .build();
+            HttpClient http = HttpClient.newHttpClient();
+            HttpResponse<String> response = http.send(request, HttpResponse.BodyHandlers.ofString());
+            System.out.println(response.body());
+        } catch (URISyntaxException | IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
     }
     
 }
