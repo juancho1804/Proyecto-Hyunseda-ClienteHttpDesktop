@@ -3,5 +3,9 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/ClientProductHttpClient/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ClientProductHttpClient/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Microkernel-common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Microkernel-common/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Microkernel-pago-pse/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Microkernel-pago-pse/src/main/resources" charset="UTF-8" />
   </component>
 </project>

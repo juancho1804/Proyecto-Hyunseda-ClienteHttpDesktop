@@ -5,6 +5,8 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/ClientProductHttpClient/pom.xml" />
+        <option value="$PROJECT_DIR$/Microkernel-common/pom.xml" />
+        <option value="$PROJECT_DIR$/Microkernel-pago-pse/pom.xml" />
       </list>
     </option>
   </component>

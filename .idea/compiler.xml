@@ -7,6 +7,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="ClientProductHttpClient" />
+        <module name="Microkernel-common" />
+        <module name="Microkernel-pago-pse" />
       </profile>
     </annotationProcessing>
   </component>

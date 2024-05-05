@@ -1,2 +1,4 @@
 # Project exclude paths
 /ClientProductHttpClient/target/
+/Microkernel-common/target/
+/Microkernel-pago-pse/target/
