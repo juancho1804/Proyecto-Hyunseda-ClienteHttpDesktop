@@ -4,6 +4,7 @@
  */
 package com.unicauca.clientproducthttpclient.controllers;
 
+import com.unicauca.clientproducthttpclient.designpatterns.observer.Subject;
 import com.unicauca.clientproducthttpclient.domain.entities.Item;
 import com.unicauca.clientproducthttpclient.domain.entities.Product;
 import com.unicauca.clientproducthttpclient.domain.entities.ShoppingCart;
@@ -14,12 +15,22 @@ import com.unicauca.clientproducthttpclient.domain.services.ShoppingCartService;
  *
  * @author Juan
  */
-public class ShoppingCartController {
+public class ShoppingCartController extends Subject{
     private IShoppingCartService shopService;
 
     public ShoppingCartController(ShoppingCartService shoppingCartService) {
         this.shopService = shoppingCartService;
     }
+
+    public IShoppingCartService getShopService() {
+        return shopService;
+    }
+
+    public void setShopService(IShoppingCartService shopService) {
+        this.shopService = shopService;
+    }
+    
+    
 
     public void agregarItem(Product producto, int cantidad) {
         this.shopService.agregarProducto(producto, cantidad);
@@ -35,6 +46,7 @@ public class ShoppingCartController {
 
     public void actualizarSubTotal() {
         this.shopService.actualizarSubTotal();
+        this.notifyAllObserves();
     }
 
     public ShoppingCart getShoppingCart() {

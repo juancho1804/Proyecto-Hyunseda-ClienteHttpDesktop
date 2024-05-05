@@ -9,8 +9,11 @@ import com.unicauca.clientproducthttpclient.controllers.ShoppingCartController;
 import com.unicauca.clientproducthttpclient.domain.entities.Item;
 import com.unicauca.clientproducthttpclient.domain.entities.Product;
 import com.unicauca.clientproducthttpclient.util.Messages;
+import com.unicauca.clientproducthttpclient.util.Utilities;
+import java.awt.Cursor;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -23,16 +26,23 @@ public class GUIShoppingCart extends javax.swing.JFrame {
     private ShoppingCartController shopControler;
     private ProductController productController;
     List<Product> products;
+    private GUIConfirmarPago gUIConfirmarPago;
 
     /**
      * Creates new form GUIShoppingCart
      */
     public GUIShoppingCart(ProductController productController, ShoppingCartController shopCartControler) {
         
+        this.gUIConfirmarPago = new GUIConfirmarPago();
+     
+        
+
+        //shoppingCartService.addObserver(guiOtherView);
         initComponents();
         this.productController = productController;
         this.products=productController.findAll();
         this.shopControler=shopCartControler;
+        shopCartControler.addObserver(gUIConfirmarPago);
         initializeComboBox();
         initializeTable();
         setLocationRelativeTo(null);
@@ -92,6 +102,7 @@ public class GUIShoppingCart extends javax.swing.JFrame {
         });
 
         spnCantidad.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        spnCantidad.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
         spnCantidad.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 spnCantidadStateChanged(evt);
@@ -131,8 +142,8 @@ public class GUIShoppingCart extends javax.swing.JFrame {
                 .addGroup(pnlNorteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(cboProducto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(spnCantidad))
-                .addGap(53, 53, 53)
-                .addGroup(pnlNorteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
+                .addGroup(pnlNorteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(pnlNorteLayout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -167,8 +178,6 @@ public class GUIShoppingCart extends javax.swing.JFrame {
                 .addGap(39, 39, 39))
         );
 
-        getContentPane().add(pnlNorte, java.awt.BorderLayout.PAGE_START);
-
         pnlCentro.setMinimumSize(new java.awt.Dimension(144, 110));
         pnlCentro.setPreferredSize(new java.awt.Dimension(144, 110));
         pnlCentro.setLayout(new java.awt.BorderLayout());
@@ -189,11 +198,14 @@ public class GUIShoppingCart extends javax.swing.JFrame {
             }
         ));
         tblProducts.setMinimumSize(new java.awt.Dimension(150, 150));
+        tblProducts.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblProductsMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblProducts);
 
         pnlCentro.add(jScrollPane1, java.awt.BorderLayout.CENTER);
-
-        getContentPane().add(pnlCentro, java.awt.BorderLayout.CENTER);
 
         pnlSur.setMinimumSize(new java.awt.Dimension(150, 150));
         pnlSur.setPreferredSize(new java.awt.Dimension(150, 150));
@@ -247,7 +259,7 @@ public class GUIShoppingCart extends javax.swing.JFrame {
             .addGroup(pnlSurLayout.createSequentialGroup()
                 .addGap(134, 134, 134)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addComponent(btnPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnCerrar)
@@ -268,7 +280,26 @@ public class GUIShoppingCart extends javax.swing.JFrame {
                 .addContainerGap(41, Short.MAX_VALUE))
         );
 
-        getContentPane().add(pnlSur, java.awt.BorderLayout.PAGE_END);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlCentro, javax.swing.GroupLayout.PREFERRED_SIZE, 673, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnlSur, javax.swing.GroupLayout.PREFERRED_SIZE, 673, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnlNorte, javax.swing.GroupLayout.PREFERRED_SIZE, 817, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(310, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(pnlNorte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(pnlCentro, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(pnlSur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -306,11 +337,16 @@ public class GUIShoppingCart extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
-        // TO DO new GUIPago(shopControler.getShoppingCart().getItems()).setVisible(true);
+        this.gUIConfirmarPago.setVisible(true);
     }//GEN-LAST:event_btnPagarActionPerformed
+
+    private void tblProductsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProductsMouseClicked
+
+    }//GEN-LAST:event_tblProductsMouseClicked
 
     private void initializeComboBox() {
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
+
         for (Product product : products) {
             model.addElement(product.getName());
         }
@@ -318,7 +354,12 @@ public class GUIShoppingCart extends javax.swing.JFrame {
     }
     
     private void initializeTable() {
-        DefaultTableModel model = new DefaultTableModel();
+        DefaultTableModel model = new DefaultTableModel(){
+            public boolean isCellEditable(int row, int column) {
+                return false; // Esto hace que todas las celdas de la tabla sean no editables
+            }
+        };
+        
         model.addColumn("DESCRIPCIÓN");
         model.addColumn("PRECIO UNITARIO");
         model.addColumn("CANTIDAD");

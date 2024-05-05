@@ -4,9 +4,9 @@
  */
 package com.unicauca.clientproducthttpclient.presentation;
 
-import com.unicauca.clientproducthttpclient.designpatterns.Observer;
+import com.unicauca.clientproducthttpclient.controllers.ShoppingCartController;
+import com.unicauca.clientproducthttpclient.designpatterns.observer.Observer;
 import com.unicauca.clientproducthttpclient.domain.entities.Item;
-import com.unicauca.clientproducthttpclient.domain.entities.ShoppingCart;
 import com.unicauca.clientproducthttpclient.domain.services.IShoppingCartService;
 import java.util.List;
 
@@ -14,12 +14,12 @@ import java.util.List;
  *
  * @author Juan
  */
-public class GUIOtherview extends javax.swing.JFrame implements Observer {
+public class GUIConfirmarPago extends javax.swing.JFrame implements Observer {
 
     /**
      * Creates new form GUIOtherview
      */
-    public GUIOtherview() {
+    public GUIConfirmarPago() {
         initComponents();
     }
 
@@ -100,40 +100,7 @@ public class GUIOtherview extends javax.swing.JFrame implements Observer {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GUIOtherview.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GUIOtherview.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GUIOtherview.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GUIOtherview.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GUIOtherview().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -151,13 +118,13 @@ public class GUIOtherview extends javax.swing.JFrame implements Observer {
     @Override
     public void update(Object o) {
         int cantidad=0;
-        IShoppingCartService shoppingCartService = (IShoppingCartService) o;
-        List<Item>items= shoppingCartService.getShoppingCart().getItems();
+        ShoppingCartController shoppingCartController = (ShoppingCartController) o;
+        List<Item>items= shoppingCartController.getShopService().getShoppingCart().getItems();
         for(Item item:items){
             cantidad+=item.getCantidad();
         }
         lblCantidadProductos.setText("" +cantidad);
-        lblTotal.setText("$ "+shoppingCartService.obtenerTotal()+" COP");
+        lblTotal.setText("$ "+shoppingCartController.getShopService().obtenerTotal()+" COP");
 
         
     }
