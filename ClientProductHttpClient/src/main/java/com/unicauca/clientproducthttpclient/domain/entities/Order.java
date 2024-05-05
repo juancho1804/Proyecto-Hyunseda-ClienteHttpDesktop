@@ -6,6 +6,8 @@ package com.unicauca.clientproducthttpclient.domain.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
@@ -22,6 +24,13 @@ public class Order {
     String state;
     @JsonProperty("items")
     List<Item> items;
+
+    public Order() {
+        LocalDateTime fechaHoraActual = LocalDateTime.now();
+        // Convertir a String
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        this.date=fechaHoraActual.format(formato);
+    }
 
     public Long getId() {
         return id;

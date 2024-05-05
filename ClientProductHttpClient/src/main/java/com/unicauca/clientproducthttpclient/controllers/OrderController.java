@@ -13,6 +13,9 @@ public class OrderController {
     public void createOrder(Order order) {
         this.orderService.createOrder(order);
     }
+    public void createOrderClient(Integer clientId, Order order){
+        this.orderService.createOrderClient(clientId, order);
+    }
 
 
 }

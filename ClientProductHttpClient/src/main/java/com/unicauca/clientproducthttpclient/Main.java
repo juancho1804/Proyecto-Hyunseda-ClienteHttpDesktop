@@ -40,14 +40,6 @@ public class Main {
         
         GUIInicio guiInicio=new GUIInicio(productController,categoryController,ShopCartControler);
         guiInicio.setVisible(true);
-        //GUIShoppingCart gUIShoppingCart= new GUIShoppingCart();
-        //gUIShoppingCart.setVisible(true);
-        
-        //GUIConfirmarPago guiOtherView = new GUIConfirmarPago();
-
-        //shoppingCartService.addObserver(guiOtherView);
-
-        //guiOtherView.setVisible(true);
         
                 
         

@@ -45,10 +45,11 @@ public class pruebita {
         IOrderService orderService=new OrderService(orderRepository);
         OrderController orderController=new OrderController(orderService);
         Order order=new Order();
-        order.setDate("01/01/2020");
+        //order.setDate("01/01/2020");
         order.setItems(items);
         order.setState("Pedido");
-        orderController.createOrder(order);
+        //orderController.createOrder(order);
+        orderController.createOrderClient(2,order);
 
 
 

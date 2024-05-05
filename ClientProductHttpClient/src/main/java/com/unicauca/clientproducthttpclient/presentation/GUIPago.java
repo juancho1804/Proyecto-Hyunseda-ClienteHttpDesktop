@@ -155,6 +155,9 @@ public class GUIPago extends javax.swing.JFrame {
             if (paymentVerified) {
                 JOptionPane.showMessageDialog(this, "Pago realizado con éxito"); // Mostrar mensaje de éxito
                 Messages.sendPaymentConfirmationMessage();
+                GUIOrder guiOrder=new GUIOrder();
+                guiOrder.setVisible(true);
+                
                 
             } else {
                 JOptionPane.showMessageDialog(this, "Error al procesar el pago", "Error", JOptionPane.ERROR_MESSAGE); // Mostrar mensaje de error
