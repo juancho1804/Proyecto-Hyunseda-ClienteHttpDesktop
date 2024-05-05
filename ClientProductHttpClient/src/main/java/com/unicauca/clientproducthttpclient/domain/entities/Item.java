@@ -4,19 +4,29 @@
  */
 package com.unicauca.clientproducthttpclient.domain.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  *
  * @author Juan
  */
 public class Item {
+    @JsonProperty("id")
+    Long id;
+    @JsonProperty("product")
     Product product;
-    int cantidad;
-    double importe;
-    
+    @JsonProperty("cantidad")
+    Integer cantidad;
+    @JsonProperty("subtotal")
+    double subtotal;
+
+    public Item(){
+
+    }
     public Item(Product product, int cantidad) {
         this.product = product;
         this.cantidad = cantidad;
-        this.importe = cantidad * product.getPrice();
+        this.subtotal = cantidad * product.getPrice();
     }
 
     public Product getProduct() {
@@ -35,14 +45,12 @@ public class Item {
         this.cantidad = cantidad;
     }
 
-    public double getImporte() {
-        return importe;
+    public double getSubtotal() {
+        return subtotal;
     }
 
-    public void setImporte(double importe) {
-        this.importe = importe;
+    public void setSubtotal(double subtotal) {
+        this.subtotal = subtotal;
     }
-    
-    
-    
+
 }
