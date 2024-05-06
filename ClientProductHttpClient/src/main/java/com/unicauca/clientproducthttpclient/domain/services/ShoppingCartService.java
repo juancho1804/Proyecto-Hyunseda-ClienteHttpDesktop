@@ -36,6 +36,28 @@ public class ShoppingCartService  implements IShoppingCartService {
         shoppingCart.setItems(items);
         actualizarSubTotal();
     }
+    
+    public void eliminarItem(Product producto) {
+        List<Item> items = shoppingCart.getItems();
+        Item item=obtenerItem(producto);
+        if(item!=null){
+            items.remove(item);
+            shoppingCart.setItems(items);
+            actualizarSubTotal();
+        }else{
+            System.out.println("No se encontro el item");
+        }
+        
+    }
+    
+    public Item obtenerItem(Product producto){
+        for(Item item:shoppingCart.getItems()){
+            if(item.getProduct().getId()==producto.getId()){
+                return item;
+            }
+        }
+        return null;
+    }
 
     public void limpiarCarrito() {
         shoppingCart.setItems(new ArrayList<>());

@@ -36,8 +36,9 @@ public class ShoppingCartController extends Subject{
         this.shopService.agregarProducto(producto, cantidad);
     }
 
-    public void eliminarProducto(Item item) {
-        this.shopService.eliminarProducto(item);
+    public void eliminarProducto(Product producto) {
+        this.shopService.eliminarItem(producto);
+        this.notifyAllObserves();
     }
 
     public void limpiarCarrito() {

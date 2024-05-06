@@ -71,6 +71,7 @@ public class GUIShoppingCart extends javax.swing.JFrame {
         btnAgregar = new javax.swing.JButton();
         lblPrecio = new javax.swing.JLabel();
         lblImporte = new javax.swing.JLabel();
+        btnQuitar = new javax.swing.JButton();
         pnlCentro = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblProducts = new javax.swing.JTable();
@@ -136,6 +137,13 @@ public class GUIShoppingCart extends javax.swing.JFrame {
         lblImporte.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblImporte.setText("$0 COP");
 
+        btnQuitar.setText("Quitar");
+        btnQuitar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQuitarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlNorteLayout = new javax.swing.GroupLayout(pnlNorte);
         pnlNorte.setLayout(pnlNorteLayout);
         pnlNorteLayout.setHorizontalGroup(
@@ -150,21 +158,20 @@ public class GUIShoppingCart extends javax.swing.JFrame {
                     .addComponent(cboProducto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(spnCantidad))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 274, Short.MAX_VALUE)
-                .addGroup(pnlNorteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlNorteLayout.createSequentialGroup()
-                        .addGroup(pnlNorteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(pnlNorteLayout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblPrecio))
-                            .addGroup(pnlNorteLayout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblImporte)))
-                        .addGap(205, 205, 205))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlNorteLayout.createSequentialGroup()
-                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15))))
+                .addGroup(pnlNorteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(pnlNorteLayout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblPrecio))
+                    .addGroup(pnlNorteLayout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblImporte)))
+                .addGap(70, 70, 70)
+                .addGroup(pnlNorteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                    .addComponent(btnQuitar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(15, 15, 15))
         );
         pnlNorteLayout.setVerticalGroup(
             pnlNorteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,18 +183,22 @@ public class GUIShoppingCart extends javax.swing.JFrame {
                             .addComponent(jLabel1)
                             .addComponent(cboProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3)
-                            .addComponent(lblPrecio))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE))
+                            .addComponent(lblPrecio)))
+                    .addGroup(pnlNorteLayout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addGroup(pnlNorteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlNorteLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(4, 4, 4)))
-                .addGroup(pnlNorteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(spnCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(lblImporte))
-                .addGap(39, 39, 39))
+                        .addGroup(pnlNorteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(spnCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)
+                            .addComponent(lblImporte))
+                        .addGap(39, 39, 39))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlNorteLayout.createSequentialGroup()
+                        .addComponent(btnQuitar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23))))
         );
 
         pnlCentro.setMinimumSize(new java.awt.Dimension(144, 110));
@@ -377,6 +388,25 @@ public class GUIShoppingCart extends javax.swing.JFrame {
 
     }//GEN-LAST:event_tblProductsMouseClicked
 
+    private void btnQuitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitarActionPerformed
+        int selectedRow = tblProducts.getSelectedRow();
+    if (selectedRow != -1) {
+        // Obtén el nombre del producto en la fila seleccionada
+        String productName = (String) tblProducts.getValueAt(selectedRow, 0);
+        // Busca el producto en la lista de productos
+        Product selectedProduct = products.stream().filter(p -> p.getName().equals(productName)).findFirst().orElse(null);
+        if (selectedProduct != null) {
+            // Elimina el item correspondiente al producto seleccionado del carrito
+            shopControler.eliminarProducto(selectedProduct);
+            // Actualiza la tabla y otros componentes de la GUI
+            actualizarTabla();
+        }
+    } else {
+        Messages.showMessageError("Seleccione un item para eliminar del carrito", "Error");
+
+    }
+    }//GEN-LAST:event_btnQuitarActionPerformed
+
     private void initializeComboBox() {
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
 
@@ -475,6 +505,7 @@ public class GUIShoppingCart extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnPagar;
+    private javax.swing.JButton btnQuitar;
     private javax.swing.JComboBox<String> cboProducto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
