@@ -8,7 +8,6 @@ import com.unicauca.clientproducthttpclient.access.*;
 import com.unicauca.clientproducthttpclient.controllers.CategoryController;
 import com.unicauca.clientproducthttpclient.controllers.OrderController;
 import com.unicauca.clientproducthttpclient.controllers.ProductController;
-import com.unicauca.clientproducthttpclient.designpatterns.State;
 import com.unicauca.clientproducthttpclient.domain.entities.Item;
 import com.unicauca.clientproducthttpclient.domain.entities.Order;
 import com.unicauca.clientproducthttpclient.domain.entities.Product;
@@ -50,11 +49,12 @@ public class pruebita {
         order.setItems(items);
         //State state=new State();
         //order.setState(state);
-        order.setId(orderController.createOrder(order).getId());
-        System.out.println(orderController.createOrder(order).getId());
-        //orderController.createOrderClient(2,order);
+        //order.setId(orderController.createOrder(order).getId());
+        //System.out.println(orderController.createOrder(order).getId());
+        orderController.createOrderClient(2,order);
         System.out.println(order.getId());
         System.out.println(order.getState().estadoPedido());
+
 
 
     }

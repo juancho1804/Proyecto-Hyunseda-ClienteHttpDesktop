@@ -19,9 +19,7 @@ import com.unicauca.clientproducthttpclient.presentation.GUIShoppingCart;
 
 /**
  *
- * @author libardo
- * Este main muestra el funcionamiento basico de las peticiones a una API Rest
- * usando la biblioteca Apache HttpClient
+ * @author Juan
  */
 public class Main {
 
@@ -36,9 +34,9 @@ public class Main {
         CategoryController categoryController =new CategoryController(categoryService);
         
         ShoppingCartService shoppingCartService = new ShoppingCartService();
-        ShoppingCartController ShopCartControler = new ShoppingCartController(shoppingCartService);
+        ShoppingCartController ShopCartController = new ShoppingCartController(shoppingCartService);
         
-        GUIInicio guiInicio=new GUIInicio(productController,categoryController,ShopCartControler);
+        GUIInicio guiInicio=new GUIInicio(productController,categoryController,ShopCartController);
         guiInicio.setVisible(true);
         
                 

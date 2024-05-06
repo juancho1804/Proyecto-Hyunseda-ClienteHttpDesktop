@@ -5,11 +5,10 @@
 package com.unicauca.clientproducthttpclient.domain.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonTypeId;
-import com.unicauca.clientproducthttpclient.designpatterns.State;
-import com.unicauca.clientproducthttpclient.designpatterns.StateEntregado;
-import com.unicauca.clientproducthttpclient.designpatterns.StateEnviado;
-import com.unicauca.clientproducthttpclient.designpatterns.StateSolicitado;
+import com.unicauca.clientproducthttpclient.designpatterns.state.State;
+import com.unicauca.clientproducthttpclient.designpatterns.state.StateEntregado;
+import com.unicauca.clientproducthttpclient.designpatterns.state.StateEnviado;
+import com.unicauca.clientproducthttpclient.designpatterns.state.StateSolicitado;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

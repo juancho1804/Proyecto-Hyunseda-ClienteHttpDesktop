@@ -1,4 +1,4 @@
-package com.unicauca.clientproducthttpclient.designpatterns;
+package com.unicauca.clientproducthttpclient.designpatterns.state;
 
 public class StateEnviado extends State{
     @Override
