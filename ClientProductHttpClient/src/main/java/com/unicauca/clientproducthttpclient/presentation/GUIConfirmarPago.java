@@ -120,6 +120,7 @@ public class GUIConfirmarPago extends javax.swing.JFrame implements Observer {
         // TODO add your handling code here:
         if (this.gUIPago != null) {
             this.gUIPago.setVisible(true);
+            this.dispose();
         } else {
             System.out.println("gUIPago is not initialized");
         }

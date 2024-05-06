@@ -169,7 +169,7 @@ public class GUIShoppingCart extends javax.swing.JFrame {
                 .addGroup(pnlNorteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(cboProducto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(spnCantidad))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 274, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pnlNorteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(pnlNorteLayout.createSequentialGroup()
                         .addComponent(jLabel3)
@@ -339,13 +339,11 @@ public class GUIShoppingCart extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlNorte, javax.swing.GroupLayout.PREFERRED_SIZE, 946, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(pnlSur, javax.swing.GroupLayout.DEFAULT_SIZE, 940, Short.MAX_VALUE)
-                    .addComponent(pnlCentro, javax.swing.GroupLayout.DEFAULT_SIZE, 940, Short.MAX_VALUE))
+                    .addComponent(pnlSur, javax.swing.GroupLayout.DEFAULT_SIZE, 1012, Short.MAX_VALUE)
+                    .addComponent(pnlCentro, javax.swing.GroupLayout.DEFAULT_SIZE, 1012, Short.MAX_VALUE))
                 .addContainerGap())
+            .addComponent(pnlNorte, javax.swing.GroupLayout.DEFAULT_SIZE, 1018, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

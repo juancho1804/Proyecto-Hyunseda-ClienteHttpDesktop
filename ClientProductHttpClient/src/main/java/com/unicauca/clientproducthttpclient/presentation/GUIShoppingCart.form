@@ -27,16 +27,13 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <Component id="pnlNorte" min="-2" pref="946" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" attributes="0">
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="pnlSur" pref="940" max="32767" attributes="0"/>
-                  <Component id="pnlCentro" pref="940" max="32767" attributes="0"/>
+                  <Component id="pnlSur" pref="1012" max="32767" attributes="0"/>
+                  <Component id="pnlCentro" pref="1012" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
+          <Component id="pnlNorte" alignment="0" pref="1018" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -76,7 +73,7 @@
                       <Component id="cboProducto" max="32767" attributes="0"/>
                       <Component id="spnCantidad" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="274" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                       <Group type="102" attributes="0">
                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
