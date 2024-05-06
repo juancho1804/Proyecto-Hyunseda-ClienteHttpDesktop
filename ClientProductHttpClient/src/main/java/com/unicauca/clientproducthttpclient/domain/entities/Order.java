@@ -5,6 +5,10 @@
 package com.unicauca.clientproducthttpclient.domain.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.unicauca.clientproducthttpclient.designpatterns.State;
+import com.unicauca.clientproducthttpclient.designpatterns.StateEntregado;
+import com.unicauca.clientproducthttpclient.designpatterns.StateEnviado;
+import com.unicauca.clientproducthttpclient.designpatterns.StateSolicitado;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -21,7 +25,7 @@ public class Order {
     @JsonProperty("date")
     String date;
     @JsonProperty("state")
-    String state;
+    State state;
     @JsonProperty("items")
     List<Item> items;
 
@@ -30,6 +34,16 @@ public class Order {
         // Convertir a String
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         this.date=fechaHoraActual.format(formato);
+        solicitado();
+    }
+    public void solicitado(){
+        this.state=new StateSolicitado();
+    }
+    public void enviar(){
+        this.state= new StateEnviado();
+    }
+    public void entregar(){
+        this.state=new StateEntregado();
     }
 
     public Long getId() {
@@ -48,11 +62,11 @@ public class Order {
         this.date = date;
     }
 
-    public String getState() {
+    public State getState() {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(State state) {
         this.state = state;
     }
 

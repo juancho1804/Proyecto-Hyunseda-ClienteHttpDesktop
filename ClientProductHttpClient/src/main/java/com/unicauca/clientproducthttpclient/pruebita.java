@@ -8,6 +8,7 @@ import com.unicauca.clientproducthttpclient.access.*;
 import com.unicauca.clientproducthttpclient.controllers.CategoryController;
 import com.unicauca.clientproducthttpclient.controllers.OrderController;
 import com.unicauca.clientproducthttpclient.controllers.ProductController;
+import com.unicauca.clientproducthttpclient.designpatterns.State;
 import com.unicauca.clientproducthttpclient.domain.entities.Item;
 import com.unicauca.clientproducthttpclient.domain.entities.Order;
 import com.unicauca.clientproducthttpclient.domain.entities.Product;
@@ -47,15 +48,14 @@ public class pruebita {
         Order order=new Order();
         //order.setDate("01/01/2020");
         order.setItems(items);
-        order.setState("Pedido");
+        //State state=new State();
+        //order.setState(state);
         //orderController.createOrder(order);
         orderController.createOrderClient(2,order);
-
-
-
-
+        System.out.println(order.getState().estadoPedido());
 
 
     }
     
 }
+
