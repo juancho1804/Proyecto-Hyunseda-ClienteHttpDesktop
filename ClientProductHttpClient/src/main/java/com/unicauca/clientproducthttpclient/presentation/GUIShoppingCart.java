@@ -395,6 +395,7 @@ public class GUIShoppingCart extends javax.swing.JFrame {
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
        //this.gUIConfirmarPago.
         this.gUIConfirmarPago.setVisible(true);
+        this.dispose();
 
     }//GEN-LAST:event_btnPagarActionPerformed
 

@@ -128,7 +128,23 @@ public class GUIIniciarSesion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHechoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHechoActionPerformed
-        this.userController.validateUser(txtCorreo.getText(),txtContrasenia.getText());
+        if(this.userController.validateUser(txtCorreo.getText(),txtContrasenia.getText())){
+            ICategoryRepository categoryRepository=new CategoryRestRepository();
+            IProductRepository productRepository=new ProductRestRepository();
+
+            ICategoryService categoryService=new CategoryService(categoryRepository);
+            IProductService productService=new ProductService(productRepository);
+
+            ProductController productController=new ProductController(productService);
+            CategoryController categoryController =new CategoryController(categoryService);
+
+            ShoppingCartService shoppingCartService = new ShoppingCartService();
+            ShoppingCartController ShopCartController = new ShoppingCartController(shoppingCartService);
+
+            GUIInicio guiInicio=new GUIInicio(productController,categoryController,ShopCartController);
+            guiInicio.setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_btnHechoActionPerformed
 
     /**

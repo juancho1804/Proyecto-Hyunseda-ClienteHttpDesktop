@@ -73,8 +73,21 @@ public class pruebita {
         System.out.println(userRepository.validateUser("DANIEL","1"));
 
         */
-        GUIRegistro guiRegistro = new GUIRegistro();
-        guiRegistro.setVisible(true);
+        //GUIRegistro guiRegistro = new GUIRegistro();
+        //guiRegistro.setVisible(true);
+        IRoleRepository roleRepository=new RoleRestRepository();
+        Role role=new Role();
+        role.setId(roleRepository.findById(1L).getId());
+        role.setName(roleRepository.findById(1L).getName());
+
+        System.out.println(roleRepository.findById(1L).getName());
+
+        User user=new User("ADMIN2","ADMIN2","ADMIN");
+        UserController userController=new UserController();
+        userController.create(user);
+        user.setRoleModel(role);
+
+
 
 
 

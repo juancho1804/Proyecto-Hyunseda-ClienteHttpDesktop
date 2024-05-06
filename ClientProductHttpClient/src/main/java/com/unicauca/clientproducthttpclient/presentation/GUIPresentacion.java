@@ -138,11 +138,15 @@ public class GUIPresentacion extends javax.swing.JFrame {
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
         // TODO add your handling code here:
+        this.dispose();
+        GUIIniciarSesion guiIniciarSesion=new GUIIniciarSesion();
+        guiIniciarSesion.setVisible(true);
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
     private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
         GUIRegistro gUIRegistro=new GUIRegistro();
         gUIRegistro.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnRegistrarseActionPerformed
 
     /**
