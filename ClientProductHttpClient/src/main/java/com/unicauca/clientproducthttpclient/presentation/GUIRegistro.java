@@ -4,16 +4,22 @@
  */
 package com.unicauca.clientproducthttpclient.presentation;
 
+import com.unicauca.clientproducthttpclient.controllers.OrderController;
+import com.unicauca.clientproducthttpclient.controllers.UserController;
+import com.unicauca.clientproducthttpclient.domain.entities.User;
+
 /**
  *
  * @author Juan
  */
 public class GUIRegistro extends javax.swing.JFrame {
+    UserController userController;
 
     /**
      * Creates new form GUIRegistro
      */
     public GUIRegistro() {
+        this.userController =new UserController();
         initComponents();
     }
 
@@ -143,8 +149,9 @@ public class GUIRegistro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistradoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistradoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnRegistradoActionPerformed
+        User user=new User(txtNombre.getText(),txtEmail.getText(),txtContrasenia.getText());
+        this.userController.create(user);
+    }
 
     /**
      * @param args the command line arguments

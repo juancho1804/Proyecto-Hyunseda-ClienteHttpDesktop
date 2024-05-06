@@ -20,63 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class OrderRestRepository implements IOrderRepository{
-    /*
-    public void create(Order order) {
-        try {
-            // Crear un objeto CloseableHttpClient
-            CloseableHttpClient httpClient = HttpClients.createDefault();
 
-            // Especificar la URL a la que se enviará la solicitud POST
-            String url = "http://localhost:8002/order";
-
-            // Crear un objeto HttpPost con la URL especificada
-            HttpPost httpPost = new HttpPost(url);
-
-            // Crear un objeto ObjectMapper de Jackson
-            ObjectMapper objectMapper = new ObjectMapper();
-
-            // Convertir el objeto a JSON
-            String jsonRequest = objectMapper.writeValueAsString(order);
-
-            // Configurar la entidad de la solicitud con el JSON
-            StringEntity entity = new StringEntity(jsonRequest);
-            httpPost.setEntity(entity);
-
-            // Configurar las cabeceras de la solicitud
-            httpPost.setHeader("Content-Type", "application/json");
-            // Si es necesario, puedes configurar otras cabeceras aquí
-
-            // Ejecutar la solicitud y obtener la respuesta
-            HttpResponse response = httpClient.execute(httpPost);
-
-            // Obtener el cuerpo de la respuesta
-            HttpEntity responseEntity = response.getEntity();
-            String responseBody = EntityUtils.toString(responseEntity);
-
-            // Imprimir la respuesta
-            System.out.println("Response status: " + response.getStatusLine());
-            System.out.println("Response body: " + responseBody);
-
-            Messages.showMessageDialog("La orden ha sido agregada exitosamente","Producto agregado");
-
-            // Cerrar el cliente HttpClient
-            httpClient.close();
-
-        } catch (JsonProcessingException ex) {
-            Logger.getLogger(Main.class
-                    .getName()).log(Level.SEVERE, null, ex);
-
-        } catch (UnsupportedEncodingException ex) {
-            Logger.getLogger(Main.class
-                    .getName()).log(Level.SEVERE, null, ex);
-
-        } catch (IOException ex) {
-            Logger.getLogger(Main.class
-                    .getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-     */
 
     public Order create(Order order) {
         try {

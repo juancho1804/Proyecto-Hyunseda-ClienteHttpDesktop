@@ -8,10 +8,10 @@ import com.unicauca.clientproducthttpclient.access.*;
 import com.unicauca.clientproducthttpclient.controllers.CategoryController;
 import com.unicauca.clientproducthttpclient.controllers.OrderController;
 import com.unicauca.clientproducthttpclient.controllers.ProductController;
-import com.unicauca.clientproducthttpclient.domain.entities.Item;
-import com.unicauca.clientproducthttpclient.domain.entities.Order;
-import com.unicauca.clientproducthttpclient.domain.entities.Product;
+import com.unicauca.clientproducthttpclient.controllers.UserController;
+import com.unicauca.clientproducthttpclient.domain.entities.*;
 import com.unicauca.clientproducthttpclient.domain.services.*;
+import com.unicauca.clientproducthttpclient.presentation.GUIRegistro;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,6 +23,7 @@ import java.util.List;
  */
 public class pruebita {
     public static void main(String[] args) throws IOException {
+        /*
         ICategoryRepository categoryRepository=new CategoryRestRepository();
         IProductRepository productRepository=new ProductRestRepository();
         
@@ -54,6 +55,26 @@ public class pruebita {
         orderController.createOrderClient(2,order);
         System.out.println(order.getId());
         System.out.println(order.getState().estadoPedido());
+
+         */
+       /* IUserRepository userRepository=new UserRestRepository();
+        Role role = new Role(1L,"Admin");
+
+        User user=new User("diomedes","juanmanuelcerond","123");
+
+
+        userRepository.createUser(user);
+        System.out.println(userRepository.validateUser("diomedes","123"));
+        System.out.println(userRepository.validateUser("diomedes","1234"));
+
+        UserController userController=new UserController();
+        User user2=new User("DANIEL","DANIEL2","123");
+        userController.create(user2);
+        System.out.println(userRepository.validateUser("DANIEL","1"));
+
+        */
+        GUIRegistro guiRegistro = new GUIRegistro();
+        guiRegistro.setVisible(true);
 
 
 
