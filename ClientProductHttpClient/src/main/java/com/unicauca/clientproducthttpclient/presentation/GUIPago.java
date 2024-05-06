@@ -23,7 +23,7 @@ import unicauca.microkernel.plugin.manager.DeliveryPluginManager;
  * @author jvuan
  */
 public class GUIPago extends javax.swing.JFrame {
-    
+    private GUIOrder guiOrder=new GUIOrder();
     List<Item> cart;
 
     /**
@@ -35,7 +35,13 @@ public class GUIPago extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         this.setPreferredSize(new Dimension(400, 200));
+        this.guiOrder=new GUIOrder();
     }
+
+    public GUIOrder getGuiOrder() {
+        return guiOrder;
+    }
+
     private static String getBaseFilePath() {
         try {
             String path = GUIPago.class.getProtectionDomain().getCodeSource().getLocation().getPath();
@@ -235,6 +241,7 @@ public class GUIPago extends javax.swing.JFrame {
             if (paymentVerified) {
                 JOptionPane.showMessageDialog(this, "Pago realizado con éxito"); // Mostrar mensaje de éxito
                 Messages.sendPaymentConfirmationMessage(name , email, phoneNumber);
+                this.guiOrder.setVisible(true);
                 
             } else {
                 JOptionPane.showMessageDialog(this, "Error al procesar el pago", "Error", JOptionPane.ERROR_MESSAGE); // Mostrar mensaje de error

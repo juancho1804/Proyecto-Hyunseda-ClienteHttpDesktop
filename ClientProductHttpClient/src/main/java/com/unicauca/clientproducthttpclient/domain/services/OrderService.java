@@ -11,8 +11,8 @@ public class OrderService implements IOrderService {
         this.repo = repo;
     }
 
-    public void createOrder(Order order) {
-        repo.create(order);
+    public Order createOrder(Order order) {
+        return repo.create(order);
     }
 
     public void createOrderClient(Integer clientId, Order order) {

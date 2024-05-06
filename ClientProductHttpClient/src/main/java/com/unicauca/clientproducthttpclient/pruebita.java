@@ -42,16 +42,18 @@ public class pruebita {
         items.add(item);
 
 
-        IOrderRepository orderRepository=new OrderRestRepository();
-        IOrderService orderService=new OrderService(orderRepository);
-        OrderController orderController=new OrderController(orderService);
+        //IOrderRepository orderRepository=new OrderRestRepository();
+        //IOrderService orderService=new OrderService(orderRepository);
+        OrderController orderController=new OrderController();
         Order order=new Order();
         //order.setDate("01/01/2020");
         order.setItems(items);
         //State state=new State();
         //order.setState(state);
-        //orderController.createOrder(order);
-        orderController.createOrderClient(2,order);
+        order.setId(orderController.createOrder(order).getId());
+        System.out.println(orderController.createOrder(order).getId());
+        //orderController.createOrderClient(2,order);
+        System.out.println(order.getId());
         System.out.println(order.getState().estadoPedido());
 
 

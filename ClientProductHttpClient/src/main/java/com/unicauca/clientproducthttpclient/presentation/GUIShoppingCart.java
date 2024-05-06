@@ -30,6 +30,7 @@ public class GUIShoppingCart extends javax.swing.JFrame {
     private ProductController productController;
     List<Product> products;
     private GUIConfirmarPago gUIConfirmarPago;
+    private GUIOrder guiOrder;
 
     /**
      * Creates new form GUIShoppingCart
@@ -37,6 +38,8 @@ public class GUIShoppingCart extends javax.swing.JFrame {
     public GUIShoppingCart(ProductController productController, ShoppingCartController shopCartControler) {
         
         this.gUIConfirmarPago = new GUIConfirmarPago();
+        this.guiOrder = this.gUIConfirmarPago.getgUIPago().getGuiOrder();
+
      
         
 
@@ -46,10 +49,19 @@ public class GUIShoppingCart extends javax.swing.JFrame {
         this.products=productController.findAll();
         this.shopControler=shopCartControler;
         shopCartControler.addObserver(gUIConfirmarPago);
+        shopCartControler.addObserver(guiOrder);
         initializeComboBox();
         initializeTable();
         addTableSelectionListener();
         setLocationRelativeTo(null);
+    }
+
+    public GUIConfirmarPago getgUIConfirmarPago() {
+        return gUIConfirmarPago;
+    }
+
+    public void setgUIConfirmarPago(GUIConfirmarPago gUIConfirmarPago) {
+        this.gUIConfirmarPago = gUIConfirmarPago;
     }
 
     /**
@@ -381,7 +393,9 @@ public class GUIShoppingCart extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
+       //this.gUIConfirmarPago.
         this.gUIConfirmarPago.setVisible(true);
+
     }//GEN-LAST:event_btnPagarActionPerformed
 
     private void tblProductsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProductsMouseClicked

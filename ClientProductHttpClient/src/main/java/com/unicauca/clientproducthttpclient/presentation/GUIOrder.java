@@ -4,18 +4,35 @@
  */
 package com.unicauca.clientproducthttpclient.presentation;
 
+import com.unicauca.clientproducthttpclient.controllers.OrderController;
+import com.unicauca.clientproducthttpclient.controllers.ShoppingCartController;
+import com.unicauca.clientproducthttpclient.designpatterns.observer.Observer;
+import com.unicauca.clientproducthttpclient.domain.entities.Item;
+import com.unicauca.clientproducthttpclient.domain.entities.Order;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.util.List;
+
 /**
  *
  * @author Juan
  */
-public class GUIOrder extends javax.swing.JFrame {
+public class GUIOrder extends javax.swing.JFrame implements Observer {
+    Order order;
 
+    OrderController orderController;
     /**
      * Creates new form GUIOrder
      */
     public GUIOrder() {
+        this.order=new Order();
+        this.orderController = new OrderController();
+        this.orderController.createOrder(order);
         initComponents();
+        DefaultListModel tblItems=new DefaultListModel();
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -32,8 +49,6 @@ public class GUIOrder extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblItems = new javax.swing.JList<>();
         jPanel2 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        lblId = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         lblFecha = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -67,14 +82,7 @@ public class GUIOrder extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblItems);
 
-        jPanel2.setLayout(new java.awt.GridLayout(3, 3));
-
-        jLabel6.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel6.setText("ID:");
-        jPanel2.add(jLabel6);
-
-        lblId.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jPanel2.add(lblId);
+        jPanel2.setLayout(new java.awt.GridLayout(2, 2));
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel2.setText("Fecha:");
@@ -137,50 +145,36 @@ public class GUIOrder extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GUIOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GUIOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GUIOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GUIOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GUIOrder().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblEstado;
     private javax.swing.JLabel lblFecha;
-    private javax.swing.JLabel lblId;
     private javax.swing.JPanel pnlCenter;
     private javax.swing.JPanel pnlNorte;
     private javax.swing.JList<String> tblItems;
+
+    @Override
+    public void update(Object o) {
+        DefaultListModel listModel = new DefaultListModel<>();
+
+        ShoppingCartController shoppingCartController = (ShoppingCartController) o;
+        List<Item>items= shoppingCartController.getShopService().getShoppingCart().getItems();
+
+        for(Item item:items){
+            listModel.addElement(item.getProduct().getName());
+        }
+        tblItems.setModel(listModel);
+        order.setItems(items);;
+        lblEstado.setText(order.getState().estadoPedido());
+        lblFecha.setText(order.getDate());
+
+
+    }
     // End of variables declaration//GEN-END:variables
 }
