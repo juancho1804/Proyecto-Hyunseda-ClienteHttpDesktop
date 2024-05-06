@@ -413,7 +413,7 @@ public class GUIShoppingCart extends javax.swing.JFrame {
             
             Item item = new Item(productoSeleccionado, cantidad);
             lblPrecio.setText(aMoneda(item.getProduct().getPrice()));
-            lblImporte.setText(aMoneda(item.getImporte()));
+            lblImporte.setText(aMoneda(item.getSubtotal()));
         }
     }
     
@@ -428,7 +428,7 @@ public class GUIShoppingCart extends javax.swing.JFrame {
             fila[0] = item.getProduct().getName();
             fila[1] = item.getProduct().getPrice();
             fila[2] = item.getCantidad();
-            fila[3] = item.getImporte();
+            fila[3] = item.getSubtotal();
 
             shopControler.actualizarSubTotal();
             model.addRow(fila);

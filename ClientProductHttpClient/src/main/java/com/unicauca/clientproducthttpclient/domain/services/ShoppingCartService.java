@@ -4,7 +4,6 @@
  */
 package com.unicauca.clientproducthttpclient.domain.services;
 
-import com.unicauca.clientproducthttpclient.designpatterns.observer.Subject;
 import com.unicauca.clientproducthttpclient.domain.entities.Item;
 import com.unicauca.clientproducthttpclient.domain.entities.Product;
 import com.unicauca.clientproducthttpclient.domain.entities.ShoppingCart;
@@ -46,7 +45,7 @@ public class ShoppingCartService  implements IShoppingCartService {
     public void actualizarSubTotal() {
         int subtotal = 0;
         for (Item item : shoppingCart.getItems()) {
-            subtotal += item.getImporte();
+            subtotal += item.getSubtotal();
         }
         shoppingCart.setSubtotal(subtotal);
 
@@ -61,7 +60,7 @@ public class ShoppingCartService  implements IShoppingCartService {
         for (Item item : items) {
             if (item.getProduct().equals(producto)) {
                 item.setCantidad(item.getCantidad() + cantidad);
-                item.setImporte(item.getProduct().getPrice() * item.getCantidad());
+                item.setSubtotal(item.getProduct().getPrice() * item.getCantidad());
                 return true;
             }
         }
