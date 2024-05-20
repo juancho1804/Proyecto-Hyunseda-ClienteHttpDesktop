@@ -72,7 +72,7 @@ public class pruebita {
         userController.create(user2);
         System.out.println(userRepository.validateUser("DANIEL","1"));
 
-        */
+
         //GUIRegistro guiRegistro = new GUIRegistro();
         //guiRegistro.setVisible(true);
         IRoleRepository roleRepository=new RoleRestRepository();
@@ -87,6 +87,7 @@ public class pruebita {
         userController.create(user);
         user.setRoleModel(role);
 
+        */
 
 
 

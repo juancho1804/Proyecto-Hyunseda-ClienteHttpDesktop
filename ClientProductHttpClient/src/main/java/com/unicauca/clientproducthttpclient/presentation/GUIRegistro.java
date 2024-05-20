@@ -149,8 +149,12 @@ public class GUIRegistro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistradoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistradoActionPerformed
-        User user=new User(txtNombre.getText(),txtEmail.getText(),txtContrasenia.getText());
-        this.userController.create(user);
+        User user=new User();
+        user.setUsername(txtNombre.getText());
+        user.setEmail(txtEmail.getText());
+        user.setPassword(txtContrasenia.getText());
+
+        this.userController.registerUser(user);
     }
 
     /**

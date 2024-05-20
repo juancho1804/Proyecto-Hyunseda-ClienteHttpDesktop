@@ -12,6 +12,7 @@ import com.unicauca.clientproducthttpclient.controllers.CategoryController;
 import com.unicauca.clientproducthttpclient.controllers.ProductController;
 import com.unicauca.clientproducthttpclient.controllers.ShoppingCartController;
 import com.unicauca.clientproducthttpclient.controllers.UserController;
+import com.unicauca.clientproducthttpclient.domain.entities.User;
 import com.unicauca.clientproducthttpclient.domain.services.CategoryService;
 import com.unicauca.clientproducthttpclient.domain.services.ICategoryService;
 import com.unicauca.clientproducthttpclient.domain.services.IProductService;
@@ -128,7 +129,12 @@ public class GUIIniciarSesion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHechoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHechoActionPerformed
-        if(this.userController.validateUser(txtCorreo.getText(),txtContrasenia.getText())){
+
+        User user = new User();
+        user.setUsername(txtCorreo.getText());
+        user.setPassword(txtContrasenia.getText());
+
+        if(this.userController.validateUser(user)){
             ICategoryRepository categoryRepository=new CategoryRestRepository();
             IProductRepository productRepository=new ProductRestRepository();
 
@@ -143,44 +149,12 @@ public class GUIIniciarSesion extends javax.swing.JFrame {
 
             GUIInicio guiInicio=new GUIInicio(productController,categoryController,ShopCartController);
             guiInicio.setVisible(true);
+
             this.dispose();
         }
     }//GEN-LAST:event_btnHechoActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GUIIniciarSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GUIIniciarSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GUIIniciarSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GUIIniciarSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GUIIniciarSesion().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHecho;

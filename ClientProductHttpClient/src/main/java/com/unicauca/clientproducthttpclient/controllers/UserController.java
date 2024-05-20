@@ -5,7 +5,7 @@ import com.unicauca.clientproducthttpclient.domain.services.IUserService;
 import com.unicauca.clientproducthttpclient.domain.services.UserService;
 
 public class UserController {
-    private IUserService userService;
+    private final IUserService userService;
     public UserController() {
         this.userService = new UserService();
     }
@@ -13,10 +13,10 @@ public class UserController {
         this.userService = userService;
     }
 
-    public User create(User user) {
-        return this.userService.save(user);
+    public User registerUser(User user) {
+        return this.userService.registerUser(user);
     }
-    public boolean validateUser(String username, String password) {
-        return this.userService.validateUser(username, password);
+    public boolean validateUser(User user) {
+        return this.userService.validateUser(user);
     }
 }

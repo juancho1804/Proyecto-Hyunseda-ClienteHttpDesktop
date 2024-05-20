@@ -22,11 +22,11 @@ import java.util.logging.Logger;
 public class UserRestRepository implements IUserRepository{
 
     @Override
-    public User createUser(User user) {
+    public User registerUser(User user) {
         User createdUser = null;
         try {
             CloseableHttpClient httpClient = HttpClients.createDefault();
-            String url = "http://localhost:8004/UserModel";
+            String url = "http://localhost:8004/auth/register";
             HttpPost httpPost = new HttpPost(url);
             ObjectMapper objectMapper = new ObjectMapper();
             String jsonRequest = objectMapper.writeValueAsString(user);
@@ -58,7 +58,7 @@ public class UserRestRepository implements IUserRepository{
         }
         return createdUser;
     }
-
+/*
     public boolean validateUser(String username, String password) {
         boolean isValid = false;
         try {
@@ -73,6 +73,42 @@ public class UserRestRepository implements IUserRepository{
             if (statusCode == 200) {
                 String responseBody = EntityUtils.toString(response.getEntity());
                 isValid = Boolean.parseBoolean(responseBody); // Convertir el cuerpo de la respuesta a boolean
+                Messages.showMessageDialog("Ha iniciado sesion correctamente","Información");
+            }else{
+                Messages.showMessageError("Nombre de usuario o contraseña incorrectos","Error");
+            }
+            httpClient.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return isValid;
+    }
+
+ */
+
+    public boolean validateUser(User user) {
+        boolean isValid = false;
+        try {
+            CloseableHttpClient httpClient = HttpClients.createDefault();
+            String url = "http://localhost:8004/auth/login";
+            HttpPost httpPost = new HttpPost(url);
+            ObjectMapper objectMapper = new ObjectMapper();
+            String jsonRequest = objectMapper.writeValueAsString(user);
+            StringEntity entity = new StringEntity(jsonRequest);
+            httpPost.setEntity(entity);
+            httpPost.setHeader("Content-Type", "application/json");
+            HttpResponse response = httpClient.execute(httpPost);
+            HttpEntity responseEntity = response.getEntity();
+            String responseBody = EntityUtils.toString(responseEntity);
+            System.out.println("Response status: " + response.getStatusLine());
+            System.out.println("Response body: " + responseBody);
+
+            int statusCode = response.getStatusLine().getStatusCode();
+            System.out.println("Response status: " + statusCode);
+
+            // Verificar si la respuesta es 200 (OK)
+            if (statusCode == 200) {
+                isValid = true; // Convertir el cuerpo de la respuesta a boolean
                 Messages.showMessageDialog("Ha iniciado sesion correctamente","Información");
             }else{
                 Messages.showMessageError("Nombre de usuario o contraseña incorrectos","Error");
