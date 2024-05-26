@@ -30,6 +30,7 @@ import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -53,7 +54,7 @@ public class LoginController {
     private Label lblMessageResponse;
 
 
-    public void loginButtonOnAction(ActionEvent event){
+    public void loginButtonOnAction(ActionEvent event) throws IOException {
         User user=new User();
         user.setUsername(txtUsername.getText());
         user.setPassword(txtPassword.getText());
@@ -61,8 +62,18 @@ public class LoginController {
         Resultado resultado=userService.validateUser(user);
         if (resultado!=null){
             if(resultado.getMsg().equals("ADMIN")){
-                lblMessageResponse.setText("admin");
-                lblMessageResponse.setTextFill(Color.GREEN);
+
+                // Carga el FXML del HomeAdminController
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/homeAdmin.fxml"));
+                Parent root = loader.load();
+                HomeAdminController controller = loader.getController();
+                controller.setLblBienvenido("Bienvenido, " + txtUsername.getText());
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Hyunseda Administrador");
+                stage.show();
+
+                cerrarVentana();
             }else{
                 lblMessageResponse.setText("Ha iniciado sesión correctamente como user");
                 lblMessageResponse.setTextFill(Color.GREEN);
@@ -82,7 +93,11 @@ public class LoginController {
 
     public void registerButtonOnAction(ActionEvent event){
         Utilities.cargarFXML("/views/register.fxml", "Registro");
-        Stage stage= (Stage) btnLogin.getScene().getWindow();
+        cerrarVentana();
+    }
+
+    public void cerrarVentana(){
+        Stage stage = (Stage) btnLogin.getScene().getWindow();
         stage.close();
     }
 

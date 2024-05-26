@@ -76,7 +76,7 @@ public class Utilities{
         return null;
     }
 
-    public static void cargarFXML(String rutaFXML, String tituloVentana) {
+    public static FXMLLoader cargarFXML(String rutaFXML, String tituloVentana) {
         try {
             Parent root = FXMLLoader.load(Utilities.class.getResource(rutaFXML));
             Stage stage = new Stage();
@@ -87,6 +87,7 @@ public class Utilities{
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return new FXMLLoader(Utilities.class.getResource(rutaFXML));
     }
 
 

@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 
 public class RegisterController {
 
@@ -33,17 +34,28 @@ public class RegisterController {
     }
 
     public void registrarseButtonOnAction(ActionEvent actionEvent) {
+        User user = new User();
+        user.setFirstName(txtNombre.getText());
+        user.setLastName(txtApellidos.getText());
+        user.setUsername(txtUsuario.getText());
+        user.setPassword(txtContrasena.getText());
+
+        if(validarCampos()){
+            if(userService.registerUser(user)!=null){
+                lblMessage.setTextFill(Color.GREEN);
+                lblMessage.setText("Usuario registrado satisfactoriamente");
+            }else{
+                lblMessage.setText("El nombre de usuario ya existe");
+            }
+        }
+    }
+
+    public boolean validarCampos(){
         if(txtNombre.getText().isBlank()||txtApellidos.getText().isBlank()||txtUsuario.getText().isBlank()||txtContrasena.getText().isBlank()){
             lblMessage.setText("Verifique que todos los campos esten llenos.");
-        }else{
-            User user = new User();
-            user.setFirstName(txtNombre.getText());
-            user.setLastName(txtApellidos.getText());
-            user.setUsername(txtUsuario.getText());
-            user.setPassword(txtContrasena.getText());
-            userService.registerUser(user);
+            return false;
         }
-
+        return true;
     }
 
 }

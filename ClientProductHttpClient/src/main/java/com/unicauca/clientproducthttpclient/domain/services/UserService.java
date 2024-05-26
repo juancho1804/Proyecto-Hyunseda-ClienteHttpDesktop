@@ -18,7 +18,7 @@ public class UserService implements IUserService {
 
 
     @Override
-    public User registerUser(User newUser) {
+    public Resultado registerUser(User newUser) {
         return this.userRepository.registerUser(newUser);
     }
 
@@ -30,9 +30,6 @@ public class UserService implements IUserService {
 
     @Override
     public Resultado validateUser(User user) {
-        if(user.getUsername().isEmpty() ||user.getPassword()==null){
-            return null;
-        }
-        return this.userRepository.validateUser(user);
+        return userRepository.validateUser(user);
     }
 }

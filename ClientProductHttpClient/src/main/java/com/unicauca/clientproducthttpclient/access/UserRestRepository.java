@@ -24,8 +24,7 @@ import java.util.logging.Logger;
 public class UserRestRepository implements IUserRepository{
 
     @Override
-    public User registerUser(User user) {
-        User createdUser = null;
+    public Resultado registerUser(User user) {
         try {
             CloseableHttpClient httpClient = HttpClients.createDefault();
             String url = "http://localhost:8004/auth/register";
@@ -41,14 +40,10 @@ public class UserRestRepository implements IUserRepository{
             System.out.println("Response status: " + response.getStatusLine());
             System.out.println("Response body: " + responseBody);
 
-            // Convertir la respuesta JSON a un objeto User
-            createdUser = objectMapper.readValue(responseBody, User.class);
 
 
             if(response.getStatusLine().getStatusCode() == 200) {
-                Messages.showMessageDialog("El usuario ha sido agregado exitosamente","Usuario agregado");
-            }else{
-                Messages.showMessageError("Verifique su usuario o contraseña","Usuario ya existe");
+                return new Resultado(true, "Usuario agregado");
             }
 
 
@@ -60,7 +55,7 @@ public class UserRestRepository implements IUserRepository{
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return createdUser;
+        return null;
     }
 
 
@@ -82,7 +77,6 @@ public class UserRestRepository implements IUserRepository{
             System.out.println("Response status: " + response.getStatusLine());
             System.out.println("Response body: " + responseBody);
 
-            role = responseBody.substring(responseBody.indexOf("[") + 1, responseBody.indexOf("]"));
 
             int statusCode = response.getStatusLine().getStatusCode();
             System.out.println("Response status: " + statusCode);
@@ -90,12 +84,14 @@ public class UserRestRepository implements IUserRepository{
             // Verificar si la respuesta es 200 (OK)
             if (statusCode == 200) {
                 isValid = true; // Convertir el cuerpo de la respuesta a boolean
+                role = responseBody.substring(responseBody.indexOf("[") + 1, responseBody.indexOf("]"));
+                return new Resultado(isValid,role);
             }
             httpClient.close();
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return new Resultado(isValid,role);
+        return null;
     }
 
 
