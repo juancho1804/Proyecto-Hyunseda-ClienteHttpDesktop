@@ -3,9 +3,7 @@ package com.unicauca.clientproducthttpclient.domain.services;
 import com.unicauca.clientproducthttpclient.access.IUserRepository;
 import com.unicauca.clientproducthttpclient.access.UserRestRepository;
 import com.unicauca.clientproducthttpclient.domain.entities.User;
-
-import java.util.ArrayList;
-
+import com.unicauca.clientproducthttpclient.util.Resultado;
 
 
 public class UserService implements IUserService {
@@ -31,7 +29,10 @@ public class UserService implements IUserService {
 
 
     @Override
-    public boolean validateUser(User user) {
+    public Resultado validateUser(User user) {
+        if(user.getUsername().isEmpty() ||user.getPassword()==null){
+            return null;
+        }
         return this.userRepository.validateUser(user);
     }
 }

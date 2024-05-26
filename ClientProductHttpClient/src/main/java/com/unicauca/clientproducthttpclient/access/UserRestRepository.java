@@ -3,8 +3,10 @@ package com.unicauca.clientproducthttpclient.access;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.unicauca.clientproducthttpclient.Main;
+import com.unicauca.clientproducthttpclient.domain.entities.Role;
 import com.unicauca.clientproducthttpclient.domain.entities.User;
 import com.unicauca.clientproducthttpclient.util.Messages;
+import com.unicauca.clientproducthttpclient.util.Resultado;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -41,6 +43,8 @@ public class UserRestRepository implements IUserRepository{
 
             // Convertir la respuesta JSON a un objeto User
             createdUser = objectMapper.readValue(responseBody, User.class);
+
+
             if(response.getStatusLine().getStatusCode() == 200) {
                 Messages.showMessageDialog("El usuario ha sido agregado exitosamente","Usuario agregado");
             }else{
@@ -58,36 +62,11 @@ public class UserRestRepository implements IUserRepository{
         }
         return createdUser;
     }
-/*
-    public boolean validateUser(String username, String password) {
+
+
+    public Resultado validateUser(User user) {
         boolean isValid = false;
-        try {
-            CloseableHttpClient httpClient = HttpClients.createDefault();
-            String url = "http://localhost:8004/UserModel/validate/" + username + "/" + password;
-            HttpGet httpGet = new HttpGet(url);
-            HttpResponse response = httpClient.execute(httpGet);
-            int statusCode = response.getStatusLine().getStatusCode();
-            System.out.println("Response status: " + statusCode);
-
-            // Verificar si la respuesta es 200 (OK)
-            if (statusCode == 200) {
-                String responseBody = EntityUtils.toString(response.getEntity());
-                isValid = Boolean.parseBoolean(responseBody); // Convertir el cuerpo de la respuesta a boolean
-                Messages.showMessageDialog("Ha iniciado sesion correctamente","Información");
-            }else{
-                Messages.showMessageError("Nombre de usuario o contraseña incorrectos","Error");
-            }
-            httpClient.close();
-        } catch (IOException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return isValid;
-    }
-
- */
-
-    public boolean validateUser(User user) {
-        boolean isValid = false;
+        String role="";
         try {
             CloseableHttpClient httpClient = HttpClients.createDefault();
             String url = "http://localhost:8004/auth/login";
@@ -103,21 +82,20 @@ public class UserRestRepository implements IUserRepository{
             System.out.println("Response status: " + response.getStatusLine());
             System.out.println("Response body: " + responseBody);
 
+            role = responseBody.substring(responseBody.indexOf("[") + 1, responseBody.indexOf("]"));
+
             int statusCode = response.getStatusLine().getStatusCode();
             System.out.println("Response status: " + statusCode);
 
             // Verificar si la respuesta es 200 (OK)
             if (statusCode == 200) {
                 isValid = true; // Convertir el cuerpo de la respuesta a boolean
-                Messages.showMessageDialog("Ha iniciado sesion correctamente","Información");
-            }else{
-                Messages.showMessageError("Nombre de usuario o contraseña incorrectos","Error");
             }
             httpClient.close();
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return isValid;
+        return new Resultado(isValid,role);
     }
 
 

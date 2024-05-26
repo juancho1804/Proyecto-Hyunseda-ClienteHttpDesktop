@@ -4,6 +4,12 @@
  */
 package com.unicauca.clientproducthttpclient.util;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
 import java.awt.Component;
 import java.awt.Image;
 import java.io.IOException;
@@ -69,4 +75,19 @@ public class Utilities{
         }
         return null;
     }
+
+    public static void cargarFXML(String rutaFXML, String tituloVentana) {
+        try {
+            Parent root = FXMLLoader.load(Utilities.class.getResource(rutaFXML));
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            stage.setTitle(tituloVentana);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }

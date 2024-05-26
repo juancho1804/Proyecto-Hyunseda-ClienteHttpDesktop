@@ -1,48 +1,37 @@
 package com.unicauca.clientproducthttpclient;
 
-import com.unicauca.clientproducthttpclient.access.CategoryRestRepository;
-import com.unicauca.clientproducthttpclient.access.ICategoryRepository;
-import com.unicauca.clientproducthttpclient.access.IProductRepository;
-import com.unicauca.clientproducthttpclient.access.ProductRestRepository;
-import com.unicauca.clientproducthttpclient.controllers.CategoryController;
-import com.unicauca.clientproducthttpclient.controllers.ProductController;
-import com.unicauca.clientproducthttpclient.controllers.ShoppingCartController;
-import com.unicauca.clientproducthttpclient.domain.services.CategoryService;
-import com.unicauca.clientproducthttpclient.domain.services.ICategoryService;
-import com.unicauca.clientproducthttpclient.domain.services.IProductService;
-import com.unicauca.clientproducthttpclient.domain.services.ProductService;
-import com.unicauca.clientproducthttpclient.domain.services.ShoppingCartService;
-import com.unicauca.clientproducthttpclient.presentation.GUIInicio;
-import com.unicauca.clientproducthttpclient.presentation.GUIConfirmarPago;
-import com.unicauca.clientproducthttpclient.presentation.GUIShoppingCart;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 
 /**
  *
  * @author Juan
  */
-public class Main {
+public class Main extends Application {
 
-    public static void main(String[] args) {
-        ICategoryRepository categoryRepository=new CategoryRestRepository();
-        IProductRepository productRepository=new ProductRestRepository();
-        
-        ICategoryService categoryService=new CategoryService(categoryRepository);
-        IProductService productService=new ProductService(productRepository);
-        
-        ProductController productController=new ProductController(productService);
-        CategoryController categoryController =new CategoryController(categoryService);
-        
-        ShoppingCartService shoppingCartService = new ShoppingCartService();
-        ShoppingCartController ShopCartController = new ShoppingCartController(shoppingCartService);
-        
-        GUIInicio guiInicio=new GUIInicio(productController,categoryController,ShopCartController);
-        guiInicio.setVisible(true);
-        
-                
-        
+    @Override
+    public void start(Stage stage) {
+
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/views/login.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 500, 400);
+            stage.setTitle("Hyun Seda");
+            stage.setScene(scene);
+            stage.show();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
     }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
 }
 
     
