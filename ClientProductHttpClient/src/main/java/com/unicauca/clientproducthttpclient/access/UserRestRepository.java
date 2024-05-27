@@ -69,6 +69,7 @@ public class UserRestRepository implements IUserRepository{
     public Resultado validateUser(User user) {
         boolean isValid = false;
         String role="";
+        String username="";
         try {
             CloseableHttpClient httpClient = HttpClients.createDefault();
             String url = "http://localhost:8004/auth/login";
@@ -100,7 +101,11 @@ public class UserRestRepository implements IUserRepository{
                 // Extraer el token
                 token = responseBody.substring(startIndex, endIndex);
 
-                return new Resultado(isValid,role,token);
+                 startIndex = responseBody.indexOf("\"username\":\"") + "\"username\":\"".length();
+                 endIndex = responseBody.indexOf("\"", startIndex);
+                 username=responseBody.substring(startIndex, endIndex);
+
+                return new Resultado(isValid,role,token,username);
             }
             httpClient.close();
         } catch (IOException ex) {

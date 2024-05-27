@@ -4,6 +4,7 @@ public class Resultado {
     private boolean exito;
     private String msg;
     private String token;
+    private String username;
 
     public Resultado(){
     }
@@ -13,6 +14,12 @@ public class Resultado {
     }
 
     public Resultado(boolean exito, String msg,String token) {
+        this.exito = exito;
+        this.msg = msg;
+        this.token = token;
+    }
+
+    public Resultado(boolean exito, String msg,String token,String username) {
         this.exito = exito;
         this.msg = msg;
         this.token = token;
