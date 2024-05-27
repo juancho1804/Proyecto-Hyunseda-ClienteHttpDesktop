@@ -6,15 +6,29 @@ package com.unicauca.clientproducthttpclient.controllers;
 
 import com.unicauca.clientproducthttpclient.domain.entities.Product;
 import com.unicauca.clientproducthttpclient.domain.services.IProductService;
+import com.unicauca.clientproducthttpclient.domain.services.ProductService;
+import javafx.fxml.FXML;
+
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+
+import java.net.URL;
 import java.util.List;
+import java.util.ResourceBundle;
 
 /**
  *
  * @author Juan
  */
 public class ProductController {
-    private IProductService productService;
-    
+    private final IProductService productService;
+
+
+    public ProductController() {
+        productService = new ProductService();
+    }
     public ProductController(IProductService productService){
         this.productService=productService;
     }

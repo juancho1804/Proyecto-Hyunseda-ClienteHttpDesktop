@@ -1,13 +1,17 @@
 package com.unicauca.clientproducthttpclient.domain.services;
 
 import com.unicauca.clientproducthttpclient.access.IProductRepository;
+import com.unicauca.clientproducthttpclient.access.ProductRestRepository;
 import com.unicauca.clientproducthttpclient.domain.entities.Product;
 import java.util.List;
 
 public class ProductService implements IProductService{
 
-    private IProductRepository repo;
+    private final IProductRepository repo;
 
+    public ProductService() {
+        this.repo=new ProductRestRepository();
+    }
     public ProductService(IProductRepository repo) {
         this.repo = repo;
     }

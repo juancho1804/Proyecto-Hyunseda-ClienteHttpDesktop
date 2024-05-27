@@ -142,7 +142,7 @@
                                                       <Font name="SansSerif Regular" size="18.0" />
                                                    </font>
                                                 </Label>
-                                                <Label alignment="CENTER_RIGHT" disable="true" layoutX="99.0" layoutY="28.0" prefHeight="21.0" prefWidth="130.0" style="-fx-opacity: 100; -fx-text-fill: BLACK; -fx-background-color: TRANSPARENT;" text="0">
+                                                <Label fx:id="lblCantidadProductos" alignment="CENTER_RIGHT" disable="true" layoutX="99.0" layoutY="28.0" prefHeight="21.0" prefWidth="130.0" style="-fx-opacity: 100; -fx-text-fill: BLACK; -fx-background-color: TRANSPARENT;" text="0">
                                                    <font>
                                                       <Font name="SansSerif Bold" size="28.0" />
                                                    </font>
@@ -270,7 +270,7 @@
                                           <Font name="SansSerif Regular" size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField layoutX="442.0" layoutY="287.0" prefHeight="25.0" prefWidth="145.0" styleClass="textfield" stylesheets="@../styles/dashboardDesigns.css" />
+                                    <TextField fx:id="txtPrecio" layoutX="442.0" layoutY="287.0" prefHeight="25.0" prefWidth="145.0" styleClass="textfield" stylesheets="@../styles/dashboardDesigns.css" />
                                     <Label layoutX="334.0" layoutY="336.0" prefHeight="21.0" prefWidth="106.0" text="Descripcion :">
                                        <font>
                                           <Font name="SansSerif Regular" size="18.0" />
