@@ -60,18 +60,6 @@ public class LoginController {
                 stage.initStyle(StageStyle.UNDECORATED);
                 stage.show();
 
-                /*
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/homeAdmin.fxml"));
-                Parent root = loader.load();
-                HomeAdminController controller = loader.getController();
-                controller.setLblUsuario(txtUsername.getText()+".");
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root));
-                stage.setTitle("Hyunseda Administrador");
-                stage.show();
-
-                 */
-
                 cerrarVentana();
             }else{
                 lblMessageResponse.setText("Ha iniciado sesión correctamente como user");
