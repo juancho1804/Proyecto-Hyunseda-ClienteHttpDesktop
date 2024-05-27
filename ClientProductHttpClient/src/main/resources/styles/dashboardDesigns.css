@@ -86,3 +86,10 @@
     -fx-text-fill: #1d1b01;
     -fx-cursor: hand;
 }
+.botones{
+    -fx-background-color: linear-gradient(to bottom right,#1d1b01 ,#756900);
+    -fx-text-fill: #fff;
+    -fx-font-family: SansSerif;
+    -fx-font-size: 14px;
+
+}
