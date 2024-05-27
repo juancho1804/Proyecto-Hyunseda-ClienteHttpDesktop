@@ -98,8 +98,7 @@ public class UserRestRepository implements IUserRepository{
                 int endIndex = responseBody.indexOf("\"", startIndex);
 
                 // Extraer el token
-                String token = responseBody.substring(startIndex, endIndex);
-
+                token = responseBody.substring(startIndex, endIndex);
 
                 return new Resultado(isValid,role,token);
             }

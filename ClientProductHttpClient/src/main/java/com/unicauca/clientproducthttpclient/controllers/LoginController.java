@@ -49,7 +49,6 @@ public class LoginController {
         Resultado resultado=userService.validateUser(user);
         if (resultado!=null){
             if(resultado.getMsg().equals("ADMIN")){
-                token=resultado.getToken();
                 FXMLLoader fxmlLoader = new FXMLLoader(LoginController.class.getResource("/views/homeAdmin.fxml"));
                 fxmlLoader.setController(new HomeAdminController()); // Establecer el controlador
                 Scene scene = new Scene(fxmlLoader.load(), 1100, 581);
