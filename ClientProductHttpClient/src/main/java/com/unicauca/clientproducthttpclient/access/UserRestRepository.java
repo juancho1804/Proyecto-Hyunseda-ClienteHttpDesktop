@@ -3,12 +3,14 @@ package com.unicauca.clientproducthttpclient.access;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.unicauca.clientproducthttpclient.Main;
+import com.unicauca.clientproducthttpclient.domain.entities.Product;
 import com.unicauca.clientproducthttpclient.domain.entities.Role;
 import com.unicauca.clientproducthttpclient.domain.entities.User;
 import com.unicauca.clientproducthttpclient.util.Messages;
 import com.unicauca.clientproducthttpclient.util.Resultado;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
@@ -18,10 +20,13 @@ import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class UserRestRepository implements IUserRepository{
+
 
     @Override
     public Resultado registerUser(User user) {
@@ -92,6 +97,44 @@ public class UserRestRepository implements IUserRepository{
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+
+    @Override
+    public List<User> findAll() {
+        HttpClient httpClient = HttpClients.createDefault();
+        ObjectMapper mapper = new ObjectMapper();
+        List<User> list = new ArrayList<>();
+        try {
+
+            // Definir la URL de la API REST de productos
+            String apiUrl = "http://localhost:8004/UserModel";
+            // Crear una solicitud GET para obtener todos los productos
+            HttpGet request = new HttpGet(apiUrl);
+
+            // Ejecutar la solicitud y obtener la respuesta
+            HttpResponse response = httpClient.execute(request);
+
+            // Verificar el código de estado de la respuesta
+            int statusCode = response.getStatusLine().getStatusCode();
+            if (statusCode == 200) {
+                // La solicitud fue exitosa, procesar la respuesta
+                String jsonResponse = EntityUtils.toString(response.getEntity());
+
+                // Mapear la respuesta JSON a objetos Product
+                User[] users = mapper.readValue(jsonResponse, User[].class);
+
+                for (User user : users) {
+                    list.add(user);
+                }
+
+            } else {
+                // La solicitud falló, mostrar el código de estado
+                Logger.getLogger(UserRestRepository.class.getName()).log(Level.SEVERE, null, "Error al obtener usuarios. Código de estado: " + statusCode);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(UserRestRepository.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
     }
 
 

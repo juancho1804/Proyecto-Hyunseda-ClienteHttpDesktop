@@ -252,31 +252,31 @@
                                           <Font name="SansSerif Regular" size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField layoutX="141.0" layoutY="287.0" prefHeight="25.0" prefWidth="72.0" styleClass="textfield" stylesheets="@../styles/dashboardDesigns.css" />
+                                    <TextField fx:id="txtIdProd" layoutX="141.0" layoutY="287.0" prefHeight="25.0" prefWidth="72.0" styleClass="textfield" stylesheets="@../styles/dashboardDesigns.css" />
                                     <Label layoutX="52.0" layoutY="378.0" prefHeight="21.0" prefWidth="92.0" text="Categoria :">
                                        <font>
                                           <Font name="SansSerif Regular" size="18.0" />
                                        </font>
                                     </Label>
-                                    <ComboBox layoutX="144.0" layoutY="376.0" prefHeight="25.0" prefWidth="172.0" promptText="Elegir" styleClass="textfield" stylesheets="@../styles/dashboardDesigns.css" />
+                                    <ComboBox fx:id="cboCategorias" layoutX="144.0" layoutY="376.0" prefHeight="25.0" prefWidth="172.0" promptText="Elegir" styleClass="textfield" stylesheets="@../styles/dashboardDesigns.css" />
                                     <Label layoutX="65.0" layoutY="336.0" prefHeight="21.0" prefWidth="75.0" text="Nombre :">
                                        <font>
                                           <Font name="SansSerif Regular" size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField layoutX="143.0" layoutY="334.0" prefHeight="25.0" prefWidth="171.0" styleClass="textfield" stylesheets="@../styles/dashboardDesigns.css" />
+                                    <TextField fx:id="txtNombreProd" layoutX="143.0" layoutY="334.0" prefHeight="25.0" prefWidth="171.0" styleClass="textfield" stylesheets="@../styles/dashboardDesigns.css" />
                                     <Label layoutX="377.0" layoutY="288.0" prefHeight="21.0" prefWidth="63.0" text="Precio :">
                                        <font>
                                           <Font name="SansSerif Regular" size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="txtPrecio" layoutX="442.0" layoutY="287.0" prefHeight="25.0" prefWidth="145.0" styleClass="textfield" stylesheets="@../styles/dashboardDesigns.css" />
+                                    <TextField fx:id="txtPrecioProd" layoutX="442.0" layoutY="287.0" prefHeight="25.0" prefWidth="145.0" styleClass="textfield" stylesheets="@../styles/dashboardDesigns.css" />
                                     <Label layoutX="334.0" layoutY="336.0" prefHeight="21.0" prefWidth="106.0" text="Descripcion :">
                                        <font>
                                           <Font name="SansSerif Regular" size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField layoutX="442.0" layoutY="334.0" prefHeight="80.0" prefWidth="145.0" styleClass="textfield" stylesheets="@../styles/dashboardDesigns.css" />
+                                    <TextField fx:id="txtDescProd" layoutX="442.0" layoutY="334.0" prefHeight="80.0" prefWidth="145.0" styleClass="textfield" stylesheets="@../styles/dashboardDesigns.css" />
                                     <AnchorPane layoutX="688.0" layoutY="278.0" prefHeight="155.0" prefWidth="129.0" stylesheets="@../styles/dashboardDesigns.css">
                                        <styleClass>
                                           <String fx:value="shadow" />
@@ -291,7 +291,7 @@
                                           </Button>
                                        </children>
                                     </AnchorPane>
-                                    <Button layoutX="534.0" layoutY="464.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="98.0" styleClass="botones" stylesheets="@../styles/dashboardDesigns.css" text="Agregar" textFill="WHITE">
+                                    <Button fx:id="btnAgregarProducto" layoutX="534.0" layoutY="464.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="98.0" styleClass="botones" stylesheets="@../styles/dashboardDesigns.css" text="Agregar" textFill="WHITE">
                                        <font>
                                           <Font name="SansSerif Regular" size="14.0" />
                                        </font>

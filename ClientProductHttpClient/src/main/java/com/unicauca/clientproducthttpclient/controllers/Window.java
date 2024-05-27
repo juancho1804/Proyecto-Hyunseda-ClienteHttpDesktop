@@ -11,6 +11,8 @@ public class Window {
     public Button btnMinimize;
     @FXML
     public Button btnClose;
+    @FXML
+    public Button btnCerrarSesion;
 
     // Metodos minimizar y cerrar ventana
     public void btnOnActionMinimize(ActionEvent event){

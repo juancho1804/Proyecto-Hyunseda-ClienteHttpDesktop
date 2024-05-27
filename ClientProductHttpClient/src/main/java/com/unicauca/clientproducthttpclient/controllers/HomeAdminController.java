@@ -1,6 +1,9 @@
 package com.unicauca.clientproducthttpclient.controllers;
 
-import com.unicauca.clientproducthttpclient.util.Utilities;
+import com.unicauca.clientproducthttpclient.domain.services.IProductService;
+import com.unicauca.clientproducthttpclient.domain.services.IUserService;
+import com.unicauca.clientproducthttpclient.domain.services.ProductService;
+import com.unicauca.clientproducthttpclient.domain.services.UserService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,6 +33,10 @@ public class HomeAdminController  extends Window implements Initializable{
     @FXML
     private Label lblUsuario;
     @FXML
+    private Label lblCantidadProductos;
+    @FXML
+    private Label lblCantidadUsuarios;
+    @FXML
     private AnchorPane pnlInicio;
     @FXML
     private AnchorPane pnlProductos;
@@ -37,6 +44,8 @@ public class HomeAdminController  extends Window implements Initializable{
 
     @FXML
     private BarChart<?, ?> chartUsuariosRegistrados;
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -47,6 +56,9 @@ public class HomeAdminController  extends Window implements Initializable{
         this.btnCerrarSesion.setOnAction(this::btnOnActionCerrarSesion);
         this.btnMinimize.setOnAction(this::btnOnActionMinimize);
         this.btnClose.setOnAction(this::btnOnActionClose);
+        this.lblCantidadProductos.setText(""+lblOnActionCantidadProductos());
+        System.out.println(lblOnActionlblCantidadUsuarios());
+
     }
 
     public void setLblUsuario(String text){
@@ -77,6 +89,14 @@ public class HomeAdminController  extends Window implements Initializable{
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    public int lblOnActionCantidadProductos(){
+        IProductService productService = new ProductService();
+        return productService.findAll().size();
+    }
+    public int lblOnActionlblCantidadUsuarios(){
+        IUserService userService = new UserService();
+        return userService.findAll().size();
     }
 
 

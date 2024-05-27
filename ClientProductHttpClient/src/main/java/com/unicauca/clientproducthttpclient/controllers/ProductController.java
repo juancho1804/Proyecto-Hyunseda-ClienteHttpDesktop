@@ -4,6 +4,7 @@
  */
 package com.unicauca.clientproducthttpclient.controllers;
 
+import com.unicauca.clientproducthttpclient.domain.entities.Category;
 import com.unicauca.clientproducthttpclient.domain.entities.Product;
 import com.unicauca.clientproducthttpclient.domain.services.IProductService;
 import com.unicauca.clientproducthttpclient.domain.services.ProductService;
@@ -16,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -34,11 +36,20 @@ public class ProductController extends Window implements Initializable{
     private final IProductService productService;
 
     @FXML
-    private Button btnCerrarSesion;
+    private TextField txtNombreProd;
+    @FXML
+    private TextField txtPrecioProd;
+    @FXML
+    private TextField txtDescProd;
+    @FXML
+    private ComboBox<Category> cboCategorias;
+
     @FXML
     private Button btnInicio;
     @FXML
     private Button btnProductos;
+    @FXML
+    private Button btnAgregarProducto;
     @FXML
     AnchorPane pnlInicio;
     @FXML
