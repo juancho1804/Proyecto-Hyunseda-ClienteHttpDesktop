@@ -75,6 +75,7 @@ public class ProductController extends Window implements Initializable{
         this.btnCerrarSesion.setOnAction(this::btnOnActionCerrarSesion);
         this.btnMinimize.setOnAction(super::btnOnActionMinimize);
         this.btnClose.setOnAction(this::btnOnActionClose);
+        initializelblUsuario();
 
     }
 

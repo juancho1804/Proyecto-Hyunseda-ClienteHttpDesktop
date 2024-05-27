@@ -25,9 +25,10 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static com.unicauca.clientproducthttpclient.controllers.LoginController.token;
+
 
 public class UserRestRepository implements IUserRepository{
+    public static Resultado usuarioIngresado;
 
 
     @Override
@@ -70,6 +71,7 @@ public class UserRestRepository implements IUserRepository{
         boolean isValid = false;
         String role="";
         String username="";
+        String token="";
         try {
             CloseableHttpClient httpClient = HttpClients.createDefault();
             String url = "http://localhost:8004/auth/login";
@@ -104,8 +106,8 @@ public class UserRestRepository implements IUserRepository{
                  startIndex = responseBody.indexOf("\"username\":\"") + "\"username\":\"".length();
                  endIndex = responseBody.indexOf("\"", startIndex);
                  username=responseBody.substring(startIndex, endIndex);
-
-                return new Resultado(isValid,role,token,username);
+                 usuarioIngresado= new Resultado(isValid, role,token,username);
+                return usuarioIngresado;
             }
             httpClient.close();
         } catch (IOException ex) {
@@ -126,7 +128,7 @@ public class UserRestRepository implements IUserRepository{
             HttpGet request = new HttpGet(apiUrl);
 
             // Agregar el token de autorización al encabezado de la solicitud
-            request.setHeader("Authorization", "Bearer " + token);
+            request.setHeader("Authorization", "Bearer " + usuarioIngresado.getToken());
 
             // Ejecutar la solicitud y obtener la respuesta
             HttpResponse response = httpClient.execute(request);

@@ -58,6 +58,7 @@ public class HomeAdminController  extends Window implements Initializable{
         this.btnClose.setOnAction(this::btnOnActionClose);
         this.lblCantidadProductos.setText(""+lblOnActionCantidadProductos());
         this.lblCantidadUsuarios.setText(""+lblOnActionCantidadUsuarios());
+        initializelblUsuario();
 
 
     }

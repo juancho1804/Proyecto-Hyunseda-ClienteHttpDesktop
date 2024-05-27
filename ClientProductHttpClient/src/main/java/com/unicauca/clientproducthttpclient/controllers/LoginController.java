@@ -22,7 +22,6 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 
 public class LoginController {
-    public static String token;
     private final IUserService userService;
 
     public LoginController() {
@@ -52,8 +51,6 @@ public class LoginController {
                 FXMLLoader fxmlLoader = new FXMLLoader(LoginController.class.getResource("/views/homeAdmin.fxml"));
                 fxmlLoader.setController(new HomeAdminController()); // Establecer el controlador
                 Scene scene = new Scene(fxmlLoader.load(), 1100, 581);
-                HomeAdminController controller = fxmlLoader.getController();
-                controller.setLblUsuario(txtUsername.getText()+".");
                 Stage stage=new Stage();
                 stage.setScene(scene);
                 stage.initStyle(StageStyle.UNDECORATED);

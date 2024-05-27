@@ -23,6 +23,7 @@ public class Resultado {
         this.exito = exito;
         this.msg = msg;
         this.token = token;
+        this.username = username;
     }
 
     public String getToken() {
@@ -36,5 +37,8 @@ public class Resultado {
 
     public String getMsg() {
         return msg;
+    }
+    public String getUsername(){
+        return username;
     }
 }
