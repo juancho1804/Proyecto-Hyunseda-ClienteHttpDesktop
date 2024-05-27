@@ -17,10 +17,10 @@ public class HomeAdminController{
     @FXML
     private Button btnCerrarSesion;
     @FXML
-    private Label lblBienvenido;
+    private Label lblUsuario;
 
-    public void setLblBienvenido(String text){
-        lblBienvenido.setText(text);
+    public void setLblUsuario(String text){
+        lblUsuario.setText(text);
     }
 
 

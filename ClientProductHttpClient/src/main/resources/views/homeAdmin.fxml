@@ -1,83 +1,325 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
 <?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="335.0" prefWidth="699.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.unicauca.clientproducthttpclient.controllers.HomeAdminController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="581.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.unicauca.clientproducthttpclient.controllers.HomeAdminController">
    <children>
-      <VBox alignment="CENTER" prefHeight="386.0" prefWidth="222.0" style="-fx-background-color: #fff7ea;">
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
-            <ImageView fitHeight="140.0" fitWidth="230.0" layoutX="290.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true" x="290.0" y="140.0">
-               <image>
-                  <Image url="@../hyunsedaimages/logo.png" />
-               </image>
-               <viewport>
-                  <Rectangle2D minX="230.0" minY="140.0" width="1.0" />
-               </viewport>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin></ImageView>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="223.0" style="-fx-background-color: #f5ead7;" text="Productos">
-               <graphic>
-                  <ImageView fitHeight="25.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../hyunsedaimages/productoIcono.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <font>
-                  <Font name="SansSerif Bold" size="14.0" />
-               </font>
-            </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="16.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="223.0" style="-fx-background-color: #f5ead7;" text="Categorías">
-               <graphic>
-                  <ImageView fitHeight="25.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../hyunsedaimages/categoriasIcono.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <font>
-                  <Font name="SansSerif Bold" size="14.0" />
-               </font>
-            </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="19.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="222.0" style="-fx-background-color: #f5ead7;" text="Ordenes">
-               <graphic>
-                  <ImageView fitHeight="25.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../hyunsedaimages/ordenesIcono.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <font>
-                  <Font name="SansSerif Bold" size="14.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnCerrarSesion" alignment="BASELINE_LEFT" graphicTextGap="16.0" mnemonicParsing="false" onAction="#btnOnActionCerrarSesion" prefHeight="69.0" prefWidth="222.0" style="-fx-background-color: #f5ead7;" text="Cerrar Sesión">
-               <graphic>
-                  <ImageView fitHeight="25.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../hyunsedaimages/puerta.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <font>
-                  <Font name="SansSerif Bold" size="14.0" />
-               </font>
-            </Button>
+            <BorderPane layoutX="158.0" layoutY="69.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <top>
+                  <AnchorPane prefHeight="47.0" prefWidth="1100.0" styleClass="semi-top-form" stylesheets="@../styles/dashboardDesigns.css" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane layoutX="1.6" layoutY="-77.0" prefHeight="39.0" prefWidth="1098.0" styleClass="top-form" stylesheets="@../styles/dashboardDesigns.css" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <ImageView fitHeight="40.0" fitWidth="35.0" layoutX="-276.0" layoutY="-140.0" pickOnBounds="true" preserveRatio="true" x="290.0" y="140.0">
+                                 <image>
+                                    <Image url="@../hyunsedaimages/logo.png" />
+                                 </image>
+                                 <viewport>
+                                    <Rectangle2D minX="230.0" minY="140.0" width="1.0" />
+                                 </viewport>
+                              </ImageView>
+                              <Label layoutX="51.0" layoutY="9.0" prefHeight="2.0" prefWidth="338.0" text="Administrador de Hyun Seda">
+                                 <font>
+                                    <Font name="SansSerif Regular" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Button layoutX="1046.0" layoutY="15.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="36.0" styleClass="close" stylesheets="@../styles/dashboardDesigns.css" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+                                 <graphic>
+                                    <FontAwesomeIconView glyphName="CLOSE" size="1.2m" />
+                                 </graphic>
+                              </Button>
+                              <Button layoutX="1025.0" layoutY="2.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="36.0" styleClass="minimize" stylesheets="@../styles/dashboardDesigns.css" AnchorPane.rightAnchor="39.0" AnchorPane.topAnchor="2.0">
+                                 <graphic>
+                                    <FontAwesomeIconView glyphName="MINUS" size="1.2m" />
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </top>
+               <left>
+                  <AnchorPane prefHeight="302.0" prefWidth="204.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane layoutX="2.0" layoutY="98.0" prefHeight="428.0" prefWidth="204.0" styleClass="nav-form" stylesheets="@../styles/dashboardDesigns.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <FontAwesomeIconView fill="#101305" glyphName="USER" layoutX="72.0" layoutY="98.0" size="7em" />
+                              <Label layoutX="59.0" layoutY="110.0" prefHeight="36.0" prefWidth="103.0" text="Bienvenido," textAlignment="JUSTIFY">
+                                 <font>
+                                    <Font name="SansSerif Regular" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lblUsuario" alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="131.0" prefHeight="36.0" prefWidth="205.0" text="Juan.">
+                                 <font>
+                                    <Font name="SansSerif Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Line endX="100.0" layoutX="102.0" layoutY="179.0" startX="-100.0" stroke="WHITE" />
+                              <Button layoutX="1.0" layoutY="208.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="201.0" styleClass="nav-btn" stylesheets="@../styles/dashboardDesigns.css" text="Inicio">
+                                 <graphic>
+                                    <FontAwesomeIconView glyphName="HOME" size="1.5em" />
+                                 </graphic>
+                              </Button>
+                              <Button layoutX="1.0" layoutY="245.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="201.0" styleClass="nav-btn" stylesheets="@../styles/dashboardDesigns.css" text="Productos">
+                                 <graphic>
+                                    <FontAwesomeIconView glyphName="PLUS_CIRCLE" size="1.5em" />
+                                 </graphic>
+                              </Button>
+                              <Button layoutX="1.0" layoutY="285.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="201.0" styleClass="nav-btn" stylesheets="@../styles/dashboardDesigns.css" text="Categorias">
+                                 <graphic>
+                                    <FontAwesomeIconView glyphName="BARS" size="1.5em" />
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="btnCerrarSesion" layoutX="1.0" layoutY="432.0" mnemonicParsing="false" onAction="#btnOnActionCerrarSesion" prefHeight="26.0" prefWidth="201.0" styleClass="nav-btn" stylesheets="@../styles/dashboardDesigns.css" text="Salir">
+                                 <graphic>
+                                    <FontAwesomeIconView glyphName="SIGN_OUT" size="1.5em" />
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </left>
+               <center>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane layoutX="190.0" layoutY="79.0" prefHeight="479.0" prefWidth="896.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane layoutX="15.0" layoutY="12.0" prefHeight="453.0" prefWidth="868.0" stylesheets="@../styles/dashboardDesigns.css">
+                                 <styleClass>
+                                    <String fx:value="white-bg" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                                 <children>
+                                    <AnchorPane prefHeight="126.0" prefWidth="868.0" stylesheets="@../styles/dashboardDesigns.css">
+                                       <styleClass>
+                                          <String fx:value="white-bg" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                       <children>
+                                          <AnchorPane layoutX="17.0" layoutY="10.0" prefHeight="110.0" prefWidth="255.0" styleClass="nav-form" stylesheets="@../styles/dashboardDesigns.css">
+                                             <effect>
+                                                <InnerShadow>
+                                                   <input>
+                                                      <Glow />
+                                                   </input>
+                                                   <color>
+                                                      <Color red="0.7631579041481018" green="0.7490253448486328" blue="0.7490253448486328" />
+                                                   </color>
+                                                </InnerShadow>
+                                             </effect>
+                                             <children>
+                                                <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../hyunsedaimages/productoIcono.png" />
+                                                   </image>
+                                                </ImageView>
+                                                <Label disable="true" layoutX="100.0" layoutY="76.0" prefHeight="17.0" prefWidth="136.0" style="-fx-opacity: 100; -fx-text-fill: BLACK; -fx-background-color: TRANSPARENT;" text="Total Productos ">
+                                                   <font>
+                                                      <Font name="SansSerif Regular" size="18.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label alignment="CENTER_RIGHT" disable="true" layoutX="99.0" layoutY="28.0" prefHeight="21.0" prefWidth="130.0" style="-fx-opacity: 100; -fx-text-fill: BLACK; -fx-background-color: TRANSPARENT;" text="0">
+                                                   <font>
+                                                      <Font name="SansSerif Bold" size="28.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </AnchorPane>
+                                          <AnchorPane layoutX="299.0" layoutY="10.0" prefHeight="110.0" prefWidth="255.0" styleClass="nav-form" stylesheets="@../styles/dashboardDesigns.css">
+                                             <effect>
+                                                <InnerShadow>
+                                                   <input>
+                                                      <Glow />
+                                                   </input>
+                                                   <color>
+                                                      <Color red="0.7631579041481018" green="0.7490253448486328" blue="0.7490253448486328" />
+                                                   </color>
+                                                </InnerShadow>
+                                             </effect>
+                                             <children>
+                                                <Label disable="true" layoutX="100.0" layoutY="76.0" prefHeight="17.0" prefWidth="136.0" style="-fx-opacity: 100; -fx-text-fill: BLACK; -fx-background-color: TRANSPARENT;" text="Total Usuarios">
+                                                   <font>
+                                                      <Font name="SansSerif Regular" size="18.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label alignment="CENTER_RIGHT" disable="true" layoutX="99.0" layoutY="28.0" prefHeight="21.0" prefWidth="130.0" style="-fx-opacity: 100; -fx-text-fill: BLACK; -fx-background-color: TRANSPARENT;" text="0">
+                                                   <font>
+                                                      <Font name="SansSerif Bold" size="28.0" />
+                                                   </font>
+                                                </Label>
+                                                <FontAwesomeIconView glyphName="USERS" layoutX="18.0" layoutY="77.0" size="70" />
+                                             </children>
+                                          </AnchorPane>
+                                          <AnchorPane layoutX="581.0" layoutY="10.0" prefHeight="110.0" prefWidth="255.0" styleClass="nav-form" stylesheets="@../styles/dashboardDesigns.css">
+                                             <effect>
+                                                <InnerShadow>
+                                                   <input>
+                                                      <Glow />
+                                                   </input>
+                                                   <color>
+                                                      <Color red="0.7631579041481018" green="0.7490253448486328" blue="0.7490253448486328" />
+                                                   </color>
+                                                </InnerShadow>
+                                             </effect>
+                                             <children>
+                                                <Label disable="true" layoutX="100.0" layoutY="76.0" prefHeight="17.0" prefWidth="136.0" style="-fx-opacity: 100; -fx-text-fill: BLACK; -fx-background-color: TRANSPARENT;" text="Total Ordenes">
+                                                   <font>
+                                                      <Font name="SansSerif Regular" size="18.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label alignment="CENTER_RIGHT" disable="true" layoutX="99.0" layoutY="28.0" prefHeight="21.0" prefWidth="130.0" style="-fx-opacity: 100; -fx-text-fill: BLACK; -fx-background-color: TRANSPARENT;" text="0">
+                                                   <font>
+                                                      <Font name="SansSerif Bold" size="28.0" />
+                                                   </font>
+                                                </Label>
+                                                <FontAwesomeIconView glyphName="PENCIL" layoutX="18.0" layoutY="77.0" size="70" />
+                                             </children>
+                                          </AnchorPane>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="34.0" layoutY="169.0" prefHeight="200.0" prefWidth="820.0" stylesheets="@../styles/dashboardDesigns.css">
+                                       <styleClass>
+                                          <String fx:value="white-bg" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                       <children>
+                                          <BarChart layoutX="-33.0" layoutY="-100.0" prefHeight="300.0" prefWidth="820.0" title="Total Usuarios Registrados" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <xAxis>
+                                              <CategoryAxis side="BOTTOM" />
+                                            </xAxis>
+                                            <yAxis>
+                                              <NumberAxis side="LEFT" />
+                                            </yAxis>
+                                          </BarChart>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="141.0" layoutY="104.0" prefHeight="479.0" prefWidth="896.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane layoutX="6.0" layoutY="5.0" prefHeight="522.0" prefWidth="881.0" stylesheets="@../styles/dashboardDesigns.css">
+                                 <styleClass>
+                                    <String fx:value="white-bg" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                                 <children>
+                                    <AnchorPane prefHeight="260.0" prefWidth="881.0" stylesheets="@../styles/dashboardDesigns.css">
+                                       <styleClass>
+                                          <String fx:value="white-bg" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                       <children>
+                                          <TextField layoutX="8.0" layoutY="10.0" prefHeight="30.0" prefWidth="274.0" promptText="Buscar por nombre" styleClass="search" stylesheets="@../styles/dashboardDesigns.css" />
+                                          <FontAwesomeIconView glyphName="SEARCH" layoutX="14.0" layoutY="31.0" size="1.5em" />
+                                          <TableView layoutX="11.0" layoutY="53.0" prefHeight="200.0" prefWidth="860.0">
+                                            <columns>
+                                              <TableColumn prefWidth="78.0" text="ID" />
+                                              <TableColumn prefWidth="174.0" text="Nombre" />
+                                                <TableColumn prefWidth="474.0" text="Descripcion" />
+                                                <TableColumn prefWidth="133.0" text="Precio" />
+                                            </columns>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                                    <Label layoutX="34.0" layoutY="289.0" prefHeight="21.0" prefWidth="109.0" text="ID Producto :">
+                                       <font>
+                                          <Font name="SansSerif Regular" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField layoutX="141.0" layoutY="287.0" prefHeight="25.0" prefWidth="72.0" styleClass="textfield" stylesheets="@../styles/dashboardDesigns.css" />
+                                    <Label layoutX="52.0" layoutY="378.0" prefHeight="21.0" prefWidth="92.0" text="Categoria :">
+                                       <font>
+                                          <Font name="SansSerif Regular" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox layoutX="144.0" layoutY="376.0" prefHeight="25.0" prefWidth="172.0" promptText="Elegir" styleClass="textfield" stylesheets="@../styles/dashboardDesigns.css" />
+                                    <Label layoutX="65.0" layoutY="336.0" prefHeight="21.0" prefWidth="75.0" text="Nombre :">
+                                       <font>
+                                          <Font name="SansSerif Regular" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField layoutX="143.0" layoutY="334.0" prefHeight="25.0" prefWidth="171.0" styleClass="textfield" stylesheets="@../styles/dashboardDesigns.css" />
+                                    <Label layoutX="377.0" layoutY="288.0" prefHeight="21.0" prefWidth="63.0" text="Precio :">
+                                       <font>
+                                          <Font name="SansSerif Regular" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField layoutX="442.0" layoutY="287.0" prefHeight="25.0" prefWidth="145.0" styleClass="textfield" stylesheets="@../styles/dashboardDesigns.css" />
+                                    <Label layoutX="334.0" layoutY="336.0" prefHeight="21.0" prefWidth="106.0" text="Descripcion :">
+                                       <font>
+                                          <Font name="SansSerif Regular" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField layoutX="442.0" layoutY="334.0" prefHeight="80.0" prefWidth="145.0" styleClass="textfield" stylesheets="@../styles/dashboardDesigns.css" />
+                                    <AnchorPane layoutX="688.0" layoutY="278.0" prefHeight="155.0" prefWidth="129.0" stylesheets="@../styles/dashboardDesigns.css">
+                                       <styleClass>
+                                          <String fx:value="shadow" />
+                                          <String fx:value="white-bg" />
+                                       </styleClass>
+                                       <children>
+                                          <ImageView fitHeight="155.0" fitWidth="129.0" layoutX="1.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" />
+                                          <Button layoutY="128.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="130.0" styleClass="insert-btn" stylesheets="@../styles/dashboardDesigns.css" text="Subir">
+                                             <font>
+                                                <Font name="SansSerif Bold" size="13.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </AnchorPane>
+                                    <Button layoutX="534.0" layoutY="464.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="98.0" text="Agregar">
+                                       <font>
+                                          <Font name="SansSerif Regular" size="14.0" />
+                                       </font>
+                                    </Button>
+                                    <Button layoutX="417.0" layoutY="464.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="98.0" text="Actualizar">
+                                       <font>
+                                          <Font name="SansSerif Regular" size="14.0" />
+                                       </font>
+                                    </Button>
+                                    <Button layoutX="294.0" layoutY="464.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="98.0" text="Eliminar">
+                                       <font>
+                                          <Font name="SansSerif Regular" size="14.0" />
+                                       </font>
+                                    </Button>
+                                    <Button layoutX="177.0" layoutY="464.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="98.0" text="Limpiar">
+                                       <font>
+                                          <Font name="SansSerif Regular" size="14.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </center>
+            </BorderPane>
          </children>
-      </VBox>
-      <Label fx:id="lblBienvenido" layoutX="260.0" layoutY="37.0" prefHeight="36.0" prefWidth="426.0" text="Bienvenido, Juan.">
-         <font>
-            <Font name="SansSerif Bold" size="30.0" />
-         </font>
-      </Label>
+      </AnchorPane>
    </children>
-</AnchorPane>
+</StackPane>
