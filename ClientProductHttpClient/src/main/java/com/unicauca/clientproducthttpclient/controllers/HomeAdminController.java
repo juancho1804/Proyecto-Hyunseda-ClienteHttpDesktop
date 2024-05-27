@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
@@ -16,7 +17,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class HomeAdminController  implements Initializable{
+public class HomeAdminController  extends Window implements Initializable{
 
     @FXML
     private Button btnCerrarSesion;
@@ -33,6 +34,10 @@ public class HomeAdminController  implements Initializable{
     @FXML
     private AnchorPane pnlProductos;
 
+
+    @FXML
+    private BarChart<?, ?> chartUsuariosRegistrados;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.pnlProductos.setVisible(false);
@@ -40,6 +45,8 @@ public class HomeAdminController  implements Initializable{
         this.btnProductos.setOnAction(this::btnOnActionProductos);
         this.btnInicio.setOnAction(this::btnOnActionInicio);
         this.btnCerrarSesion.setOnAction(this::btnOnActionCerrarSesion);
+        this.btnMinimize.setOnAction(this::btnOnActionMinimize);
+        this.btnClose.setOnAction(this::btnOnActionClose);
     }
 
     public void setLblUsuario(String text){
@@ -71,11 +78,8 @@ public class HomeAdminController  implements Initializable{
             e.printStackTrace();
         }
     }
-    public void btnOnActionCerrarSesion(ActionEvent event) {
-        Stage stage = (Stage) btnCerrarSesion.getScene().getWindow();
-        Utilities.cargarFXML("/views/login.fxml","Login");
-        stage.close();
-    }
+
+
 
 
 }

@@ -30,8 +30,9 @@ import java.util.ResourceBundle;
  *
  * @author Juan
  */
-public class ProductController implements Initializable{
+public class ProductController extends Window implements Initializable{
     private final IProductService productService;
+
     @FXML
     private Button btnCerrarSesion;
     @FXML
@@ -61,6 +62,8 @@ public class ProductController implements Initializable{
         this.btnProductos.setOnAction(this::btnOnActionProductos);
         this.btnInicio.setOnAction(this::btnOnActionInicio);
         this.btnCerrarSesion.setOnAction(this::btnOnActionCerrarSesion);
+        this.btnMinimize.setOnAction(super::btnOnActionMinimize);
+        this.btnClose.setOnAction(this::btnOnActionClose);
 
     }
 
@@ -87,17 +90,6 @@ public class ProductController implements Initializable{
         pnlInicio.setVisible(false);
         pnlProductos.setVisible(true);
     }
-    public void btnOnActionCerrarSesion(ActionEvent event) {
-        Stage stage = (Stage) btnCerrarSesion.getScene().getWindow();
-        Utilities.cargarFXML("/views/login.fxml","Login");
-        stage.close();
-    }
-
-
-
-
-
-
 
 
 

@@ -17,6 +17,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -55,6 +56,7 @@ public class LoginController {
                 controller.setLblUsuario(txtUsername.getText()+".");
                 Stage stage=new Stage();
                 stage.setScene(scene);
+                stage.initStyle(StageStyle.UNDECORATED);
                 stage.show();
 
                 /*
