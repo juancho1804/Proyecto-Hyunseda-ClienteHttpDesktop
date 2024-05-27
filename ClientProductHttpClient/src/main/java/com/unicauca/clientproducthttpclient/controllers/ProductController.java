@@ -49,11 +49,15 @@ public class ProductController extends Window implements Initializable{
     @FXML
     private Button btnProductos;
     @FXML
+    private Button btnCategorias;
+    @FXML
     private Button btnAgregarProducto;
     @FXML
     AnchorPane pnlInicio;
     @FXML
     AnchorPane pnlProductos;
+    @FXML
+    AnchorPane pnlCategorias;
     @FXML
     private Label lblUsuario;
     
@@ -69,8 +73,10 @@ public class ProductController extends Window implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.pnlInicio.setVisible(false);
+        this.pnlCategorias.setVisible(false);
         this.pnlProductos.setVisible(true);
         this.btnProductos.setOnAction(this::btnOnActionProductos);
+        this.btnCategorias.setOnAction(this::btnOnActionCategorias);
         this.btnInicio.setOnAction(this::btnOnActionInicio);
         this.btnCerrarSesion.setOnAction(this::btnOnActionCerrarSesion);
         this.btnMinimize.setOnAction(super::btnOnActionMinimize);
@@ -79,26 +85,8 @@ public class ProductController extends Window implements Initializable{
 
     }
 
-    public void btnOnActionInicio(ActionEvent event){
-        try {
-            // Cargar el archivo FXML con el nuevo controlador
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/homeAdmin.fxml"));
-            loader.setController(new HomeAdminController()); // Establecer el nuevo controlador
-            Parent root = loader.load();
-
-            HomeAdminController controller = loader.getController();
-            controller.setLblUsuario(this.lblUsuario.getText());
-
-            // Configurar la nueva escena
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) btnInicio.getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
     public void btnOnActionProductos(ActionEvent event) {
+        pnlCategorias.setVisible(false);
         pnlInicio.setVisible(false);
         pnlProductos.setVisible(true);
     }

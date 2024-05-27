@@ -40,6 +40,8 @@ public class HomeAdminController  extends Window implements Initializable{
     private AnchorPane pnlInicio;
     @FXML
     private AnchorPane pnlProductos;
+    @FXML
+    private AnchorPane pnlCategorias;
 
 
     @FXML
@@ -49,9 +51,11 @@ public class HomeAdminController  extends Window implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        this.pnlCategorias.setVisible(false);
         this.pnlProductos.setVisible(false);
         this.pnlInicio.setVisible(true);
         this.btnProductos.setOnAction(this::btnOnActionProductos);
+        this.btnCategorias.setOnAction(this::btnOnActionCategorias);
         this.btnInicio.setOnAction(this::btnOnActionInicio);
         this.btnCerrarSesion.setOnAction(this::btnOnActionCerrarSesion);
         this.btnMinimize.setOnAction(this::btnOnActionMinimize);
@@ -68,30 +72,14 @@ public class HomeAdminController  extends Window implements Initializable{
     }
 
 
-
     public void btnOnActionInicio(ActionEvent event){
+        pnlCategorias.setVisible(false);
         pnlProductos.setVisible(false);
         pnlInicio.setVisible(true);
     }
-    public void btnOnActionProductos(ActionEvent event) {
 
-        try {
-            // Cargar el archivo FXML con el nuevo controlador
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/homeAdmin.fxml"));
-            loader.setController(new ProductController()); // Establecer el nuevo controlador
-            Parent root = loader.load();
-            ProductController controller = loader.getController();
-            controller.setLblUsuario(this.lblUsuario.getText());
 
-            // Configurar la nueva escena
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) btnProductos.getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
     public int lblOnActionCantidadProductos(){
         IProductService productService = new ProductService();
         return productService.findAll().size();
