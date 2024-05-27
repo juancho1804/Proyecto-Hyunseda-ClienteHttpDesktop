@@ -48,8 +48,16 @@ public class LoginController {
         Resultado resultado=userService.validateUser(user);
         if (resultado!=null){
             if(resultado.getMsg().equals("ADMIN")){
+                FXMLLoader fxmlLoader = new FXMLLoader(LoginController.class.getResource("/views/homeAdmin.fxml"));
+                fxmlLoader.setController(new HomeAdminController()); // Establecer el controlador
+                Scene scene = new Scene(fxmlLoader.load(), 1100, 581);
+                HomeAdminController controller = fxmlLoader.getController();
+                controller.setLblUsuario(txtUsername.getText()+".");
+                Stage stage=new Stage();
+                stage.setScene(scene);
+                stage.show();
 
-                // Carga el FXML del HomeAdminController
+                /*
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/homeAdmin.fxml"));
                 Parent root = loader.load();
                 HomeAdminController controller = loader.getController();
@@ -58,6 +66,8 @@ public class LoginController {
                 stage.setScene(new Scene(root));
                 stage.setTitle("Hyunseda Administrador");
                 stage.show();
+
+                 */
 
                 cerrarVentana();
             }else{
