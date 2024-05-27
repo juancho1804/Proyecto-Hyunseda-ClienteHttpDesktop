@@ -57,7 +57,8 @@ public class HomeAdminController  extends Window implements Initializable{
         this.btnMinimize.setOnAction(this::btnOnActionMinimize);
         this.btnClose.setOnAction(this::btnOnActionClose);
         this.lblCantidadProductos.setText(""+lblOnActionCantidadProductos());
-        System.out.println(lblOnActionlblCantidadUsuarios());
+        this.lblCantidadUsuarios.setText(""+lblOnActionCantidadUsuarios());
+
 
     }
 
@@ -94,7 +95,7 @@ public class HomeAdminController  extends Window implements Initializable{
         IProductService productService = new ProductService();
         return productService.findAll().size();
     }
-    public int lblOnActionlblCantidadUsuarios(){
+    public int lblOnActionCantidadUsuarios(){
         IUserService userService = new UserService();
         return userService.findAll().size();
     }

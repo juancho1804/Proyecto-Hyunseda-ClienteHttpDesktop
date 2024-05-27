@@ -25,6 +25,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static com.unicauca.clientproducthttpclient.controllers.LoginController.token;
+
 public class UserRestRepository implements IUserRepository{
 
 
@@ -90,7 +92,16 @@ public class UserRestRepository implements IUserRepository{
             if (statusCode == 200) {
                 isValid = true; // Convertir el cuerpo de la respuesta a boolean
                 role = responseBody.substring(responseBody.indexOf("[") + 1, responseBody.indexOf("]"));
-                return new Resultado(isValid,role);
+
+                // Encontrar la posición inicial del token en el cuerpo de respuesta
+                int startIndex = responseBody.indexOf("\"token\":\"") + "\"token\":\"".length();
+                int endIndex = responseBody.indexOf("\"", startIndex);
+
+                // Extraer el token
+                String token = responseBody.substring(startIndex, endIndex);
+
+
+                return new Resultado(isValid,role,token);
             }
             httpClient.close();
         } catch (IOException ex) {
@@ -101,15 +112,17 @@ public class UserRestRepository implements IUserRepository{
 
     @Override
     public List<User> findAll() {
-        HttpClient httpClient = HttpClients.createDefault();
+        CloseableHttpClient httpClient = HttpClients.createDefault();
         ObjectMapper mapper = new ObjectMapper();
         List<User> list = new ArrayList<>();
         try {
-
-            // Definir la URL de la API REST de productos
+            // Definir la URL de la API REST de usuarios
             String apiUrl = "http://localhost:8004/UserModel";
-            // Crear una solicitud GET para obtener todos los productos
+            // Crear una solicitud GET para obtener todos los usuarios
             HttpGet request = new HttpGet(apiUrl);
+
+            // Agregar el token de autorización al encabezado de la solicitud
+            request.setHeader("Authorization", "Bearer " + token);
 
             // Ejecutar la solicitud y obtener la respuesta
             HttpResponse response = httpClient.execute(request);
@@ -120,19 +133,24 @@ public class UserRestRepository implements IUserRepository{
                 // La solicitud fue exitosa, procesar la respuesta
                 String jsonResponse = EntityUtils.toString(response.getEntity());
 
-                // Mapear la respuesta JSON a objetos Product
+                // Mapear la respuesta JSON a objetos User
                 User[] users = mapper.readValue(jsonResponse, User[].class);
 
                 for (User user : users) {
                     list.add(user);
                 }
-
             } else {
                 // La solicitud falló, mostrar el código de estado
                 Logger.getLogger(UserRestRepository.class.getName()).log(Level.SEVERE, null, "Error al obtener usuarios. Código de estado: " + statusCode);
             }
         } catch (IOException ex) {
             Logger.getLogger(UserRestRepository.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                httpClient.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         return list;
     }
