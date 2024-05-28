@@ -207,13 +207,19 @@
                                           <String fx:value="shadow" />
                                        </styleClass>
                                        <children>
-                                          <BarChart fx:id="chartUsuariosRegistrados" layoutX="-33.0" layoutY="-100.0" prefHeight="300.0" prefWidth="820.0" title="Total Usuarios Registrados" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          <BarChart fx:id="bchProductosPorCategoria" layoutX="-33.0" layoutY="-100.0" prefHeight="300.0" prefWidth="820.0" stylesheets="@../styles/dashboardDesigns.css" title="Cantidad de productos por categoria" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <xAxis>
                                               <CategoryAxis side="BOTTOM" />
                                             </xAxis>
                                             <yAxis>
                                               <NumberAxis side="LEFT" />
                                             </yAxis>
+                                             <styleClass>
+                                                <String fx:value="chart-axis-label" />
+                                                <String fx:value="chart-horizontal-axis" />
+                                                <String fx:value="chart-vertical-axis" />
+                                                <String fx:value="chart-bar" />
+                                             </styleClass>
                                           </BarChart>
                                        </children>
                                     </AnchorPane>

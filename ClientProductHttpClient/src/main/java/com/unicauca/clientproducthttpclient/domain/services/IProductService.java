@@ -7,6 +7,7 @@ package com.unicauca.clientproducthttpclient.domain.services;
 import com.unicauca.clientproducthttpclient.access.IProductRepository;
 import com.unicauca.clientproducthttpclient.domain.entities.Product;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -20,5 +21,6 @@ public interface IProductService {
     public void delete(int id);
     public Product findById(int id);
     public Product findByName(String name);
+    public Map<String, Integer> contarProductosPorCategoria();
     
 }

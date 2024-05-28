@@ -8,7 +8,9 @@ import com.unicauca.clientproducthttpclient.util.Messages;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.http.HttpEntity;
@@ -286,6 +288,40 @@ public class ProductRestRepository implements IProductRepository {
             Logger.getLogger(Main.class
                     .getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public Map<String, Integer> contarProductosPorCategoria() {
+        HttpClient httpClient = HttpClients.createDefault();
+        ObjectMapper mapper = new ObjectMapper();
+        Map<String, Integer> productosPorCategoria = new HashMap<>();
+
+        try {
+            // Definir la URL de la API REST que cuenta productos por categoría
+            String apiUrl = "http://localhost:8001/ProductModel/contarProductosPorCategoria"; // Cambia esto por la URL correcta de tu API
+
+            // Crear una solicitud GET para contar los productos por categoría
+            HttpGet request = new HttpGet(apiUrl);
+
+            // Ejecutar la solicitud y obtener la respuesta
+            HttpResponse response = httpClient.execute(request);
+
+            // Verificar el código de estado de la respuesta
+            int statusCode = response.getStatusLine().getStatusCode();
+            if (statusCode == 200) {
+                // La solicitud fue exitosa, procesar la respuesta
+                String jsonResponse = EntityUtils.toString(response.getEntity());
+
+                // Mapear la respuesta JSON a un mapa de String (nombre de categoría) a Integer (cantidad de productos)
+                productosPorCategoria = mapper.readValue(jsonResponse, Map.class);
+            } else {
+                // La solicitud falló, mostrar el código de estado
+                Logger.getLogger(ProductRestRepository.class.getName()).log(Level.SEVERE, null, "Error al contar productos por categoría. Código de estado: " + statusCode);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(ProductRestRepository.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return productosPorCategoria;
     }
 
 }

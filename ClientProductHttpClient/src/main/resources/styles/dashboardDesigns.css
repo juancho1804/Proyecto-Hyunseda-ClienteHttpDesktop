@@ -94,3 +94,38 @@
     -fx-cursor: hand;
 
 }
+.chart-axis-label {
+    -fx-text-fill: black; /* Cambia el color del texto */
+    -fx-font-size: 14px; /* Tamaño de fuente */
+    -fx-font-family: "SansSerif"; /* Fuente */
+}
+
+.chart-axis {
+    -fx-tick-label-font: 14px "SansSerif";
+    -fx-label-font: 16px "SansSerif";
+}
+
+.chart-vertical-axis .axis-label {
+    -fx-text-fill: black;
+    -fx-font-size: 14px;
+    -fx-font-family: "SansSerif";
+    -fx-content-display: center;
+}
+
+.chart-horizontal-axis .axis-label {
+    -fx-text-fill: black;
+    -fx-font-size: 14px;
+    -fx-font-family: "SansSerif";
+    -fx-content-display: center;
+}
+
+.chart-vertical-axis .axis-label {
+    -fx-label: "Número de Productos";
+}
+
+.chart-horizontal-axis .axis-label {
+    -fx-label: "Categorías";
+}
+.chart-bar {
+    -fx-bar-fill: yellow;
+}

@@ -4,6 +4,7 @@ import com.unicauca.clientproducthttpclient.access.IProductRepository;
 import com.unicauca.clientproducthttpclient.access.ProductRestRepository;
 import com.unicauca.clientproducthttpclient.domain.entities.Product;
 import java.util.List;
+import java.util.Map;
 
 public class ProductService implements IProductService{
 
@@ -41,6 +42,9 @@ public class ProductService implements IProductService{
     @Override
     public Product findByName(String name) {
         return repo.findByName(name);
+    }
+    public Map<String, Integer> contarProductosPorCategoria(){
+        return repo.contarProductosPorCategoria();
     }
     
 
