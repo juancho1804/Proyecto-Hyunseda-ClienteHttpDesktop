@@ -17,7 +17,7 @@ public interface IProductService {
 
     public List<Product> findAll();
     public void create(Product product);
-    public void edit(int id,Product productUpdated);
+    public boolean edit(int id,Product productUpdated);
     public void delete(int id);
     public Product findById(int id);
     public Product findByName(String name);

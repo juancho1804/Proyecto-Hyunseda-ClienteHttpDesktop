@@ -26,8 +26,8 @@ public class ProductService implements IProductService{
         repo.create(product);
     }
     @Override
-    public void edit(int id,Product productUpdated){
-        repo.edit(id, productUpdated);
+    public boolean edit(int id,Product productUpdated){
+        return repo.edit(id, productUpdated);
     }
     
     @Override

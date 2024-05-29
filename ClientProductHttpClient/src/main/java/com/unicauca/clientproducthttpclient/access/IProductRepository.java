@@ -14,7 +14,7 @@ public interface IProductRepository {
 
     public void create(Product product);
 
-    public void edit(int id, Product productUpdated);
+    public boolean edit(int id, Product productUpdated);
 
     public void delete(int id);
 

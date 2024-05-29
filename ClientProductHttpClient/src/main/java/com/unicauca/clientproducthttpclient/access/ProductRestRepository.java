@@ -103,7 +103,7 @@ public class ProductRestRepository implements IProductRepository {
         } catch (IOException ex) {
             Logger.getLogger(ProductRestRepository.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return product;
+        return null;
     }
     
     @Override
@@ -202,7 +202,7 @@ public class ProductRestRepository implements IProductRepository {
     
 
     @Override
-    public void edit(int id, Product productUpdated) {
+    public boolean edit(int id, Product productUpdated) {
                 try {
             // Crear un objeto CloseableHttpClient
             CloseableHttpClient httpClient = HttpClients.createDefault();
@@ -238,10 +238,8 @@ public class ProductRestRepository implements IProductRepository {
             // Si se desea, también se puede obtener y mostrar el cuerpo de la respuesta
              String responseBody = EntityUtils.toString(response.getEntity());
              System.out.println("Response body: " + responseBody);
-             if(statusCode!=200){
-             Messages.showMessageDialog("Verifique el id del producto" , "Producto no encontrado");    
-             }else{
-                 Messages.showMessageDialog("El producto ha sido modificado exitosamente","El producto modificado");
+             if(statusCode==200){
+                 return true;
              }
              
             // Cerrar el cliente HttpClient
@@ -253,6 +251,7 @@ public class ProductRestRepository implements IProductRepository {
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
+                return false;
     }
 
     @Override

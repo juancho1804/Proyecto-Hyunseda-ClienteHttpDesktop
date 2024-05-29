@@ -120,6 +120,7 @@ public class ProductController extends Window implements Initializable{
         this.btnLimpiarProd.setOnAction(this::btnOnActionLimpiarProd);
         this.btnAgregarProducto.setOnAction(this::btnOnActionAgregarProducto);
         this.btnEliminarProd.setOnAction(this::btnOnActionEliminarProd);
+        this.btnActualizarProd.setOnAction(this::btnOnActionActualizarProd);
 
         initializelblUsuario();
         initializeCboCategorias();
@@ -135,7 +136,6 @@ public class ProductController extends Window implements Initializable{
     }
 
 
-
     public void btnOnActionProductos(ActionEvent event) {
         pnlCategorias.setVisible(false);
         pnlInicio.setVisible(false);
@@ -147,7 +147,10 @@ public class ProductController extends Window implements Initializable{
             Product product=new Product();
             product.setName(txtNombreProd.getText());
             product.setDescription(txtDescProd.getText());
-            product.setCategory(categoryService.findByName(cboCategorias.getValue()));
+            Category category=categoryService.findByName(cboCategorias.getValue());
+            System.out.println(category.getCategoryId());
+            product.setCategory(category);
+
             product.setImage(ruta);
             try{
                 double precio = validarPrecio(txtPrecioProd.getText());
@@ -156,6 +159,28 @@ public class ProductController extends Window implements Initializable{
                 Utilities.mostrarAlerta("Información","El producto ha sido agregado con éxito");
             }catch (NumberFormatException e){}
 
+        }else{
+            Utilities.mostrarAlerta("Error", "Verifique que todos los campos estén llenos");
+        }
+    }
+
+    public void btnOnActionActualizarProd(ActionEvent event){
+
+        if(validarCampos() &&!txtIdProd.getText().isBlank()){
+            try{
+                int id= validarId(txtIdProd.getText());
+                double precio=validarPrecio(txtPrecioProd.getText());
+
+                Category category=categoryService.findByName(cboCategorias.getValue());
+                Product product=new Product(id,txtNombreProd.getText(),txtDescProd.getText(),precio
+                ,ruta);
+                product.setCategory(category);
+                if(productService.edit(id,product)){
+                    Utilities.mostrarAlerta("Información","Producto editado con éxito");
+                }else{
+                    Utilities.mostrarAlerta("Información","Producto a editar no encontrado !");
+                }
+            }catch (NumberFormatException e){}
         }else{
             Utilities.mostrarAlerta("Error", "Verifique que todos los campos estén llenos");
         }
@@ -170,8 +195,10 @@ public class ProductController extends Window implements Initializable{
             } catch (NumberFormatException e) {
                 Utilities.mostrarAlerta("Error", "El id debe ser un número válido");
             }
+        }else{
+            Utilities.mostrarAlerta("Error", "El campo id está vacío");
         }
-        Utilities.mostrarAlerta("Error", "El campo id está vacío");
+
     }
 
 
@@ -256,6 +283,7 @@ public class ProductController extends Window implements Initializable{
             }
             imgProducto.setImage(image); // Establecer la imagen en el ImageView
             cboCategorias.getSelectionModel().select(selectedProduct.getCategory().getName());
+            ruta=imageUrl;
         }
     }
 
