@@ -96,6 +96,8 @@ public class ProductController extends Window implements Initializable{
     TableColumn<Product,String> colDescripcionProd;
     @FXML
     TableColumn<Product,Double> colPrecioProd;
+    @FXML
+    private TextField txtBuscarNombreProd;
 
 
     
@@ -125,6 +127,9 @@ public class ProductController extends Window implements Initializable{
         initializelblUsuario();
         initializeCboCategorias();
         initializeTablaProductos();
+        txtBuscarNombreProd.textProperty().addListener((observable, oldValue, newValue) -> {
+            buscarProductosPorNombre(newValue);
+        });
 
         // Configurar el listener para la selección de productos en la tabla
         tblProductos.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
@@ -157,6 +162,7 @@ public class ProductController extends Window implements Initializable{
                 product.setPrice(precio);
                 productService.create(product);
                 Utilities.mostrarAlerta("Información","El producto ha sido agregado con éxito");
+                actualizarTablaProductos(productService.findAll());
             }catch (NumberFormatException e){}
 
         }else{
@@ -177,6 +183,7 @@ public class ProductController extends Window implements Initializable{
                 product.setCategory(category);
                 if(productService.edit(id,product)){
                     Utilities.mostrarAlerta("Información","Producto editado con éxito");
+                    actualizarTablaProductos(productService.findAll());
                 }else{
                     Utilities.mostrarAlerta("Información","Producto a editar no encontrado !");
                 }
@@ -191,7 +198,7 @@ public class ProductController extends Window implements Initializable{
             try {
                 int id = validarId(txtIdProd.getText());
                 productService.delete(id);
-                actualizarTablaProductos();
+                actualizarTablaProductos(productService.findAll());
             } catch (NumberFormatException e) {
                 Utilities.mostrarAlerta("Error", "El id debe ser un número válido");
             }
@@ -247,16 +254,19 @@ public class ProductController extends Window implements Initializable{
         // Asignar la lista de productos a la tabla
         tblProductos.setItems(observableList);
     }
-    public void actualizarTablaProductos(){
-        // Obtener la lista de productos desde el backend
-        List<Product> listaDeProductos = productService.findAll();
+    public void actualizarTablaProductos(List<Product>list){
 
         // Convertir la lista de productos a ObservableList
-        ObservableList<Product> observableList = FXCollections.observableArrayList(listaDeProductos);
+        ObservableList<Product> observableList = FXCollections.observableArrayList(list);
 
         // Asignar la lista de productos a la tabla
         tblProductos.setItems(observableList);
 
+    }
+
+    private void buscarProductosPorNombre(String nombre) {
+        List<Product> productosEncontrados = productService.findByName(nombre);
+        actualizarTablaProductos(productosEncontrados);
     }
     private void handleProductSelection(MouseEvent event) {
         Product selectedProduct = tblProductos.getSelectionModel().getSelectedItem();
@@ -335,9 +345,6 @@ public class ProductController extends Window implements Initializable{
     }
     public Product findById(int id){
         return productService.findById(id);
-    }
-    public Product findByName(String name) {
-        return productService.findByName(name);
     }
 
 }

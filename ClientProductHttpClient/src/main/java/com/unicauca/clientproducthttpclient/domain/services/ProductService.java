@@ -40,7 +40,7 @@ public class ProductService implements IProductService{
         return repo.findById(id);
     }
     @Override
-    public Product findByName(String name) {
+    public List<Product> findByName(String name) {
         return repo.findByName(name);
     }
     public Map<String, Integer> contarProductosPorCategoria(){

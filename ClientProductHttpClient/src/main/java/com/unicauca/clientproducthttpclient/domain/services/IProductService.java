@@ -20,7 +20,7 @@ public interface IProductService {
     public boolean edit(int id,Product productUpdated);
     public void delete(int id);
     public Product findById(int id);
-    public Product findByName(String name);
+    public List<Product> findByName(String name);
     public Map<String, Integer> contarProductosPorCategoria();
     
 }
