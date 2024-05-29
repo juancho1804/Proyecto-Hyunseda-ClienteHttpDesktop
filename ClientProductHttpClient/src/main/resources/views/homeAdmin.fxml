@@ -48,12 +48,12 @@
                               </Label>
                               <Button fx:id="btnClose" layoutX="1046.0" layoutY="15.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="36.0" styleClass="close" stylesheets="@../styles/dashboardDesigns.css" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
                                  <graphic>
-                                    <FontAwesomeIconView glyphName="CLOSE" size="1.2m" />
+                                    <FontAwesomeIconView glyphName="CLOSE" size="20" />
                                  </graphic>
                               </Button>
                               <Button fx:id="btnMinimize" layoutX="1025.0" layoutY="2.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="36.0" styleClass="minimize" stylesheets="@../styles/dashboardDesigns.css" AnchorPane.rightAnchor="39.0" AnchorPane.topAnchor="2.0">
                                  <graphic>
-                                    <FontAwesomeIconView glyphName="MINUS" size="1.2m" />
+                                    <FontAwesomeIconView glyphName="MINUS" size="20" />
                                  </graphic>
                               </Button>
                            </children>
