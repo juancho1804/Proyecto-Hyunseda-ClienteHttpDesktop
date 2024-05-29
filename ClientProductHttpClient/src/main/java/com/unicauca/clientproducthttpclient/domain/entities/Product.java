@@ -20,9 +20,8 @@ public class Product {
     
     @JsonProperty("category")
     private Category category;
-    
-    // Nuevo atributo para la imagen
-    //@JsonProperty("image")
+
+    @JsonProperty("image")
     private String image;
     
 

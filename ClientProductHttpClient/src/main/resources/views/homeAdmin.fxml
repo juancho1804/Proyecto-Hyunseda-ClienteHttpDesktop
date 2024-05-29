@@ -106,7 +106,7 @@
                <center>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane fx:id="pnlInicio" layoutX="190.0" layoutY="79.0" prefHeight="479.0" prefWidth="896.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="pnlInicio" layoutX="190.0" layoutY="79.0" prefHeight="479.0" prefWidth="896.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="15.0" layoutY="12.0" prefHeight="453.0" prefWidth="868.0" stylesheets="@../styles/dashboardDesigns.css">
                                  <styleClass>
@@ -227,7 +227,7 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="pnlProductos" layoutX="141.0" layoutY="104.0" prefHeight="479.0" prefWidth="896.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="pnlProductos" layoutX="141.0" layoutY="104.0" prefHeight="479.0" prefWidth="896.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="6.0" layoutY="5.0" prefHeight="522.0" prefWidth="881.0" stylesheets="@../styles/dashboardDesigns.css">
                                  <styleClass>
@@ -243,12 +243,12 @@
                                        <children>
                                           <TextField layoutX="8.0" layoutY="10.0" prefHeight="30.0" prefWidth="274.0" promptText="Buscar por nombre" styleClass="search" stylesheets="@../styles/dashboardDesigns.css" />
                                           <FontAwesomeIconView glyphName="SEARCH" layoutX="14.0" layoutY="31.0" size="1.5em" />
-                                          <TableView layoutX="11.0" layoutY="53.0" prefHeight="200.0" prefWidth="860.0">
+                                          <TableView fx:id="tblProductos" layoutX="11.0" layoutY="53.0" prefHeight="200.0" prefWidth="860.0">
                                             <columns>
-                                              <TableColumn prefWidth="78.0" text="ID" />
-                                              <TableColumn prefWidth="174.0" text="Nombre" />
-                                                <TableColumn prefWidth="474.0" text="Descripcion" />
-                                                <TableColumn prefWidth="133.0" text="Precio" />
+                                              <TableColumn fx:id="colIdProd" prefWidth="78.0" text="ID" />
+                                              <TableColumn fx:id="colNombreProd" prefWidth="174.0" text="Nombre" />
+                                                <TableColumn fx:id="colDescripcionProd" prefWidth="474.0" text="Descripcion" />
+                                                <TableColumn fx:id="colPrecioProd" prefWidth="133.0" text="Precio" />
                                             </columns>
                                           </TableView>
                                        </children>
@@ -289,8 +289,8 @@
                                           <String fx:value="white-bg" />
                                        </styleClass>
                                        <children>
-                                          <ImageView fitHeight="155.0" fitWidth="129.0" layoutX="1.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" />
-                                          <Button layoutY="128.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="130.0" styleClass="insert-btn" stylesheets="@../styles/dashboardDesigns.css" text="Subir">
+                                          <ImageView fx:id="imgProducto" fitHeight="155.0" fitWidth="129.0" layoutX="1.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" />
+                                          <Button fx:id="btnSubirImagen" layoutY="128.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="130.0" styleClass="insert-btn" stylesheets="@../styles/dashboardDesigns.css" text="Subir">
                                              <font>
                                                 <Font name="SansSerif Bold" size="13.0" />
                                              </font>
@@ -302,17 +302,17 @@
                                           <Font name="SansSerif Regular" size="14.0" />
                                        </font>
                                     </Button>
-                                    <Button layoutX="417.0" layoutY="464.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="98.0" styleClass="botones" stylesheets="@../styles/dashboardDesigns.css" text="Actualizar">
+                                    <Button fx:id="btnActualizarProd" layoutX="417.0" layoutY="464.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="98.0" styleClass="botones" stylesheets="@../styles/dashboardDesigns.css" text="Actualizar">
                                        <font>
                                           <Font name="SansSerif Regular" size="14.0" />
                                        </font>
                                     </Button>
-                                    <Button layoutX="294.0" layoutY="464.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="98.0" styleClass="botones" stylesheets="@../styles/dashboardDesigns.css" text="Eliminar">
+                                    <Button fx:id="btnEliminarProd" layoutX="294.0" layoutY="464.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="98.0" styleClass="botones" stylesheets="@../styles/dashboardDesigns.css" text="Eliminar">
                                        <font>
                                           <Font name="SansSerif Regular" size="14.0" />
                                        </font>
                                     </Button>
-                                    <Button layoutX="177.0" layoutY="464.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="98.0" styleClass="botones" stylesheets="@../styles/dashboardDesigns.css" text="Limpiar">
+                                    <Button fx:id="btnLimpiarProd" layoutX="177.0" layoutY="464.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="98.0" styleClass="botones" stylesheets="@../styles/dashboardDesigns.css" text="Limpiar">
                                        <font>
                                           <Font name="SansSerif Regular" size="14.0" />
                                        </font>

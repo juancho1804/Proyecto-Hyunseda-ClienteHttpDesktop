@@ -13,6 +13,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import com.unicauca.clientproducthttpclient.util.Utilities;
+import javafx.scene.control.Alert;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -178,7 +181,6 @@ public class ProductRestRepository implements IProductRepository {
             System.out.println("Response status: " + response.getStatusLine());
             System.out.println("Response body: " + responseBody);
 
-            Messages.showMessageDialog("El producto ha sido agregado exitosamente","Producto agregado");
 
             // Cerrar el cliente HttpClient
             httpClient.close();
@@ -279,7 +281,9 @@ public class ProductRestRepository implements IProductRepository {
             System.out.println("Response body: " + responseBody);
 
             if(statusCode==200){
-                Messages.showMessageDialog("El producto ha sido eliminado exitosamente.","El producto  eliminado ");
+                Utilities.mostrarAlerta("Información","Producto eliminado con éxito");
+            }else{
+                Utilities.mostrarAlerta("Error","Producto no encontrado");
             }
             // Cerrar el cliente HttpClient
             httpClient.close();

@@ -4,6 +4,7 @@
  */
 package com.unicauca.clientproducthttpclient.domain.services;
 
+import com.unicauca.clientproducthttpclient.access.CategoryRestRepository;
 import com.unicauca.clientproducthttpclient.access.ICategoryRepository;
 import com.unicauca.clientproducthttpclient.domain.entities.Category;
 import java.util.List;
@@ -14,7 +15,11 @@ import java.util.List;
  */
 public class CategoryService implements ICategoryService{
     ICategoryRepository repo;
-    
+
+    public CategoryService() {
+        this.repo=new CategoryRestRepository();
+    }
+
     public CategoryService(ICategoryRepository repo) {
         this.repo = repo;
     }
