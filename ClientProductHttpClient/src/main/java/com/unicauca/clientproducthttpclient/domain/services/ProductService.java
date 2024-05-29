@@ -46,6 +46,9 @@ public class ProductService implements IProductService{
     public Map<String, Integer> contarProductosPorCategoria(){
         return repo.contarProductosPorCategoria();
     }
+    public List<Product> findById(String id){
+        return repo.findById(id);
+    }
     
 
 }

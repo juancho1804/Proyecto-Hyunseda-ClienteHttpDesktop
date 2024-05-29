@@ -251,6 +251,8 @@
                                                 <TableColumn fx:id="colPrecioProd" prefWidth="133.0" text="Precio" />
                                             </columns>
                                           </TableView>
+                                          <TextField fx:id="txtBuscarIdProd" layoutX="324.0" layoutY="10.0" prefHeight="30.0" prefWidth="274.0" promptText="Buscar por id" styleClass="search" stylesheets="@../styles/dashboardDesigns.css" />
+                                          <FontAwesomeIconView glyphName="SEARCH" layoutX="330.0" layoutY="31.0" size="1.5em" />
                                        </children>
                                     </AnchorPane>
                                     <Label layoutX="34.0" layoutY="289.0" prefHeight="21.0" prefWidth="109.0" text="ID Producto :">

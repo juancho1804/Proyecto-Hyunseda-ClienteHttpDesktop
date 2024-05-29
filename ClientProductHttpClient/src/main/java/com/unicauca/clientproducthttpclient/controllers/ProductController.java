@@ -98,6 +98,8 @@ public class ProductController extends Window implements Initializable{
     TableColumn<Product,Double> colPrecioProd;
     @FXML
     private TextField txtBuscarNombreProd;
+    @FXML
+    private TextField txtBuscarIdProd;
 
 
     
@@ -129,6 +131,10 @@ public class ProductController extends Window implements Initializable{
         initializeTablaProductos();
         txtBuscarNombreProd.textProperty().addListener((observable, oldValue, newValue) -> {
             buscarProductosPorNombre(newValue);
+        });
+
+        txtBuscarIdProd.textProperty().addListener((observable, oldValue, newValue) -> {
+            buscarProductosPorId(newValue);
         });
 
         // Configurar el listener para la selección de productos en la tabla
@@ -266,6 +272,11 @@ public class ProductController extends Window implements Initializable{
 
     private void buscarProductosPorNombre(String nombre) {
         List<Product> productosEncontrados = productService.findByName(nombre);
+        actualizarTablaProductos(productosEncontrados);
+    }
+
+    private void buscarProductosPorId(String id) {
+        List<Product> productosEncontrados = productService.findById(id);
         actualizarTablaProductos(productosEncontrados);
     }
     private void handleProductSelection(MouseEvent event) {
