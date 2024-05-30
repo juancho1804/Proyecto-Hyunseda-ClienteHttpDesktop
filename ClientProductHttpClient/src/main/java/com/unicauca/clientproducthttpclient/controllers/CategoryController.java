@@ -162,6 +162,11 @@ public class CategoryController extends Window implements Initializable {
         if (!txtIdCategoria.getText().isBlank()) {
             try {
                 int id = validarId(txtIdCategoria.getText());
+                Category category=categoryService.findOneById(id);
+                if(category.getName()==null){
+                    Utilities.mostrarAlerta("Error", "La categoria no existe");
+                    return;
+                }
 
                 // Mostrar un diálogo de confirmación
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -175,10 +180,8 @@ public class CategoryController extends Window implements Initializable {
                 if (result == ButtonType.OK) {
                     // El usuario confirmó la eliminación, proceder con la eliminación
                     IProductService productService = new ProductService();
-                    Category category=categoryService.findOneById(id);
                     String nombreCategoria=category.getName();
                     List<Product> productos = productService.findByCategoryName(nombreCategoria.toLowerCase());
-                    System.out.println(productos.size());
                     for(Product product:productos){
                         productService.delete(product.getId());
                     }
@@ -203,7 +206,7 @@ public class CategoryController extends Window implements Initializable {
     public void btnOnActionActualizarCat(ActionEvent event){
         System.out.println(txtIdCategoria.getText());
         System.out.println(txtNombreCategoria.getText());
-        if(!txtIdCategoria.getText().isBlank() ||!txtNombreCategoria.getText().isBlank()){
+        if(!txtIdCategoria.getText().isBlank() &&!txtNombreCategoria.getText().isBlank()){
             try{
                 int id= validarId(txtIdCategoria.getText());
                 Category category=new Category();

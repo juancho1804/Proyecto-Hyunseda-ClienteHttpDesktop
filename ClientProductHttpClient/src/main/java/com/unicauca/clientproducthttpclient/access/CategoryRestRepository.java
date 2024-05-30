@@ -278,6 +278,7 @@ public class CategoryRestRepository implements ICategoryRepository{
             // Obtener el código de estado de la respuesta
             int statusCode = response.getStatusLine().getStatusCode();
 
+
             // Imprimir el código de estado de la respuesta
             System.out.println("Status code: " + statusCode);
 
