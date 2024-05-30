@@ -193,9 +193,6 @@ public class CategoryRestRepository implements ICategoryRepository{
             // Imprimir la respuesta
             System.out.println("Response status: " + response.getStatusLine());
             System.out.println("Response body: " + responseBody);
-            if(response.getStatusLine().getStatusCode()==200){
-                Messages.showMessageDialog("Categoria creada con éxito", "Información");
-            }
 
             // Cerrar el cliente HttpClient
             httpClient.close();
@@ -312,6 +309,40 @@ public class CategoryRestRepository implements ICategoryRepository{
 
             // Definir la URL de la API REST de productos
             String apiUrl = "http://localhost:8001/CategoryModel/byName/"+name;
+            // Crear una solicitud GET para obtener todos los productos
+            HttpGet request = new HttpGet(apiUrl);
+
+            // Ejecutar la solicitud y obtener la respuesta
+            HttpResponse response = httpClient.execute(request);
+
+            // Verificar el código de estado de la respuesta
+            int statusCode = response.getStatusLine().getStatusCode();
+            if (statusCode == 200) {
+                // La solicitud fue exitosa, procesar la respuesta
+                String jsonResponse = EntityUtils.toString(response.getEntity());
+
+                // Mapear la respuesta JSON a objetos Product
+                category = mapper.readValue(jsonResponse, Category.class);
+
+            } else {
+                // La solicitud falló, mostrar el código de estado
+                Logger.getLogger(CategoryRestRepository.class.getName()).log(Level.SEVERE, null, "Error al obtener Categorias. Código de estado: " + statusCode);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(CategoryRestRepository.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return category;
+    }
+
+    @Override
+    public Category findOneById(int id) {
+        HttpClient httpClient = HttpClients.createDefault();
+        ObjectMapper mapper = new ObjectMapper();
+        Category category=new Category();
+        try {
+
+            // Definir la URL de la API REST de productos
+            String apiUrl = "http://localhost:8001/CategoryModel/byId/"+id;
             // Crear una solicitud GET para obtener todos los productos
             HttpGet request = new HttpGet(apiUrl);
 

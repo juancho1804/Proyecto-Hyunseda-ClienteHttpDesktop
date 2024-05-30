@@ -53,5 +53,8 @@ public class CategoryService implements ICategoryService{
     public Category findOneByName(String name){
         return repo.findOneByName(name);
     }
+    public Category findOneById(int id){
+        return repo.findOneById(id);
+    }
     
 }

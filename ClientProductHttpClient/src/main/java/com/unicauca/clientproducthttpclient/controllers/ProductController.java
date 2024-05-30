@@ -321,7 +321,7 @@ public class ProductController extends Window implements Initializable{
             throw e;
         }
     }
-    public int validarId(String texto) throws NumberFormatException {
+    public static int validarId(String texto) throws NumberFormatException {
         try {
             int id= Integer.parseInt(texto);
             return id;

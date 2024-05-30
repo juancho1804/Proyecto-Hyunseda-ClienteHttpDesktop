@@ -8,6 +8,9 @@ import com.unicauca.clientproducthttpclient.domain.entities.Category;
 import com.unicauca.clientproducthttpclient.domain.entities.Product;
 import com.unicauca.clientproducthttpclient.domain.services.CategoryService;
 import com.unicauca.clientproducthttpclient.domain.services.ICategoryService;
+import com.unicauca.clientproducthttpclient.domain.services.IProductService;
+import com.unicauca.clientproducthttpclient.domain.services.ProductService;
+import com.unicauca.clientproducthttpclient.util.Utilities;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -16,15 +19,14 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import static com.unicauca.clientproducthttpclient.controllers.ProductController.validarId;
 
 /**
  *
@@ -33,6 +35,10 @@ import java.util.ResourceBundle;
 public class CategoryController extends Window implements Initializable {
     private ICategoryService categoryService;
 
+    @FXML
+    TextField txtIdCategoria;
+    @FXML
+    TextField txtNombreCategoria;
     @FXML
     private AnchorPane pnlCategorias;
     @FXML
@@ -49,6 +55,14 @@ public class CategoryController extends Window implements Initializable {
     public Button btnMinimize;
     @FXML
     public Button btnClose;
+    @FXML
+    private Button btnAgregarCategoria;
+    @FXML
+    private Button btnActualizarCategoria;
+    @FXML
+    private Button btnEliminarCategoria;
+    @FXML
+    private Button btnLimpiarCat;
 
     @FXML
     TableView<Category> tblCategorias;
@@ -76,6 +90,8 @@ public class CategoryController extends Window implements Initializable {
         this.btnCerrarSesion.setOnAction(this::btnOnActionCerrarSesion);
         this.btnClose.setOnAction(this::btnOnActionClose);
         this.btnMinimize.setOnAction(this::btnOnActionMinimize);
+        this.btnAgregarCategoria.setOnAction(this::btnOnActionAgregarCategoria);
+        this.btnEliminarCategoria.setOnAction(this::btnOnActionEliminarCategoria);
         initializeTablaCategorias();
         txtBuscarCatNombre.textProperty().addListener((observable, oldValue, newValue) -> {
             buscarCategoriasPorNombre(newValue);
@@ -126,6 +142,59 @@ public class CategoryController extends Window implements Initializable {
     private void buscarCategoriasPorId(String id) {
         List<Category> categoriasEncontradas = categoryService.findById(id);
         actualizarTablaCategorias(categoriasEncontradas);
+    }
+
+    public void btnOnActionAgregarCategoria(ActionEvent event) {
+        if(!txtNombreCategoria.getText().isBlank()){
+            Category category=new Category();
+            category.setName(txtNombreCategoria.getText());
+            categoryService.create(category);
+            Utilities.mostrarAlerta("Información","La categoria ha sido agregado con éxito");
+            actualizarTablaCategorias(categoryService.findAll());
+        }else{
+            Utilities.mostrarAlerta("Error", "Verifique que todos los campos estén llenos");
+        }
+    }
+
+    public void btnOnActionEliminarCategoria(ActionEvent event) {
+        if (!txtIdCategoria.getText().isBlank()) {
+            try {
+                int id = validarId(txtIdCategoria.getText());
+
+                // Mostrar un diálogo de confirmación
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmar eliminación");
+                alert.setHeaderText(null);
+                alert.setContentText("¿Estás seguro de que quieres eliminar esta categoría? Esta acción no se puede deshacer.");
+
+                // Obtener la respuesta del usuario
+                ButtonType result = alert.showAndWait().orElse(ButtonType.CANCEL);
+
+                if (result == ButtonType.OK) {
+                    System.out.println("entro aqui");
+                    // El usuario confirmó la eliminación, proceder con la eliminación
+                    IProductService productService = new ProductService();
+                    Category category=categoryService.findOneById(id);
+                    String nombreCategoria=category.getName();
+                    List<Product> productos = productService.findByCategoryName(nombreCategoria.toLowerCase());
+                    System.out.println(productos.size());
+                    if(productos.size()>0){
+                        for(Product product:productos){
+                            productService.delete(product.getId());
+                        }
+                        categoryService.delete(id);
+                    }
+                    actualizarTablaCategorias(categoryService.findAll());
+                }else{
+                    System.out.println("entro acaa");
+                }
+            } catch (NumberFormatException e) {
+                Utilities.mostrarAlerta("Error", "El id debe ser un número válido");
+            }
+        } else {
+            Utilities.mostrarAlerta("Error", "El campo id está vacío");
+        }
+
     }
 
 

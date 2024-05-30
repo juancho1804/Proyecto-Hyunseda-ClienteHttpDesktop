@@ -20,5 +20,6 @@ public interface ICategoryService {
     public List<Category> findById(String id);
     public List<Category> findByName(String name);
     public Category findOneByName(String name);
+    public Category findOneById(int id);
     
 }
