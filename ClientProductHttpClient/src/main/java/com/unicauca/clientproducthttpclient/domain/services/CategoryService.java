@@ -33,8 +33,9 @@ public class CategoryService implements ICategoryService{
         repo.create(category);
     }
     @Override
-    public void edit(int id,Category categoryUpdated){
-        repo.edit(id, categoryUpdated);
+    public boolean edit(int id,Category categoryUpdated){
+
+        return repo.edit(id, categoryUpdated);
     }
     
     @Override

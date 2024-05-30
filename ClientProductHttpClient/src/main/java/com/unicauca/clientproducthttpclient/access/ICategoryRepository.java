@@ -19,7 +19,7 @@ public interface ICategoryRepository {
 
     public void create(Category category);
 
-    public void edit(int id, Category categoryUpdated);
+    public boolean edit(int id, Category categoryUpdated);
 
     public void delete(int id);
 

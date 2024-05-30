@@ -92,6 +92,8 @@ public class CategoryController extends Window implements Initializable {
         this.btnMinimize.setOnAction(this::btnOnActionMinimize);
         this.btnAgregarCategoria.setOnAction(this::btnOnActionAgregarCategoria);
         this.btnEliminarCategoria.setOnAction(this::btnOnActionEliminarCategoria);
+        this.btnLimpiarCat.setOnAction(this::btnOnActionLimpiarCat);
+        this.btnActualizarCategoria.setOnAction(this::btnOnActionActualizarCat);
         initializeTablaCategorias();
         txtBuscarCatNombre.textProperty().addListener((observable, oldValue, newValue) -> {
             buscarCategoriasPorNombre(newValue);
@@ -191,7 +193,32 @@ public class CategoryController extends Window implements Initializable {
         } else {
             Utilities.mostrarAlerta("Error", "El campo id está vacío");
         }
+    }
 
+    public void btnOnActionLimpiarCat(ActionEvent event){
+        txtIdCategoria.setText("");
+        txtNombreCategoria.setText("");
+    }
+
+    public void btnOnActionActualizarCat(ActionEvent event){
+        System.out.println(txtIdCategoria.getText());
+        System.out.println(txtNombreCategoria.getText());
+        if(!txtIdCategoria.getText().isBlank() ||!txtNombreCategoria.getText().isBlank()){
+            try{
+                int id= validarId(txtIdCategoria.getText());
+                Category category=new Category();
+                category.setCategoryId(id);
+                category.setName(txtNombreCategoria.getText());
+                if(categoryService.edit(id,category)){
+                    Utilities.mostrarAlerta("Información","Categoría editada con éxito");
+                    actualizarTablaCategorias(categoryService.findAll());
+                }else{
+                    Utilities.mostrarAlerta("Información","Categoría a editar no encontrada !");
+                }
+            }catch (NumberFormatException e){}
+        }else{
+            Utilities.mostrarAlerta("Error", "Verifique que todos los campos estén llenos");
+        }
     }
 
 

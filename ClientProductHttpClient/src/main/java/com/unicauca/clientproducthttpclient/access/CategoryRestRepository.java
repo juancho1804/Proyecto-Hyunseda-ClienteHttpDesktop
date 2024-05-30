@@ -209,7 +209,7 @@ public class CategoryRestRepository implements ICategoryRepository{
     }
 
     @Override
-    public void edit(int id, Category categoryUpdated) {
+    public boolean edit(int id, Category categoryUpdated) {
         try {
             // Crear un objeto CloseableHttpClient
             CloseableHttpClient httpClient = HttpClients.createDefault();
@@ -246,9 +246,7 @@ public class CategoryRestRepository implements ICategoryRepository{
              String responseBody = EntityUtils.toString(response.getEntity());
              System.out.println("Response body: " + responseBody);
              if(statusCode==200){
-                 Messages.showMessageDialog("Categoria editada con éxito", "Información");
-             }else{
-                 Messages.showMessageError("Verifique que el ID de la categoría exista ", "Error");
+                 return true;
              }
             // Cerrar el cliente HttpClient
             httpClient.close();
@@ -259,6 +257,7 @@ public class CategoryRestRepository implements ICategoryRepository{
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return false;
     }
 
     @Override
