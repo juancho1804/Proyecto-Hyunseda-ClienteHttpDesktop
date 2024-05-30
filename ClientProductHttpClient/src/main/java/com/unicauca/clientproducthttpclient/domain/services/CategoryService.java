@@ -42,13 +42,16 @@ public class CategoryService implements ICategoryService{
         repo.delete(id);
     }
     @Override
-    public Category findById(int id){
+    public List<Category> findById(String id){
         return repo.findById(id);
     }
 
     @Override
-    public Category findByName(String name) {
+    public List<Category> findByName(String name) {
         return repo.findByName(name);
+    }
+    public Category findOneByName(String name){
+        return repo.findOneByName(name);
     }
     
 }

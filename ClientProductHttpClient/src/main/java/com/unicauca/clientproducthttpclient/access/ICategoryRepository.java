@@ -5,6 +5,8 @@
 package com.unicauca.clientproducthttpclient.access;
 
 import com.unicauca.clientproducthttpclient.domain.entities.Category;
+import com.unicauca.clientproducthttpclient.domain.entities.Product;
+
 import java.util.List;
 
 /**
@@ -14,15 +16,15 @@ import java.util.List;
 public interface ICategoryRepository {
     
     public List<Category> findAll();
-    
-    Category findById(int id);
 
     public void create(Category category);
 
     public void edit(int id, Category categoryUpdated);
 
     public void delete(int id);
-    
-    Category findByName(String name);
+
+    public List<Category> findById(String id);
+    public List<Category> findByName(String name);
+    public Category findOneByName(String name);
     
 }

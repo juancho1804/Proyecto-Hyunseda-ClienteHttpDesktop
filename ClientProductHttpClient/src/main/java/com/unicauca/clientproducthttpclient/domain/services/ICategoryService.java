@@ -17,7 +17,8 @@ public interface ICategoryService {
     public void create(Category category);
     public void edit(int id,Category categoryUpdated);
     public void delete(int id);
-    public Category findById(int id);
-    public Category findByName(String name);
+    public List<Category> findById(String id);
+    public List<Category> findByName(String name);
+    public Category findOneByName(String name);
     
 }

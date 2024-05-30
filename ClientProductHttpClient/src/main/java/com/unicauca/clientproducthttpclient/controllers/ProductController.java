@@ -157,7 +157,7 @@ public class ProductController extends Window implements Initializable{
             Product product=new Product();
             product.setName(txtNombreProd.getText());
             product.setDescription(txtDescProd.getText());
-            Category category=categoryService.findByName(cboCategorias.getValue());
+            Category category=categoryService.findOneByName(cboCategorias.getValue());
             System.out.println(category.getCategoryId());
             product.setCategory(category);
 
@@ -182,7 +182,7 @@ public class ProductController extends Window implements Initializable{
                 int id= validarId(txtIdProd.getText());
                 double precio=validarPrecio(txtPrecioProd.getText());
 
-                Category category=categoryService.findByName(cboCategorias.getValue());
+                Category category=categoryService.findOneByName(cboCategorias.getValue());
                 Product product=new Product(id,txtNombreProd.getText(),txtDescProd.getText(),precio
                 ,ruta);
                 product.setCategory(category);
