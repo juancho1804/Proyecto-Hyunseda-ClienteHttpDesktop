@@ -202,7 +202,11 @@ public class ProductController extends Window implements Initializable{
         if(!txtIdProd.getText().isBlank()){
             try {
                 int id = validarId(txtIdProd.getText());
-                productService.delete(id);
+                if(productService.delete(id)){
+                    Utilities.mostrarAlerta("Informacion","Producto eliminado satisfactoriamente");
+                }else{
+                    Utilities.mostrarAlerta("Error", "El producto no existe");
+                }
                 actualizarTablaProductos(productService.findAll());
             } catch (NumberFormatException e) {
                 Utilities.mostrarAlerta("Error", "El id debe ser un número válido");

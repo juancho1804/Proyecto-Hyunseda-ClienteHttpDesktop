@@ -18,7 +18,7 @@ public interface IProductService {
     public List<Product> findAll();
     public void create(Product product);
     public boolean edit(int id,Product productUpdated);
-    public void delete(int id);
+    public boolean delete(int id);
     public Product findById(int id);
     public List<Product> findByName(String name);
     public Map<String, Integer> contarProductosPorCategoria();

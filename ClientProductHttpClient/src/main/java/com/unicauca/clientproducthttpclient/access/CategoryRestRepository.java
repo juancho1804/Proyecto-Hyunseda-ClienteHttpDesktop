@@ -285,11 +285,6 @@ public class CategoryRestRepository implements ICategoryRepository{
             // Si se desea, también se puede obtener y mostrar el cuerpo de la respuesta
             String responseBody = EntityUtils.toString(response.getEntity());
             System.out.println("Response body: " + responseBody);
-            if (statusCode == 200) {
-                Messages.showMessageDialog("Categoria eliminada satisfactoriamente", "Información");
-            } else {
-                Messages.showMessageError("Verifique que el ID de la categoría exista ", "Error");
-            }
 
             // Cerrar el cliente HttpClient
             httpClient.close();

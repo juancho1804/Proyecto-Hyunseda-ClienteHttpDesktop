@@ -336,7 +336,7 @@ public class ProductRestRepository implements IProductRepository {
     }
 
     @Override
-    public void delete(int id) {
+    public boolean delete(int id) {
         try {
             // Crear un objeto CloseableHttpClient
             CloseableHttpClient httpClient = HttpClients.createDefault();
@@ -361,9 +361,8 @@ public class ProductRestRepository implements IProductRepository {
             System.out.println("Response body: " + responseBody);
 
             if(statusCode==200){
-                Utilities.mostrarAlerta("Información","Producto eliminado con éxito");
-            }else{
-                Utilities.mostrarAlerta("Error","Producto no encontrado");
+                //Utilities.mostrarAlerta("Información","Producto eliminado con éxito");
+                return true;
             }
             // Cerrar el cliente HttpClient
             httpClient.close();
@@ -372,6 +371,7 @@ public class ProductRestRepository implements IProductRepository {
             Logger.getLogger(Main.class
                     .getName()).log(Level.SEVERE, null, ex);
         }
+        return false;
     }
 
     public Map<String, Integer> contarProductosPorCategoria() {

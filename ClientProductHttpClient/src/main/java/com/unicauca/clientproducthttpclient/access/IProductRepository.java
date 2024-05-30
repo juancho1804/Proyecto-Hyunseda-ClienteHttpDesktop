@@ -16,7 +16,7 @@ public interface IProductRepository {
 
     public boolean edit(int id, Product productUpdated);
 
-    public void delete(int id);
+    public boolean delete(int id);
 
     public Map<String, Integer> contarProductosPorCategoria();
 

@@ -165,28 +165,25 @@ public class CategoryController extends Window implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Confirmar eliminación");
                 alert.setHeaderText(null);
-                alert.setContentText("¿Estás seguro de que quieres eliminar esta categoría? Esta acción no se puede deshacer.");
+                alert.setContentText("¿Estás seguro de que quieres eliminar esta categoría? TODOS los productos asociados a esta también se eliminarán.");
 
                 // Obtener la respuesta del usuario
                 ButtonType result = alert.showAndWait().orElse(ButtonType.CANCEL);
 
                 if (result == ButtonType.OK) {
-                    System.out.println("entro aqui");
                     // El usuario confirmó la eliminación, proceder con la eliminación
                     IProductService productService = new ProductService();
                     Category category=categoryService.findOneById(id);
                     String nombreCategoria=category.getName();
                     List<Product> productos = productService.findByCategoryName(nombreCategoria.toLowerCase());
                     System.out.println(productos.size());
-                    if(productos.size()>0){
-                        for(Product product:productos){
-                            productService.delete(product.getId());
-                        }
-                        categoryService.delete(id);
+                    for(Product product:productos){
+                        productService.delete(product.getId());
                     }
+                    categoryService.delete(id);
+                    Utilities.mostrarAlerta("Información","La categoría ha sido eliminada correctamente con "+
+                            productos.size()+" productos asociados");
                     actualizarTablaCategorias(categoryService.findAll());
-                }else{
-                    System.out.println("entro acaa");
                 }
             } catch (NumberFormatException e) {
                 Utilities.mostrarAlerta("Error", "El id debe ser un número válido");
