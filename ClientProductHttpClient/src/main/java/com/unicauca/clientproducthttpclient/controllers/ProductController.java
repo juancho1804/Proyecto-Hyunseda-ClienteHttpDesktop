@@ -19,21 +19,14 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-import javafx.util.Callback;
-
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -100,6 +93,8 @@ public class ProductController extends Window implements Initializable{
     private TextField txtBuscarNombreProd;
     @FXML
     private TextField txtBuscarIdProd;
+    @FXML
+    private TextField txtBuscarCatProd;
 
 
     
@@ -135,6 +130,10 @@ public class ProductController extends Window implements Initializable{
 
         txtBuscarIdProd.textProperty().addListener((observable, oldValue, newValue) -> {
             buscarProductosPorId(newValue);
+        });
+
+        txtBuscarCatProd.textProperty().addListener((observable, oldValue, newValue) -> {
+            buscarProductosPorCategoria(newValue);
         });
 
         // Configurar el listener para la selección de productos en la tabla
@@ -279,6 +278,10 @@ public class ProductController extends Window implements Initializable{
         List<Product> productosEncontrados = productService.findById(id);
         actualizarTablaProductos(productosEncontrados);
     }
+    private void buscarProductosPorCategoria(String name){
+        List<Product>productosEncontrados = productService.findByCategoryName(name);
+        actualizarTablaProductos(productosEncontrados);
+    }
     private void handleProductSelection(MouseEvent event) {
         Product selectedProduct = tblProductos.getSelectionModel().getSelectedItem();
         if (selectedProduct != null) {
@@ -336,26 +339,5 @@ public class ProductController extends Window implements Initializable{
     }
 
 
-
-
-    public List<Product> findAll() {
-        return productService.findAll();
-    }
-   
-    public void create(Product product){
-        productService.create(product);
-    }
-
-    public void edit(int id,Product productUpdated){
-        productService.edit(id, productUpdated);
-    }
-    
-    
-    public void delete(int id){
-        productService.delete(id);
-    }
-    public Product findById(int id){
-        return productService.findById(id);
-    }
 
 }

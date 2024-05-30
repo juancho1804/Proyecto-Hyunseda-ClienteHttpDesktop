@@ -1,14 +1,19 @@
 package com.unicauca.clientproducthttpclient.controllers;
 
+import com.unicauca.clientproducthttpclient.Main;
 import com.unicauca.clientproducthttpclient.domain.entities.User;
 import com.unicauca.clientproducthttpclient.domain.services.IUserService;
 import com.unicauca.clientproducthttpclient.domain.services.UserService;
+import com.unicauca.clientproducthttpclient.util.Utilities;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 public class RegisterController {
 
@@ -45,7 +50,7 @@ public class RegisterController {
                 lblMessage.setTextFill(Color.GREEN);
                 lblMessage.setText("Usuario registrado satisfactoriamente");
             }else{
-                lblMessage.setText("El nombre de usuario ya existe");
+                Utilities.mostrarAlerta("Error","El usuario ya existe");
             }
         }
     }
@@ -56,6 +61,20 @@ public class RegisterController {
             return false;
         }
         return true;
+    }
+
+    public void btnCerrarOnAction(ActionEvent actionEvent) {
+        Stage stage = (Stage) btnCerrar.getScene().getWindow();
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/views/login.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 500, 400);
+            stage.setTitle("Hyun Seda");
+            stage.setScene(scene);
+            stage.show();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
 }

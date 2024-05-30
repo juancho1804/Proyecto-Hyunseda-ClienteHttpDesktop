@@ -49,6 +49,9 @@ public class ProductService implements IProductService{
     public List<Product> findById(String id){
         return repo.findById(id);
     }
+    public List<Product> findByCategoryName(String name){
+        return repo.findByCategoryName(name);
+    }
     
 
 }

@@ -39,6 +39,9 @@ public class LoginController {
     @FXML
     private Label lblMessageResponse;
 
+    private double xOffset;
+    private double yOffset;
+
 
     public void loginButtonOnAction(ActionEvent event) throws IOException {
         User user=new User();
@@ -51,6 +54,15 @@ public class LoginController {
                 FXMLLoader fxmlLoader = new FXMLLoader(LoginController.class.getResource("/views/homeAdmin.fxml"));
                 fxmlLoader.setController(new HomeAdminController()); // Establecer el controlador
                 Scene scene = new Scene(fxmlLoader.load(), 1100, 581);
+                scene.setOnMousePressed(event1 -> {
+                      xOffset =event1.getSceneX();
+                      yOffset= event1.getSceneY();
+                });
+                scene.setOnMouseDragged(event1 -> {
+                    Stage stage = (Stage) scene.getWindow();
+                    stage.setX(event1.getScreenX() - xOffset);
+                    stage.setY(event1.getScreenY() - yOffset);
+                });
                 Stage stage=new Stage();
                 stage.setScene(scene);
                 stage.initStyle(StageStyle.UNDECORATED);

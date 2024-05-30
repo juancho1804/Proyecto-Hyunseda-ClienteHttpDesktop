@@ -23,5 +23,6 @@ public interface IProductService {
     public List<Product> findByName(String name);
     public Map<String, Integer> contarProductosPorCategoria();
     public List<Product> findById(String id);
+    public List<Product> findByCategoryName(String name);
     
 }

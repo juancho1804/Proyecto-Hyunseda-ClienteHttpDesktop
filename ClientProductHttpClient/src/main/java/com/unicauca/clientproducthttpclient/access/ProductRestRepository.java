@@ -184,6 +184,46 @@ public class ProductRestRepository implements IProductRepository {
         return productList;
     }
 
+    public List<Product> findByCategoryName(String name) {
+        HttpClient httpClient = HttpClients.createDefault();
+        ObjectMapper mapper = new ObjectMapper();
+        List<Product> productList = new ArrayList<>(); // Lista para almacenar los productos
+
+        try {
+            String apiUrl;
+            if (name.isEmpty()) {
+                // Si el campo de búsqueda está vacío, obtener todos los productos
+                apiUrl = "http://localhost:8001/ProductModel";
+            } else {
+                // Si el campo de búsqueda tiene un valor, buscar por coincidencia de cadenas en el nombre
+                apiUrl = "http://localhost:8001/ProductModel/byCategoryMatching/" + name;
+            }
+
+            // Crear una solicitud GET para obtener los productos
+            HttpGet request = new HttpGet(apiUrl);
+
+            // Ejecutar la solicitud y obtener la respuesta
+            HttpResponse response = httpClient.execute(request);
+
+            // Verificar el código de estado de la respuesta
+            int statusCode = response.getStatusLine().getStatusCode();
+            if (statusCode == 200) {
+                // La solicitud fue exitosa, procesar la respuesta
+                String jsonResponse = EntityUtils.toString(response.getEntity());
+
+                // Mapear la respuesta JSON a objetos Product
+                productList = Arrays.asList(mapper.readValue(jsonResponse, Product[].class));
+            } else {
+                // La solicitud falló, mostrar el código de estado
+                Logger.getLogger(ProductRestRepository.class.getName()).log(Level.SEVERE, null, "Error al obtener productos. Código de estado: " + statusCode);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(ProductRestRepository.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return productList;
+    }
+
 
     @Override
     public void create(Product product) {

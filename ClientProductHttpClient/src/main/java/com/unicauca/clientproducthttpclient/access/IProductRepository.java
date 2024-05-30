@@ -21,5 +21,6 @@ public interface IProductRepository {
     public Map<String, Integer> contarProductosPorCategoria();
 
     public List<Product> findById(String id);
+    public List<Product> findByCategoryName(String name);
 
 }

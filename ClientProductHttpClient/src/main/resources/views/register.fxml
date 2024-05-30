@@ -57,7 +57,7 @@
             <Font name="SansSerif Bold" size="16.0" />
          </font>
       </Button>
-      <Button fx:id="btnCerrar" layoutX="90.0" layoutY="435.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="336.0" style="-fx-background-color: black;" text="Cerrar" textFill="WHITE">
+      <Button fx:id="btnCerrar" layoutX="90.0" layoutY="435.0" mnemonicParsing="false" onAction="#btnCerrarOnAction" prefHeight="26.0" prefWidth="336.0" style="-fx-background-color: black;" text="Cerrar" textFill="WHITE">
          <font>
             <Font name="SansSerif Bold" size="16.0" />
          </font>
