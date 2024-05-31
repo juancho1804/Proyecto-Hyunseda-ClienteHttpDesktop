@@ -12,6 +12,7 @@ import com.unicauca.clientproducthttpclient.domain.entities.Product;
 import com.unicauca.clientproducthttpclient.util.Messages;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -89,7 +90,8 @@ public class CategoryRestRepository implements ICategoryRepository{
                 apiUrl = "http://localhost:8001/CategoryModel";
             } else {
                 // Si el campo de búsqueda tiene un valor, buscar por coincidencia de cadenas en el nombre
-                apiUrl = "http://localhost:8001/CategoryModel/findByMatchingId/" + id;
+                String encodedId= id.replace(" ","%20");
+                apiUrl = "http://localhost:8001/CategoryModel/findByMatchingId/" + encodedId;
             }
 
             // Crear una solicitud GET para obtener los productos
@@ -128,8 +130,9 @@ public class CategoryRestRepository implements ICategoryRepository{
                 // Si el campo de búsqueda está vacío, obtener todos los productos
                 apiUrl = "http://localhost:8001/CategoryModel";
             } else {
+                String encodedName= name.replace(" ","%20");
                 // Si el campo de búsqueda tiene un valor, buscar por coincidencia de cadenas en el nombre
-                apiUrl = "http://localhost:8001/CategoryModel/findByMatchingName/" + name;
+                apiUrl = "http://localhost:8001/CategoryModel/findByMatchingName/" + encodedName;
             }
 
             // Crear una solicitud GET para obtener los productos

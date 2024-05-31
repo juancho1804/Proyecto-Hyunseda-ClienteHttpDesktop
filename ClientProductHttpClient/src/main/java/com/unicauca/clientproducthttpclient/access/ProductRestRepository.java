@@ -115,8 +115,9 @@ public class ProductRestRepository implements IProductRepository {
                 // Si el campo de búsqueda está vacío, obtener todos los productos
                 apiUrl = "http://localhost:8001/ProductModel";
             } else {
+                String encodedName= name.replace(" ","%20");
                 // Si el campo de búsqueda tiene un valor, buscar por coincidencia de cadenas en el nombre
-                apiUrl = "http://localhost:8001/ProductModel/byNameMatching/" + name;
+                apiUrl = "http://localhost:8001/ProductModel/byNameMatching/" + encodedName;
             }
 
             // Crear una solicitud GET para obtener los productos
@@ -155,8 +156,9 @@ public class ProductRestRepository implements IProductRepository {
                 // Si el campo de búsqueda está vacío, obtener todos los productos
                 apiUrl = "http://localhost:8001/ProductModel";
             } else {
+                String encodedId= id.replace(" ","%20");
                 // Si el campo de búsqueda tiene un valor, buscar por coincidencia de cadenas en el nombre
-                apiUrl = "http://localhost:8001/ProductModel/byIdMatching/" + id;
+                apiUrl = "http://localhost:8001/ProductModel/byIdMatching/" + encodedId;
             }
 
             // Crear una solicitud GET para obtener los productos
@@ -195,8 +197,9 @@ public class ProductRestRepository implements IProductRepository {
                 // Si el campo de búsqueda está vacío, obtener todos los productos
                 apiUrl = "http://localhost:8001/ProductModel";
             } else {
+                String encodedName= name.replace(" ","%20");
                 // Si el campo de búsqueda tiene un valor, buscar por coincidencia de cadenas en el nombre
-                apiUrl = "http://localhost:8001/ProductModel/byCategoryMatching/" + name;
+                apiUrl = "http://localhost:8001/ProductModel/byCategoryMatching/" + encodedName;
             }
 
             // Crear una solicitud GET para obtener los productos
