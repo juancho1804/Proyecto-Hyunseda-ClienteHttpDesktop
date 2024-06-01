@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class ItemController {
-    private IShoppingCartService shoppingCartService;
+    private IShoppingCartService shoppingCartService=new ShoppingCartService();
 
 
     @FXML
@@ -35,23 +35,8 @@ public class ItemController {
     private Button btnAgregarItem;
 
     private Item item;
-/*
-    public void setData(Item item) {
-        this.item = item;
-        if (item.getProduct() != null) {
-            lblNombreItem.setText(item.getProduct().getName());
-            lblDesc1Item.setText(item.getProduct().getDescription());
-            // Verifica y establece el resto de las propiedades de Product
-            lblPrecioItem.setText(String.valueOf(item.getProduct().getPrice()));
-            //Image image = new Image(getClass().getResourceAsStream(item.getProduct().getImage()));
-            //imgItem.setImage(image);
-        } else {
-            // Manejar el caso cuando el producto es null
-        }
-    }
 
- */
-public void setData(Item item) {
+    public void setData(Item item) {
     this.item = item;
     if (item.getProduct() != null) {
         lblNombreItem.setText(item.getProduct().getName());
@@ -74,11 +59,16 @@ public void setData(Item item) {
         }
     } else {
         // Manejar el caso cuando el producto es null
+        }
     }
-}
 
     public void agregarItem(ActionEvent actionEvent) {
-        shoppingCartService.agregarProducto(item.getProduct(),1);
+        shoppingCartService.agregarItem(item);
+        for(Item item:shoppingCartService.getShoppingCart().getItems()) {
+            System.out.println(item.getProduct().getName());
+            System.out.println(item.getCantidad());
+            System.out.println(item.getSubtotal());
+        }
     }
 
 }

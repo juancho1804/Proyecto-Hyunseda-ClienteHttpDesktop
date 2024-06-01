@@ -30,6 +30,17 @@ public class ShoppingCartService  implements IShoppingCartService {
         actualizarSubTotal();
     }
 
+    public void agregarItem(Item item){
+        List<Item> items = shoppingCart.getItems();
+        if(items.contains(item)){
+            item.setCantidad(item.getCantidad() + 1);
+        }else {
+            items.add(item);
+        }
+        actualizarSubTotal();
+
+    }
+
     public void eliminarProducto(Item item) {
         List<Item> items = shoppingCart.getItems();
         items.remove(item);

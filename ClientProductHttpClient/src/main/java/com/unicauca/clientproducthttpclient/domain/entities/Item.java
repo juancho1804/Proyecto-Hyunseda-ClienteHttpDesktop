@@ -43,6 +43,7 @@ public class Item {
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
+        this.subtotal = cantidad * product.getPrice();
     }
 
     public double getSubtotal() {

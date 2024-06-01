@@ -33,5 +33,6 @@ public interface IShoppingCartService {
     public void eliminarItem(Product producto);
     
     public Item obtenerItem(Product producto);
+    public void agregarItem(Item item);
     
 }
