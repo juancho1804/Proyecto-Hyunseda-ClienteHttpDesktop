@@ -15,7 +15,6 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
@@ -105,7 +104,7 @@
                               <String fx:value="white-bg" />
                            </styleClass>
                            <children>
-                              <Button layoutX="14.0" layoutY="3.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="153.0" styleClass="nav-btn" stylesheets="@../styles/dashboardDesigns.css" text="hyunseda_">
+                              <Button fx:id="btnInstagram" layoutX="14.0" layoutY="3.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="153.0" styleClass="nav-btn" stylesheets="@../styles/dashboardDesigns.css" text="hyunseda_">
                                  <graphic>
                                     <ImageView fitHeight="37.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -114,7 +113,7 @@
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <Button layoutX="184.0" layoutY="3.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="153.0" styleClass="nav-btn" stylesheets="@../styles/dashboardDesigns.css" text="Hyun Seda">
+                              <Button fx:id="btnFacebook" layoutX="184.0" layoutY="3.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="153.0" styleClass="nav-btn" stylesheets="@../styles/dashboardDesigns.css" text="Hyun Seda">
                                  <graphic>
                                     <ImageView fitHeight="37.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -123,7 +122,7 @@
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <Button layoutX="350.0" layoutY="4.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="202.0" styleClass="nav-btn" stylesheets="@../styles/dashboardDesigns.css" text="+57 3147889201">
+                              <Button fx:id="btnWhatsapp" layoutX="350.0" layoutY="4.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="202.0" styleClass="nav-btn" stylesheets="@../styles/dashboardDesigns.css" text="+57 3147889201">
                                  <graphic>
                                     <ImageView fitHeight="37.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -132,7 +131,7 @@
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <Button layoutX="555.0" layoutY="5.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="246.0" styleClass="nav-btn" stylesheets="@../styles/dashboardDesigns.css" text="contact@hyun.com.co">
+                              <Button fx:id="btnEmail" layoutX="555.0" layoutY="5.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="246.0" styleClass="nav-btn" stylesheets="@../styles/dashboardDesigns.css" text="contact@hyun.com.co">
                                  <graphic>
                                     <ImageView fitHeight="37.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
