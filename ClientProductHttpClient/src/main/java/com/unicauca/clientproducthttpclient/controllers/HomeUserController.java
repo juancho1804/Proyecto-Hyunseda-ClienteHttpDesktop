@@ -13,6 +13,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 
 import java.net.URL;
 import java.util.List;
@@ -21,18 +24,43 @@ import java.util.ResourceBundle;
 public class HomeUserController extends Window implements Initializable {
 
     @FXML
-    private ComboBox cboCategorias;
+    private Button btnCerrarSesion;
+
+    @FXML
+    private Button btnClose;
+
+    @FXML
+    private Button btnEmail;
+
+    @FXML
+    private Button btnFacebook;
+
+    @FXML
+    private Button btnInstagram;
+
+    @FXML
+    private Button btnMinimize;
+
+    @FXML
+    private Button btnProductos;
+
+    @FXML
+    private Button btnProductos1;
+
     @FXML
     private Button btnWhatsapp;
 
     @FXML
-    Button btnFacebook;
+    private ComboBox<String> cboCategorias;
 
     @FXML
-    Button btnInstagram;
+    private GridPane grid;
 
     @FXML
-    Button btnEmail;
+    private ScrollPane scroll;
+
+    @FXML
+    private TextField txtBuscarCatNombre;
 
 
     @Override

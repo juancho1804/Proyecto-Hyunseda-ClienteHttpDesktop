@@ -6,11 +6,14 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
@@ -94,7 +97,18 @@
                         </AnchorPane>
                      </top>
                      <center>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <ScrollPane fx:id="scroll" layoutX="3.0" layoutY="3.0" prefHeight="455.0" prefWidth="1294.0">
+                                 <content>
+                                    <GridPane fx:id="grid">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                    </GridPane>
+                                 </content>
+                              </ScrollPane>
+                           </children></AnchorPane>
                      </center>
                      <bottom>
                         <AnchorPane prefHeight="47.0" prefWidth="1300.0" stylesheets="@../styles/dashboardDesigns.css" BorderPane.alignment="CENTER">

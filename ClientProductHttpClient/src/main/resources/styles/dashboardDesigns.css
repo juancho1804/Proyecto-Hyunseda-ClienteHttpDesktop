@@ -129,3 +129,12 @@
 .chart-bar {
     -fx-bar-fill: yellow;
 }
+.botonAgregar{
+    -fx-background-radius: 50;
+    -fx-background-color: #fafa00;
+    -fx-border-radius: 50;
+    -fx-border-color: #efef00;
+    -fx-border-width: 2px;
+    -fx-font-family: SansSerif;
+    -fx-font-size: 19;
+}
