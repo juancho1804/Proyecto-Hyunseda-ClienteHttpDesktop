@@ -98,6 +98,12 @@ public class Utilities{
         alert.setContentText(mensaje);
         alert.showAndWait();
     }
+    public static String convertirARutaValidaImagen(String ruta) {
+        ruta=ruta.replace('\\','/');
+        int indiceInicio= ruta.indexOf("/hyunsedaimages");
+        String subcadena= ruta.substring(indiceInicio);
+        return subcadena;
+    }
 
 
 

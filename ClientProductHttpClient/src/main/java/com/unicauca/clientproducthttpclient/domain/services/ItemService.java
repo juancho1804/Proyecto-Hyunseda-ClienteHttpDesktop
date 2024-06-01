@@ -9,6 +9,7 @@ import com.unicauca.clientproducthttpclient.domain.entities.Item;
 import com.unicauca.clientproducthttpclient.domain.entities.Product;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  *
@@ -16,6 +17,10 @@ import java.io.IOException;
  */
 public class ItemService implements IItemService{
     ItemRestRepository itemRestRepository;
+
+    public ItemService(){
+        this.itemRestRepository=new ItemRestRepository();
+    }
     
     public ItemService(ItemRestRepository itemRestRepository){
         this.itemRestRepository=itemRestRepository;
@@ -23,5 +28,8 @@ public class ItemService implements IItemService{
     
     public Item  crearItem(Product product, int cantidad) throws IOException {
          return itemRestRepository.create(product, cantidad);
+    }
+    public List<Item> obtenerItems(){
+        return itemRestRepository.findAll();
     }
 }
