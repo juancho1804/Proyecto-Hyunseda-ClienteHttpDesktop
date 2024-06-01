@@ -93,38 +93,4 @@ public class Window {
     public void initializelblUsuario(){
         this.lblUsuario.setText(usuarioIngresado.getUsername());
     }
-
-
-/*
-    public  void openInstagramProfile(String username) {
-        try {
-            URI uri = new URI("https://www.instagram.com/" + username);
-            Desktop.getDesktop().browse(uri);
-        } catch (IOException | URISyntaxException e) {
-            e.printStackTrace();
-            // Manejo de excepciones
-        }
-    }
-
-    public  void openFacebookPage(String pageName) {
-        try {
-            URI uri = new URI("https://www.facebook.com/" + pageName);
-            Desktop.getDesktop().browse(uri);
-        } catch (IOException | URISyntaxException e) {
-            e.printStackTrace();
-            // Manejo de excepciones
-        }
-    }
-
-    public  void openEmail(String emailAddress) {
-        try {
-            URI uri = new URI("mailto:" + emailAddress);
-            Desktop.getDesktop().browse(uri);
-        } catch (IOException | URISyntaxException e) {
-            e.printStackTrace();
-            // Manejo de excepciones
-        }
-    }
-
- */
 }
