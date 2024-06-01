@@ -37,7 +37,7 @@ public class ShoppingCartController extends Subject{
     }
 
     public void eliminarProducto(Product producto) {
-        this.shopService.eliminarItem(producto);
+       // this.shopService.eliminarItem(producto);
         this.notifyAllObserves();
     }
 

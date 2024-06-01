@@ -30,7 +30,7 @@ public interface IShoppingCartService {
 
     public double obtenerTotal();
     
-    public void eliminarItem(Product producto);
+    public void eliminarItem(Item item);
     
     public Item obtenerItem(Product producto);
     public void agregarItem(Item item);

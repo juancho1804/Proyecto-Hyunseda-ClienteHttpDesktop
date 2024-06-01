@@ -17,8 +17,8 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ItemController {
-    private IShoppingCartService shoppingCartService=new ShoppingCartService();
+public class ItemController{
+    private IShoppingCartService shoppingCartService;
 
 
     @FXML
@@ -33,6 +33,10 @@ public class ItemController {
     private Label lblPrecioItem;
     @FXML
     private Button btnAgregarItem;
+    @FXML
+    private Button btnEliminarItem;
+    @FXML
+    private Label lblItem;
 
     private Item item;
 
@@ -64,11 +68,28 @@ public class ItemController {
 
     public void agregarItem(ActionEvent actionEvent) {
         shoppingCartService.agregarItem(item);
-        for(Item item:shoppingCartService.getShoppingCart().getItems()) {
-            System.out.println(item.getProduct().getName());
-            System.out.println(item.getCantidad());
-            System.out.println(item.getSubtotal());
+        lblItem.setText(item.getCantidad()+" en el carrito");
+        System.out.println("ACTUALIZACION -----------------");
+        for(Item item1:shoppingCartService.getShoppingCart().getItems()) {
+            System.out.println(item1.getProduct().getName());
+            System.out.println(item1.getCantidad());
+            System.out.println(item1.getSubtotal());
+        }
+        btnEliminarItem.setVisible(true);
+    }
+    public void eliminarItem(ActionEvent actionEvent) {
+        shoppingCartService.eliminarItem(item);
+        if(item.getCantidad()==0){
+            btnEliminarItem.setVisible(false);
+            lblItem.setText("");
+        }else{
+            System.out.println("ELIMINADO");
+            lblItem.setText(item.getCantidad()+" en el carrito");
         }
     }
 
+
+    public void setShoppingCartService(IShoppingCartService shoppingCartService) {
+        this.shoppingCartService = shoppingCartService;
+    }
 }

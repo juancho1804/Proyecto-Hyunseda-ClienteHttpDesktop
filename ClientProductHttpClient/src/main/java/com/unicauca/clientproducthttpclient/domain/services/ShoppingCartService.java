@@ -35,8 +35,10 @@ public class ShoppingCartService  implements IShoppingCartService {
         if(items.contains(item)){
             item.setCantidad(item.getCantidad() + 1);
         }else {
+            item.setCantidad(item.getCantidad()+1);
             items.add(item);
         }
+        shoppingCart.setItems(items);
         actualizarSubTotal();
 
     }
@@ -48,16 +50,16 @@ public class ShoppingCartService  implements IShoppingCartService {
         actualizarSubTotal();
     }
     
-    public void eliminarItem(Product producto) {
+    public void eliminarItem(Item item) {
         List<Item> items = shoppingCart.getItems();
-        Item item=obtenerItem(producto);
-        if(item!=null){
-            items.remove(item);
-            shoppingCart.setItems(items);
-            actualizarSubTotal();
+        if(item.getCantidad()>1){
+            item.setCantidad(item.getCantidad()-1);
         }else{
-            System.out.println("No se encontro el item");
+            item.setCantidad(0);
+            items.remove(item);
         }
+        shoppingCart.setItems(items);
+        actualizarSubTotal();
         
     }
     

@@ -139,3 +139,25 @@
     -fx-font-size: 19;
     -fx-cursor: hand;
 }
+
+
+.transparent-button {
+    -fx-background-color: transparent;
+    -fx-font-family: SansSerif;
+    -fx-font-size: 14;
+    -fx-text-fill: #bc0202; /* Color del texto azul */
+    -fx-border-color: transparent; /* Color del borde transparente */
+    -fx-border-width: 0; /* Ancho del borde 0 */
+    -fx-border-radius: 0; /* Radio del borde 0 */
+    -fx-background-radius: 0; /* Radio del fondo 0 */
+    -fx-padding: 0; /* Relleno 0 */
+    -fx-cursor: hand;
+}
+
+.transparent-button:hover {
+    -fx-underline: true; /* Subrayar texto cuando el mouse pasa por encima */
+}
+
+.transparent-button:pressed {
+    -fx-background-color: transparent; /* Color de fondo transparente cuando presionado */
+}

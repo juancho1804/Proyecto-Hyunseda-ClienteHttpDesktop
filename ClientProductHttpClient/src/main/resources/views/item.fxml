@@ -50,7 +50,13 @@
                   <Font name="SansSerif Regular" size="32.0" />
                </font>
             </Label>
-            <Button fx:id="btnAgregarItem" layoutX="717.0" layoutY="139.0" mnemonicParsing="false" onAction="#agregarItem" prefHeight="37.0" prefWidth="200.0" styleClass="botonAgregar" stylesheets="@../styles/dashboardDesigns.css" text="Agregar" />
+            <Button fx:id="btnAgregarItem" layoutX="706.0" layoutY="119.0" mnemonicParsing="false" onAction="#agregarItem" prefHeight="37.0" prefWidth="200.0" styleClass="botonAgregar" stylesheets="@../styles/dashboardDesigns.css" text="Agregar" />
+            <Label fx:id="lblItem" alignment="CENTER" layoutX="712.0" layoutY="167.0" prefHeight="17.0" prefWidth="189.0">
+               <font>
+                  <Font name="SansSerif Regular" size="14.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnEliminarItem" layoutX="920.0" layoutY="161.0" mnemonicParsing="false" onAction="#eliminarItem" styleClass="transparent-button" stylesheets="@../styles/dashboardDesigns.css" text="Eliminar" visible="false" />
          </children>
       </AnchorPane>
    </children>

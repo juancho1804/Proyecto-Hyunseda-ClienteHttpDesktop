@@ -6,9 +6,7 @@ import com.unicauca.clientproducthttpclient.designpatterns.strategy.OpenWhatsApp
 import com.unicauca.clientproducthttpclient.designpatterns.strategy.SendEmailStrategy;
 import com.unicauca.clientproducthttpclient.domain.entities.Category;
 import com.unicauca.clientproducthttpclient.domain.entities.Item;
-import com.unicauca.clientproducthttpclient.domain.services.CategoryService;
-import com.unicauca.clientproducthttpclient.domain.services.IItemService;
-import com.unicauca.clientproducthttpclient.domain.services.ItemService;
+import com.unicauca.clientproducthttpclient.domain.services.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -70,7 +68,7 @@ public class HomeUserController extends Window implements Initializable {
     @FXML
     private TextField txtBuscarCatNombre;
 
-
+    private IShoppingCartService shoppingCartService = new ShoppingCartService();
     private List<Item>items=new ArrayList<>();
 
 
@@ -97,6 +95,7 @@ public class HomeUserController extends Window implements Initializable {
                 AnchorPane anchorPane = (AnchorPane)fxmlLoader.load();
                 ItemController itemController = (ItemController)fxmlLoader.getController();
                 itemController.setData(this.items.get(i));
+                itemController.setShoppingCartService(shoppingCartService);
                 if (column == 1) {
                     column = 0;
                     ++row;
