@@ -43,6 +43,14 @@ public class ItemController implements ItemObserver {
     private Label lblItem;
     @FXML
     private Spinner<Integer> spnCantidad;
+    @FXML
+    private Label lblSubtotal;
+    @FXML
+    private Label lblNombreItem1;
+    @FXML
+    private Label lblPrecioItem1;
+    @FXML
+    private AnchorPane pnlImagen;
 
     private Item item;
 
@@ -51,13 +59,41 @@ public class ItemController implements ItemObserver {
     item.addObserver(this);
     updateItemState();
     if (item.getProduct() != null) {
-        lblNombreItem.setText(item.getProduct().getName());
-        lblDesc1Item.setText(item.getProduct().getDescription());
-        lblPrecioItem.setText(String.valueOf(item.getProduct().getPrice()));
+        if(pnlParaShopping.isVisible()) {
+            lblNombreItem.setText(item.getProduct().getName());
+            lblDesc1Item.setText(item.getProduct().getDescription());
+            lblPrecioItem.setText(String.valueOf(item.getProduct().getPrice()));
+        }else{
+            lblSubtotal.setText(String.valueOf(item.getSubtotal()));
+            lblNombreItem1.setText(item.getProduct().getName());
+            lblPrecioItem1.setText(String.valueOf(item.getProduct().getPrice()));
+            inicializarSpinner(item.getCantidad());
+            spnCantidad.valueProperty().addListener((obs, oldValue, newValue) -> {
+                // Actualizar el subtotal cuando cambie el valor del Spinner
+                if(oldValue>newValue){
+                    shoppingCartService.eliminarItem(item);
+                    if (newValue == 0) {
+                        // Si la cantidad llega a cero, eliminar el elemento de la interfaz
+                        shoppingCartService.eliminarItem(item);
+                        pnlVerCarrito.getChildren().clear();
+                        pnlImagen.getChildren().clear();
+                    }
+                } else if (oldValue<newValue) {
+                    shoppingCartService.agregarItem(item);
+
+                }else{
+
+                }
+                //item.setCantidad(newValue);
+                lblSubtotal.setText(String.valueOf(item.getSubtotal()));
+            });
+
+
+        }
+
 
         // Load image from resources
         String imagePath = item.getProduct().getImage();
-
         if (imagePath != null && !imagePath.isEmpty()) {
             try {
                 String ruta= Utilities.convertirARutaValidaImagen(imagePath);
@@ -96,8 +132,8 @@ public class ItemController implements ItemObserver {
         }
     }
 
-    public void inicializarSpinner(){
-        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, Integer.MAX_VALUE, 0);
+    public void inicializarSpinner(int valor){
+        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, Integer.MAX_VALUE, valor);
         spnCantidad.setValueFactory(valueFactory);
     }
 

@@ -4,6 +4,8 @@
  */
 package com.unicauca.clientproducthttpclient.designpatterns.observer;
 
+import java.net.MalformedURLException;
+
 /**
  *
  * @author Juan

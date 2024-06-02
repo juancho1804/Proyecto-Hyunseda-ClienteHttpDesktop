@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="201.0" prefWidth="1216.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.unicauca.clientproducthttpclient.controllers.ItemController">
    <children>
-      <AnchorPane prefHeight="200.0" prefWidth="224.0">
+      <AnchorPane fx:id="pnlImagen" prefHeight="200.0" prefWidth="224.0">
          <children>
             <ImageView fx:id="imgItem" fitHeight="200.0" fitWidth="189.0" layoutX="28.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                <image>

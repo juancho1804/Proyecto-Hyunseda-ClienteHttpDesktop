@@ -135,9 +135,10 @@ public class HomeUserController extends Window implements Initializable {
                 fxmlLoader.setLocation(getClass().getResource("/views/item.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
                 ItemController itemController = fxmlLoader.getController();
-                itemController.setData(searchResults.get(i));
                 itemController.getPnlVerCarrito().setVisible(false);
                 itemController.getPnlParaShopping().setVisible(true);
+                itemController.setData(searchResults.get(i));
+
                 itemController.setShoppingCartService(shoppingCartService);
                 if (column == 1) {
                     column = 0;

@@ -44,6 +44,10 @@ public class ShoppingCartService  extends Subject implements IShoppingCartServic
 
     }
 
+    public void modificarItem(Item item){
+
+    }
+
     public void eliminarProducto(Item item) {
         List<Item> items = shoppingCart.getItems();
         items.remove(item);

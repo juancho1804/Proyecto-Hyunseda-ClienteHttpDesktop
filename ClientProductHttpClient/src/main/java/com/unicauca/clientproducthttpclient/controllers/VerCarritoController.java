@@ -4,6 +4,9 @@ import com.unicauca.clientproducthttpclient.designpatterns.observer.Observer;
 import com.unicauca.clientproducthttpclient.domain.entities.Item;
 import com.unicauca.clientproducthttpclient.domain.services.IItemService;
 import com.unicauca.clientproducthttpclient.domain.services.ShoppingCartService;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +15,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -33,18 +37,26 @@ public class VerCarritoController extends Window implements Initializable, Obser
     private Button btnVolver;
     @FXML
     private GridPane grid;
+    @FXML
+    private Label lblTotal;
+    private String total;
+    private DoubleProperty totalProperty = new SimpleDoubleProperty(0.0);
 
     private ShoppingCartService shoppingCartService;
     private List<Item>items=new ArrayList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-       // this.items.addAll(this.getData());
         if(items.isEmpty()){
             System.out.println("vacia");
+            lblTotal.setText("0");
         }else{
             updateGridWithResults(items);
             System.out.println(items.get(0));
+            lblTotal.textProperty().bind(Bindings.createStringBinding(
+                    () -> String.format("%.2f", totalProperty.get()),
+                    totalProperty
+            ));
         }
 
         btnClose.setOnAction(this::btnOnActionClose);
@@ -57,6 +69,7 @@ public class VerCarritoController extends Window implements Initializable, Obser
         Stage stage = (Stage) btnVolver.getScene().getWindow();
         stage.close();
         homeUserController.getStage().show();
+
     }
 
     public List<Item>getData(){
@@ -133,6 +146,8 @@ public class VerCarritoController extends Window implements Initializable, Obser
             System.out.println("Total =" + shoppingCartService.obtenerTotal());
 
             System.out.println("--finalizacion OBSEVRER-------------------------");
+            double newTotal=shoppingCartService.obtenerTotal();
+            totalProperty.set(newTotal);
         }
 
     }

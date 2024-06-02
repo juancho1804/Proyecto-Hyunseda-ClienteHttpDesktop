@@ -112,7 +112,7 @@
                                     <Font name="SansSerif Bold" size="18.0" />
                                  </font>
                               </Button>
-                              <Label layoutX="939.0" layoutY="11.0" prefHeight="40.0" prefWidth="156.0" text="800000.0">
+                              <Label fx:id="lblTotal" layoutX="939.0" layoutY="11.0" prefHeight="40.0" prefWidth="156.0" text="800000.0">
                                  <font>
                                     <Font name="System Bold" size="28.0" />
                                  </font>
