@@ -11,11 +11,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.IOException;
 import java.net.URL;
@@ -46,6 +52,9 @@ public class HomeUserController extends Window implements Initializable {
     private Button btnWhatsapp;
 
     @FXML
+    private Button btnVerCarrito;
+
+    @FXML
     private GridPane grid;
 
     @FXML
@@ -56,6 +65,13 @@ public class HomeUserController extends Window implements Initializable {
 
     @FXML
     private Button btnBuscar;
+    @FXML
+    @Getter
+    @Setter
+    private Stage stage;
+
+    private double xOffset=0;
+    private double yOffset=0;
 
 
 
@@ -73,9 +89,9 @@ public class HomeUserController extends Window implements Initializable {
         btnFacebook.setOnAction(new OpenFacebookPageStrategy()::execute);
         btnInstagram.setOnAction(new OpenInstagramProfile()::execute);
         btnEmail.setOnAction(new SendEmailStrategy()::execute);
+        btnVerCarrito.setOnAction(this::btnOnActionVerCarrito);
         inicializarItems();
         btnBuscar.setOnAction(this::handleSearch);
-
     }
 
 
@@ -112,6 +128,8 @@ public class HomeUserController extends Window implements Initializable {
                 fxmlLoader.setLocation(this.getClass().getResource("/views/item.fxml"));
                 AnchorPane anchorPane = (AnchorPane)fxmlLoader.load();
                 ItemController itemController = (ItemController)fxmlLoader.getController();
+                itemController.getPnlVerCarrito().setVisible(false);
+                itemController.getPnlParaShopping().setVisible(true);
                 itemController.setData(this.items.get(i));
                 itemController.setShoppingCartService(shoppingCartService);
                 if (column == 1) {
@@ -167,6 +185,40 @@ public class HomeUserController extends Window implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+
+    public void btnOnActionVerCarrito(ActionEvent event){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(HomeUserController.class.getResource("/views/verCarrito.fxml"));
+            VerCarritoController carritoController = new VerCarritoController();
+            fxmlLoader.setController(carritoController);
+            carritoController.setHomeUserController(this);
+            Scene scene = new Scene(fxmlLoader.load(), 1206, 603);
+            scene.setOnMousePressed(event1 -> {
+                xOffset = event1.getSceneX();
+                yOffset = event1.getSceneY();
+            });
+            scene.setOnMouseDragged(event1 -> {
+                Stage stage = (Stage) scene.getWindow();
+                stage.setX(event1.getScreenX() - xOffset);
+                stage.setY(event1.getScreenY() - yOffset);
+            });
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.show();
+            cerrarVentana();
+
+        } catch (IOException var9) {
+            IOException e = var9;
+            e.printStackTrace();
+        }
+    }
+
+    public void cerrarVentana(){
+        Stage stage = (Stage) btnEmail.getScene().getWindow();
+        stage.close();
     }
 
 

@@ -8,16 +8,23 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import lombok.Getter;
 import lombok.Setter;
 
 public class ItemController implements ItemObserver {
     @Setter
     private IShoppingCartService shoppingCartService;
-
-
+    @Getter
+    @FXML
+    private AnchorPane pnlParaShopping;
+    @Getter
+    @FXML
+    private AnchorPane pnlVerCarrito;
     @FXML
     private ImageView imgItem;
     @FXML
@@ -34,6 +41,8 @@ public class ItemController implements ItemObserver {
     @Getter
     @FXML
     private Label lblItem;
+    @FXML
+    private Spinner<Integer> spnCantidad;
 
     private Item item;
 
@@ -85,6 +94,11 @@ public class ItemController implements ItemObserver {
             lblItem.setText(item.getCantidad() + " en el carrito");
             btnEliminarItem.setVisible(true);
         }
+    }
+
+    public void inicializarSpinner(){
+        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, Integer.MAX_VALUE, 0);
+        spnCantidad.setValueFactory(valueFactory);
     }
 
     @Override

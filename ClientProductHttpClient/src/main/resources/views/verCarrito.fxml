@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="1216.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <BorderPane layoutX="277.0" layoutY="154.0" prefHeight="603.0" prefWidth="1216.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <top>
+                  <AnchorPane prefHeight="42.0" prefWidth="1216.0" styleClass="semi-top-form" stylesheets="@../styles/dashboardDesigns.css" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane layoutX="106.0" layoutY="-86.0" prefHeight="37.0" prefWidth="1216.0" styleClass="top-form" stylesheets="@../styles/dashboardDesigns.css" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <ImageView fitHeight="40.0" fitWidth="35.0" layoutX="-279.0" layoutY="-137.0" pickOnBounds="true" preserveRatio="true" x="290.0" y="140.0">
+                                 <image>
+                                    <Image url="@../hyunsedaimages/logo.png" />
+                                 </image>
+                                 <viewport>
+                                    <Rectangle2D minX="230.0" minY="140.0" width="1.0" />
+                                 </viewport>
+                              </ImageView>
+                              <Label layoutX="46.0" layoutY="13.0" prefHeight="2.0" prefWidth="338.0" text="Hyun Seda">
+                                 <font>
+                                    <Font name="SansSerif Regular" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="btnClose" layoutX="1166.0" layoutY="4.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="36.0" styleClass="close" stylesheets="@../styles/dashboardDesigns.css">
+                                 <graphic>
+                                    <FontAwesomeIconView glyphName="CLOSE" size="20" />
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="btnMinimize" layoutX="1130.0" layoutY="4.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="36.0" styleClass="minimize" stylesheets="@../styles/dashboardDesigns.css">
+                                 <graphic>
+                                    <FontAwesomeIconView glyphName="MINUS" size="20" />
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </top>
+               <center>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <top>
+                        <AnchorPane prefHeight="51.0" prefWidth="1216.0" stylesheets="@../styles/dashboardDesigns.css" BorderPane.alignment="CENTER">
+                           <styleClass>
+                              <String fx:value="shadow" />
+                              <String fx:value="white-bg" />
+                           </styleClass>
+                           <children>
+                              <Label layoutX="75.0" layoutY="6.0" prefHeight="37.0" prefWidth="342.0" text="Carrito de compras">
+                                 <font>
+                                    <Font name="SansSerif Bold" size="30.0" />
+                                 </font>
+                              </Label>
+                              <FontAwesomeIconView glyphName="SHOPPING_CART" layoutX="26.0" layoutY="38.0" size="3em" wrappingWidth="37.0" />
+                           </children>
+                        </AnchorPane>
+                     </top>
+                     <center>
+                        <AnchorPane prefHeight="453.0" prefWidth="1216.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <ScrollPane fx:id="scrollVerCarrito" prefHeight="444.0" prefWidth="1216.0">
+                                 <content>
+                                    <GridPane fx:id="grid">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                    </GridPane>
+                                 </content>
+                              </ScrollPane>
+                           </children>
+                        </AnchorPane>
+                     </center>
+                     <bottom>
+                        <AnchorPane prefHeight="64.0" prefWidth="1216.0" stylesheets="@../styles/dashboardDesigns.css" BorderPane.alignment="CENTER">
+                           <children>
+                              <Label layoutX="735.0" layoutY="15.0" prefHeight="32.0" prefWidth="204.0" text="TOTAL : $COP">
+                                 <font>
+                                    <Font name="SansSerif Bold" size="28.0" />
+                                 </font>
+                              </Label>
+                              <Button layoutX="396.0" layoutY="8.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="167.0" stylesheets="@../styles/dashboardDesigns.css" text="Ir a pagar">
+                                 <styleClass>
+                                    <String fx:value="white-bg" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                                 <font>
+                                    <Font name="SansSerif Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="btnVolver" layoutX="192.0" layoutY="8.0" mnemonicParsing="false" onAction="#btnOnActionVolver" prefHeight="44.0" prefWidth="167.0" stylesheets="@../styles/dashboardDesigns.css" text="Volver">
+                                 <styleClass>
+                                    <String fx:value="white-bg" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                                 <font>
+                                    <Font name="SansSerif Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Label layoutX="939.0" layoutY="11.0" prefHeight="40.0" prefWidth="156.0" text="800000.0">
+                                 <font>
+                                    <Font name="System Bold" size="28.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <styleClass>
+                              <String fx:value="shadow" />
+                              <String fx:value="white-bg" />
+                           </styleClass>
+                        </AnchorPane>
+                     </bottom>
+                  </BorderPane>
+               </center>
+            </BorderPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
