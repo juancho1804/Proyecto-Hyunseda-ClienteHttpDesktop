@@ -1,23 +1,19 @@
 package com.unicauca.clientproducthttpclient.controllers;
 
 import com.unicauca.clientproducthttpclient.domain.entities.Item;
-import com.unicauca.clientproducthttpclient.domain.services.IItemService;
 import com.unicauca.clientproducthttpclient.domain.services.IShoppingCartService;
-import com.unicauca.clientproducthttpclient.domain.services.ShoppingCartService;
 import com.unicauca.clientproducthttpclient.util.Utilities;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
-import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
+import lombok.Getter;
+import lombok.Setter;
 
 public class ItemController{
+    @Setter
     private IShoppingCartService shoppingCartService;
 
 
@@ -33,8 +29,10 @@ public class ItemController{
     private Label lblPrecioItem;
     @FXML
     private Button btnAgregarItem;
+    @Getter
     @FXML
     private Button btnEliminarItem;
+    @Getter
     @FXML
     private Label lblItem;
 
@@ -88,8 +86,4 @@ public class ItemController{
         }
     }
 
-
-    public void setShoppingCartService(IShoppingCartService shoppingCartService) {
-        this.shoppingCartService = shoppingCartService;
-    }
 }

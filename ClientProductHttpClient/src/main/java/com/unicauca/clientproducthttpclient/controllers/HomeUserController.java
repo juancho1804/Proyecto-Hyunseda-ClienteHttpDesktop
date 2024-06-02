@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class HomeUserController extends Window implements Initializable {
-
+    //INICIO DE CAMBIOS.
     @FXML
     private Button btnCerrarSesion;
 
@@ -48,16 +48,7 @@ public class HomeUserController extends Window implements Initializable {
     private Button btnMinimize;
 
     @FXML
-    private Button btnProductos;
-
-    @FXML
-    private Button btnProductos1;
-
-    @FXML
     private Button btnWhatsapp;
-
-    @FXML
-    private ComboBox<String> cboCategorias;
 
     @FXML
     private GridPane grid;
@@ -66,7 +57,12 @@ public class HomeUserController extends Window implements Initializable {
     private ScrollPane scroll;
 
     @FXML
-    private TextField txtBuscarCatNombre;
+    private TextField txtBuscarItem;
+
+    @FXML
+    private Button btnBuscar;
+
+
 
     private IShoppingCartService shoppingCartService = new ShoppingCartService();
     private List<Item>items=new ArrayList<>();
@@ -82,9 +78,36 @@ public class HomeUserController extends Window implements Initializable {
         btnFacebook.setOnAction(new OpenFacebookPageStrategy()::execute);
         btnInstagram.setOnAction(new OpenInstagramProfile()::execute);
         btnEmail.setOnAction(new SendEmailStrategy()::execute);
-        initializeCboCategorias();
-        items=getData();
+        inicializarItems();
+        btnBuscar.setOnAction(this::handleSearch);
 
+    }
+
+
+    public List<Item> getData(){
+        IItemService iItemService=new ItemService();
+        List<Item> items=iItemService.obtenerItems();
+        return items;
+    }
+
+    @FXML
+    private void handleSearch(ActionEvent event) {
+        String searchText = txtBuscarItem.getText().toLowerCase(); // Convertir a minúsculas para una comparación sin distinción entre mayúsculas y minúsculas
+        List<Item> searchResults = buscarPorNombre(searchText);
+        updateGridWithResults(searchResults);
+    }
+
+    public List<Item> buscarPorNombre(String nombreProducto){
+        List<Item>itemsPorNombre=new ArrayList<>();
+        for(Item item:this.items){
+            if(item.getProduct().getName().toLowerCase().contains(nombreProducto.toLowerCase())){
+                itemsPorNombre.add(item);
+            }
+        }
+        return itemsPorNombre;
+    }
+
+    public void inicializarItems(){
         int column = 0;
         int row = 1;
 
@@ -115,24 +138,44 @@ public class HomeUserController extends Window implements Initializable {
             e.printStackTrace();
         }
 
-
-
     }
 
-    public void initializeCboCategorias() {
-        List<Category> categoryList = new CategoryService().findAll();
-        ObservableList<String> categorias = FXCollections.observableArrayList();
-        categorias.add("Todas");
-        for(Category category:categoryList){
-            categorias.add(category.getName());
+    private void updateGridWithResults(List<Item> searchResults) {
+        // Limpiar el grid antes de agregar los nuevos resultados
+        grid.getChildren().clear();
+
+        int column = 0;
+        int row = 1;
+
+        try {
+            for(int i = 0; i < searchResults.size(); ++i) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/views/item.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
+                ItemController itemController = fxmlLoader.getController();
+                itemController.setData(searchResults.get(i));
+                itemController.setShoppingCartService(shoppingCartService);
+                if (column == 1) {
+                    column = 0;
+                    ++row;
+                }
+
+                grid.add(anchorPane, column++, row);
+                grid.setMinWidth(-1.0);
+                grid.setPrefWidth(-1.0);
+                grid.setMaxWidth(Double.NEGATIVE_INFINITY);
+                grid.setMinHeight(-1.0);
+                grid.setPrefHeight(-1.0);
+                grid.setMaxHeight(Double.NEGATIVE_INFINITY);
+                GridPane.setMargin(anchorPane, new Insets(10.0));
+                if(searchResults.get(i).getCantidad()>=1){
+                    itemController.getLblItem().setText(searchResults.get(i).getCantidad()+" en el carrito");
+                    itemController.getBtnEliminarItem().setVisible(true);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        cboCategorias.setItems(categorias);
-    }
-
-    public List<Item> getData(){
-        IItemService iItemService=new ItemService();
-        List<Item> items=iItemService.obtenerItems();
-        return items;
     }
 
 
