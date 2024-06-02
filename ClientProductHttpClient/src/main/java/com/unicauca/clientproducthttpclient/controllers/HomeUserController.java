@@ -4,18 +4,14 @@ import com.unicauca.clientproducthttpclient.designpatterns.strategy.OpenFacebook
 import com.unicauca.clientproducthttpclient.designpatterns.strategy.OpenInstagramProfile;
 import com.unicauca.clientproducthttpclient.designpatterns.strategy.OpenWhatsAppConversationStrategy;
 import com.unicauca.clientproducthttpclient.designpatterns.strategy.SendEmailStrategy;
-import com.unicauca.clientproducthttpclient.domain.entities.Category;
 import com.unicauca.clientproducthttpclient.domain.entities.Item;
 import com.unicauca.clientproducthttpclient.domain.services.*;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -28,7 +24,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class HomeUserController extends Window implements Initializable {
-    //INICIO DE CAMBIOS.
     @FXML
     private Button btnCerrarSesion;
 
@@ -168,13 +163,6 @@ public class HomeUserController extends Window implements Initializable {
                 grid.setPrefHeight(-1.0);
                 grid.setMaxHeight(Double.NEGATIVE_INFINITY);
                 GridPane.setMargin(anchorPane, new Insets(10.0));
-
-                /*if(searchResults.get(i).getCantidad()>=1){
-                    itemController.getLblItem().setText(searchResults.get(i).getCantidad()+" en el carrito");
-                    itemController.getBtnEliminarItem().setVisible(true);
-                }
-
-                 */
             }
         } catch (IOException e) {
             e.printStackTrace();

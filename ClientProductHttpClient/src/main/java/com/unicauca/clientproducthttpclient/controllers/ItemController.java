@@ -44,7 +44,6 @@ public class ItemController implements ItemObserver {
     if (item.getProduct() != null) {
         lblNombreItem.setText(item.getProduct().getName());
         lblDesc1Item.setText(item.getProduct().getDescription());
-        // Verifica y establece el resto de las propiedades de Product
         lblPrecioItem.setText(String.valueOf(item.getProduct().getPrice()));
 
         // Load image from resources
@@ -58,11 +57,9 @@ public class ItemController implements ItemObserver {
             } catch (NullPointerException e) {
                 System.out.println("Error loading image: " + imagePath);
             }
-        } else {
         }
-    } else {
-        // Manejar el caso cuando el producto es null
-        }
+    }
+
     }
 
     public void agregarItem(ActionEvent actionEvent) {
