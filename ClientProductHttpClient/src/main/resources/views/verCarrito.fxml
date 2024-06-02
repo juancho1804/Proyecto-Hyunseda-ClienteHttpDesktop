@@ -104,7 +104,7 @@
                                     <Font name="SansSerif Bold" size="18.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="btnVolver" layoutX="192.0" layoutY="8.0" mnemonicParsing="false" onAction="#btnOnActionVolver" prefHeight="44.0" prefWidth="167.0" stylesheets="@../styles/dashboardDesigns.css" text="Volver">
+                              <Button fx:id="btnVolver" layoutX="192.0" layoutY="8.0" mnemonicParsing="false"  prefHeight="44.0" prefWidth="167.0" stylesheets="@../styles/dashboardDesigns.css" text="Volver">
                                  <styleClass>
                                     <String fx:value="white-bg" />
                                     <String fx:value="shadow" />

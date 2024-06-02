@@ -77,6 +77,7 @@ public class HomeUserController extends Window implements Initializable {
 
     private IShoppingCartService shoppingCartService = new ShoppingCartService();
     private List<Item>items=new ArrayList<>();
+    VerCarritoController carritoController = new VerCarritoController();
 
 
     @Override
@@ -90,8 +91,11 @@ public class HomeUserController extends Window implements Initializable {
         btnInstagram.setOnAction(new OpenInstagramProfile()::execute);
         btnEmail.setOnAction(new SendEmailStrategy()::execute);
         btnVerCarrito.setOnAction(this::btnOnActionVerCarrito);
-        inicializarItems();
+        updateGridWithResults(items);
         btnBuscar.setOnAction(this::handleSearch);
+        this.shoppingCartService.addObserver(carritoController);
+
+
     }
 
 
@@ -117,7 +121,7 @@ public class HomeUserController extends Window implements Initializable {
         }
         return itemsPorNombre;
     }
-
+    /*
     public void inicializarItems(){
         int column = 0;
         int row = 1;
@@ -153,6 +157,8 @@ public class HomeUserController extends Window implements Initializable {
 
     }
 
+     */
+
     private void updateGridWithResults(List<Item> searchResults) {
         // Limpiar el grid antes de agregar los nuevos resultados
         grid.getChildren().clear();
@@ -167,6 +173,8 @@ public class HomeUserController extends Window implements Initializable {
                 AnchorPane anchorPane = fxmlLoader.load();
                 ItemController itemController = fxmlLoader.getController();
                 itemController.setData(searchResults.get(i));
+                itemController.getPnlVerCarrito().setVisible(false);
+                itemController.getPnlParaShopping().setVisible(true);
                 itemController.setShoppingCartService(shoppingCartService);
                 if (column == 1) {
                     column = 0;
@@ -191,9 +199,9 @@ public class HomeUserController extends Window implements Initializable {
     public void btnOnActionVerCarrito(ActionEvent event){
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(HomeUserController.class.getResource("/views/verCarrito.fxml"));
-            VerCarritoController carritoController = new VerCarritoController();
-            fxmlLoader.setController(carritoController);
-            carritoController.setHomeUserController(this);
+            //VerCarritoController carritoController = new VerCarritoController();
+            fxmlLoader.setController(this.carritoController);
+            this.carritoController.setHomeUserController(this);
             Scene scene = new Scene(fxmlLoader.load(), 1206, 603);
             scene.setOnMousePressed(event1 -> {
                 xOffset = event1.getSceneX();

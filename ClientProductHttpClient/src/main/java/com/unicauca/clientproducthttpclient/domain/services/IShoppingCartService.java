@@ -4,15 +4,19 @@
  */
 package com.unicauca.clientproducthttpclient.domain.services;
 
+import com.unicauca.clientproducthttpclient.designpatterns.observer.Observer;
+import com.unicauca.clientproducthttpclient.designpatterns.observer.Subject;
 import com.unicauca.clientproducthttpclient.domain.entities.Item;
 import com.unicauca.clientproducthttpclient.domain.entities.Product;
 import com.unicauca.clientproducthttpclient.domain.entities.ShoppingCart;
+
+import java.util.ArrayList;
 
 /**
  *
  * @author Juan
  */
-public interface IShoppingCartService {
+public interface IShoppingCartService{
     
     public void agregarProducto(Product producto, int cantidad);
 
@@ -34,5 +38,14 @@ public interface IShoppingCartService {
     
     public Item obtenerItem(Product producto);
     public void agregarItem(Item item);
+
+
+
+    public void addObserver(Observer obs) ;
+
+    /**
+     * Notifica a todos los observadores que hubo un cambio en el modelo
+     */
+    public void notifyAllObserves();
     
 }
