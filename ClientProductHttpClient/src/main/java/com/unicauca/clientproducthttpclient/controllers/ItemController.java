@@ -25,8 +25,6 @@ public class ItemController implements ItemObserver {
     @FXML
     private Label lblDesc1Item;
     @FXML
-    private Label lblDesc2Item;
-    @FXML
     private Label lblPrecioItem;
     @FXML
     private Button btnAgregarItem;
