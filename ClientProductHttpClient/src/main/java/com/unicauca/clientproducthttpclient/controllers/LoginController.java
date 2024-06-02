@@ -73,7 +73,7 @@ public class LoginController {
                 HomeUserController homeUserController=new HomeUserController();
                 FXMLLoader fxmlLoader = new FXMLLoader(LoginController.class.getResource("/views/homeUser.fxml"));
                 fxmlLoader.setController(homeUserController);
-                Scene scene = new Scene(fxmlLoader.load(), 1300, 600);
+                Scene scene = new Scene(fxmlLoader.load(), 1300, 801);
                 scene.setOnMousePressed(event1 -> {
                     xOffset =event1.getSceneX();
                     yOffset= event1.getSceneY();

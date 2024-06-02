@@ -121,43 +121,6 @@ public class HomeUserController extends Window implements Initializable {
         }
         return itemsPorNombre;
     }
-    /*
-    public void inicializarItems(){
-        int column = 0;
-        int row = 1;
-
-        try {
-            for(int i = 0; i < this.items.size(); ++i) {
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(this.getClass().getResource("/views/item.fxml"));
-                AnchorPane anchorPane = (AnchorPane)fxmlLoader.load();
-                ItemController itemController = (ItemController)fxmlLoader.getController();
-                itemController.getPnlVerCarrito().setVisible(false);
-                itemController.getPnlParaShopping().setVisible(true);
-                itemController.setData(this.items.get(i));
-                itemController.setShoppingCartService(shoppingCartService);
-                if (column == 1) {
-                    column = 0;
-                    ++row;
-                }
-
-                this.grid.add(anchorPane, column++, row);
-                this.grid.setMinWidth(-1.0);
-                this.grid.setPrefWidth(-1.0);
-                this.grid.setMaxWidth(Double.NEGATIVE_INFINITY);
-                this.grid.setMinHeight(-1.0);
-                this.grid.setPrefHeight(-1.0);
-                this.grid.setMaxHeight(Double.NEGATIVE_INFINITY);
-                GridPane.setMargin(anchorPane, new Insets(10.0));
-            }
-        } catch (IOException var9) {
-            IOException e = var9;
-            e.printStackTrace();
-        }
-
-    }
-
-     */
 
     private void updateGridWithResults(List<Item> searchResults) {
         // Limpiar el grid antes de agregar los nuevos resultados
@@ -202,7 +165,7 @@ public class HomeUserController extends Window implements Initializable {
             //VerCarritoController carritoController = new VerCarritoController();
             fxmlLoader.setController(this.carritoController);
             this.carritoController.setHomeUserController(this);
-            Scene scene = new Scene(fxmlLoader.load(), 1206, 603);
+            Scene scene = new Scene(fxmlLoader.load(), 1216, 714);
             scene.setOnMousePressed(event1 -> {
                 xOffset = event1.getSceneX();
                 yOffset = event1.getSceneY();

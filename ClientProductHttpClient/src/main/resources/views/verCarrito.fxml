@@ -15,8 +15,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="1216.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="714.0" prefWidth="1216.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
@@ -75,7 +74,7 @@
                      <center>
                         <AnchorPane prefHeight="453.0" prefWidth="1216.0" BorderPane.alignment="CENTER">
                            <children>
-                              <ScrollPane fx:id="scrollVerCarrito" prefHeight="444.0" prefWidth="1216.0">
+                              <ScrollPane fx:id="scrollVerCarrito" prefHeight="563.0" prefWidth="1216.0">
                                  <content>
                                     <GridPane fx:id="grid">
                                       <columnConstraints>
@@ -104,7 +103,7 @@
                                     <Font name="SansSerif Bold" size="18.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="btnVolver" layoutX="192.0" layoutY="8.0" mnemonicParsing="false"  prefHeight="44.0" prefWidth="167.0" stylesheets="@../styles/dashboardDesigns.css" text="Volver">
+                              <Button fx:id="btnVolver" layoutX="192.0" layoutY="8.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="167.0" stylesheets="@../styles/dashboardDesigns.css" text="Volver">
                                  <styleClass>
                                     <String fx:value="white-bg" />
                                     <String fx:value="shadow" />
