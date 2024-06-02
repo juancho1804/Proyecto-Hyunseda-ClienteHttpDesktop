@@ -2,7 +2,6 @@ package com.unicauca.clientproducthttpclient.controllers;
 
 import com.unicauca.clientproducthttpclient.designpatterns.observer.Observer;
 import com.unicauca.clientproducthttpclient.domain.entities.Item;
-import com.unicauca.clientproducthttpclient.domain.services.IItemService;
 import com.unicauca.clientproducthttpclient.domain.services.ShoppingCartService;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
@@ -12,14 +11,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -39,7 +35,7 @@ public class VerCarritoController extends Window implements Initializable, Obser
     private GridPane grid;
     @FXML
     private Label lblTotal;
-    private String total;
+
     private DoubleProperty totalProperty = new SimpleDoubleProperty(0.0);
 
     private ShoppingCartService shoppingCartService;
@@ -47,10 +43,7 @@ public class VerCarritoController extends Window implements Initializable, Obser
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        if(items.isEmpty()){
-            System.out.println("vacia");
-            lblTotal.setText("0");
-        }else{
+        if(!items.isEmpty()) {
             updateGridWithResults(items);
             System.out.println(items.get(0));
             lblTotal.textProperty().bind(Bindings.createStringBinding(
@@ -69,14 +62,6 @@ public class VerCarritoController extends Window implements Initializable, Obser
         Stage stage = (Stage) btnVolver.getScene().getWindow();
         stage.close();
         homeUserController.getStage().show();
-
-    }
-
-    public List<Item>getData(){
-        if(items.isEmpty()){
-            return null;
-        }
-        return this.shoppingCartService.getShoppingCart().getItems();
 
     }
 
@@ -119,21 +104,11 @@ public class VerCarritoController extends Window implements Initializable, Obser
 
     @Override
     public void update(Object o) {
-        /*
-        ShoppingCartService shoppingCartService=(ShoppingCartService)o;
-        System.out.println("hola");
-        List<Item> items= shoppingCartService.getShoppingCart().getItems();
-        for(Item item:items){
-            System.out.println(item.getProduct().getName());
-            System.out.println(item.getCantidad());
-        }
-        System.out.println("Total ="+shoppingCartService.obtenerTotal());
-
-         */
         this.shoppingCartService=(ShoppingCartService)o;
         if(shoppingCartService.getShoppingCart().getItems().isEmpty()){
             this.items=new ArrayList<>();
             System.out.println("La lista esta vacia");
+            totalProperty.set(0);
         }else {
             this.items=shoppingCartService.getShoppingCart().getItems();
             //items.addAll(this.getData());
