@@ -5,6 +5,10 @@
 package com.unicauca.clientproducthttpclient.domain.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.unicauca.clientproducthttpclient.designpatterns.observerItem.ItemObserver;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -19,6 +23,8 @@ public class Item {
     Integer cantidad;
     @JsonProperty("subtotal")
     double subtotal;
+
+    private List<ItemObserver> observers = new ArrayList<>();
 
     public Item(){
 
@@ -44,6 +50,7 @@ public class Item {
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
         this.subtotal = cantidad * product.getPrice();
+        notifyObservers();
     }
 
     public double getSubtotal() {
@@ -52,6 +59,22 @@ public class Item {
 
     public void setSubtotal(double subtotal) {
         this.subtotal = subtotal;
+    }
+
+    public void addObserver(ItemObserver observer) {
+        observers.add(observer);
+    }
+
+    // Método para eliminar observadores
+    public void removeObserver(ItemObserver observer) {
+        observers.remove(observer);
+    }
+
+    // Método para notificar a los observadores
+    private void notifyObservers() {
+        for (ItemObserver observer : observers) {
+            observer.onItemStateChanged(this);
+        }
     }
 
 }

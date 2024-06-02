@@ -1,5 +1,6 @@
 package com.unicauca.clientproducthttpclient.controllers;
 
+import com.unicauca.clientproducthttpclient.designpatterns.observerItem.ItemObserver;
 import com.unicauca.clientproducthttpclient.domain.entities.Item;
 import com.unicauca.clientproducthttpclient.domain.services.IShoppingCartService;
 import com.unicauca.clientproducthttpclient.util.Utilities;
@@ -12,7 +13,7 @@ import javafx.scene.image.ImageView;
 import lombok.Getter;
 import lombok.Setter;
 
-public class ItemController{
+public class ItemController implements ItemObserver {
     @Setter
     private IShoppingCartService shoppingCartService;
 
@@ -40,6 +41,8 @@ public class ItemController{
 
     public void setData(Item item) {
     this.item = item;
+    item.addObserver(this);
+    updateItemState();
     if (item.getProduct() != null) {
         lblNombreItem.setText(item.getProduct().getName());
         lblDesc1Item.setText(item.getProduct().getDescription());
@@ -77,13 +80,20 @@ public class ItemController{
     }
     public void eliminarItem(ActionEvent actionEvent) {
         shoppingCartService.eliminarItem(item);
-        if(item.getCantidad()==0){
+    }
+
+    private void updateItemState() {
+        if (item.getCantidad() == 0) {
             btnEliminarItem.setVisible(false);
             lblItem.setText("");
-        }else{
-            System.out.println("ELIMINADO");
-            lblItem.setText(item.getCantidad()+" en el carrito");
+        } else {
+            lblItem.setText(item.getCantidad() + " en el carrito");
+            btnEliminarItem.setVisible(true);
         }
     }
 
+    @Override
+    public void onItemStateChanged(Item item) {
+        updateItemState();
+    }
 }

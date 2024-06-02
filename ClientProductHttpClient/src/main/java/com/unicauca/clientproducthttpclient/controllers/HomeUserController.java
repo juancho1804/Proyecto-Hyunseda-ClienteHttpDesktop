@@ -168,10 +168,13 @@ public class HomeUserController extends Window implements Initializable {
                 grid.setPrefHeight(-1.0);
                 grid.setMaxHeight(Double.NEGATIVE_INFINITY);
                 GridPane.setMargin(anchorPane, new Insets(10.0));
-                if(searchResults.get(i).getCantidad()>=1){
+
+                /*if(searchResults.get(i).getCantidad()>=1){
                     itemController.getLblItem().setText(searchResults.get(i).getCantidad()+" en el carrito");
                     itemController.getBtnEliminarItem().setVisible(true);
                 }
+
+                 */
             }
         } catch (IOException e) {
             e.printStackTrace();
