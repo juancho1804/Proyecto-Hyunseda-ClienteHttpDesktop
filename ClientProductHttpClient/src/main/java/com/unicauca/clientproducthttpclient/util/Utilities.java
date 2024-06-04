@@ -13,7 +13,10 @@ import javafx.stage.Stage;
 
 import java.awt.Component;
 import java.awt.Image;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -103,6 +106,22 @@ public class Utilities{
         int indiceInicio= ruta.indexOf("/hyunsedaimages");
         String subcadena= ruta.substring(indiceInicio);
         return subcadena;
+    }
+
+
+    public static String getCitiesByCountryAndDepartamento(String countryCode, String departamento) throws IOException {
+        String url = "http://api.geonames.org/searchJSON?country=" + countryCode + "&adminCode1=" + departamento + "&featureClass=P&maxRows=10&username=demo";
+        HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
+        connection.setRequestMethod("GET");
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+        StringBuilder response = new StringBuilder();
+        String line;
+        while ((line = reader.readLine()) != null) {
+            response.append(line);
+        }
+        reader.close();
+        return response.toString();
     }
 
 

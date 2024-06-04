@@ -22,6 +22,9 @@
 .minimize:hover{
     -fx-background-color: #ddd;
 }
+.pnlNorte{
+    -fx-background-color: linear-gradient(to bottom right, #fcf268, #fcf268);
+}
 .nav-form{
     -fx-background-color: linear-gradient(to bottom right, #fcf268, #ffffff);
 }
@@ -42,6 +45,15 @@
 }
 .search{
     -fx-background-color: transparent;
+    -fx-border-width: 2px;
+    -fx-border-radius: 2px;
+    -fx-border-color: linear-gradient(to bottom right, #757575, #bababa);
+    -fx-font-family: SansSerif;
+    -fx-font-size: 14px;
+    -fx-padding: 0px 0px 0px 28px;
+}
+.buscar{
+    -fx-background-color: white;
     -fx-border-width: 2px;
     -fx-border-radius: 2px;
     -fx-border-color: linear-gradient(to bottom right, #757575, #bababa);
@@ -139,7 +151,26 @@
     -fx-font-size: 19;
     -fx-cursor: hand;
 }
-
+.botonPagar{
+    -fx-background-radius: 50;
+    -fx-background-color: white;
+    -fx-border-radius: 50;
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-font-family: SansSerif;
+    -fx-font-size: 19;
+    -fx-cursor: hand;
+}
+.botonVolver{
+    -fx-background-radius: 50;
+    -fx-background-color: white;
+    -fx-border-radius: 50;
+    -fx-border-color: #ffffff;
+    -fx-border-width: 2px;
+    -fx-font-family: SansSerif;
+    -fx-font-size: 19;
+    -fx-cursor: hand;
+}
 
 .transparent-button {
     -fx-background-color: transparent;

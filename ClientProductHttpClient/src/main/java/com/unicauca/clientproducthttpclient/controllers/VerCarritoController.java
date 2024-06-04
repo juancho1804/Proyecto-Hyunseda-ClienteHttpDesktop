@@ -11,8 +11,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -29,12 +33,24 @@ public class VerCarritoController extends Window implements Initializable, Obser
     @Getter
     @Setter
     private HomeUserController homeUserController;
+
     @FXML
     private Button btnVolver;
+    @FXML
+    private Button btnPagar;
     @FXML
     private GridPane grid;
     @FXML
     private Label lblTotal;
+    @FXML
+    private ScrollPane scrollVerCarrito;
+    @FXML
+    private AnchorPane pnlPago;
+
+    @FXML
+    @Getter
+    @Setter
+    private Stage stage;
 
     private DoubleProperty totalProperty = new SimpleDoubleProperty(0.0);
 
@@ -43,6 +59,8 @@ public class VerCarritoController extends Window implements Initializable, Obser
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        this.pnlPago.setVisible(false);
+        this.scrollVerCarrito.setVisible(true);
         if(!items.isEmpty()) {
             updateGridWithResults(items);
             System.out.println(items.get(0));
@@ -55,7 +73,30 @@ public class VerCarritoController extends Window implements Initializable, Obser
         btnClose.setOnAction(this::btnOnActionClose);
         btnMinimize.setOnAction(this::btnOnActionMinimize);
         this.btnVolver.setOnAction(this::btnOnActionVolver);
+        this.btnPagar.setOnAction(this::btnOnActionPagar);
     }
+
+    @FXML
+    public void btnOnActionPagar(ActionEvent event){
+        this.scrollVerCarrito.setVisible(false);
+        this.pnlPago.setVisible(true);
+        this.btnVolver.setOnAction(this::btnOnActionVolver2);
+
+    }
+
+    public void btnOnActionPagar2(ActionEvent event){
+        this.scrollVerCarrito.setVisible(false);
+        this.pnlPago.setVisible(true);
+        this.btnVolver.setOnAction(this::btnOnActionVolver2);
+
+    }
+
+    public void btnOnActionVolver2(ActionEvent event){
+        this.pnlPago.setVisible(false);
+        this.scrollVerCarrito.setVisible(true);
+        this.btnVolver.setOnAction(this::btnOnActionVolver);
+    }
+
 
     @FXML
     public void btnOnActionVolver(ActionEvent event)  {
@@ -64,6 +105,9 @@ public class VerCarritoController extends Window implements Initializable, Obser
         homeUserController.getStage().show();
 
     }
+
+
+
 
     private void updateGridWithResults(List<Item> searchResults) {
         // Limpiar el grid antes de agregar los nuevos resultados
@@ -125,5 +169,15 @@ public class VerCarritoController extends Window implements Initializable, Obser
             totalProperty.set(newTotal);
         }
 
+    }
+
+    private void validarCampos(TextField... campos) {
+        for (TextField campo : campos) {
+            if (campo.getText().isEmpty()) {
+                campo.setStyle("-fx-border-color: red;");
+            } else {
+                campo.setStyle("");
+            }
+        }
     }
 }

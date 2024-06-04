@@ -179,6 +179,7 @@ public class HomeUserController extends Window implements Initializable {
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.initStyle(StageStyle.UNDECORATED);
+            carritoController.setStage(stage);//nueva linea
             stage.show();
             cerrarVentana();
 

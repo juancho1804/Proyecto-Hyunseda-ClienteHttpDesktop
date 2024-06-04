@@ -20,9 +20,7 @@ public class RegisterController {
     private final IUserService userService;
 
     @FXML
-    private TextField txtNombre;
-    @FXML
-    private TextField txtApellidos;
+    private TextField txtEmail;
     @FXML
     private TextField txtUsuario;
     @FXML
@@ -40,9 +38,8 @@ public class RegisterController {
 
     public void registrarseButtonOnAction(ActionEvent actionEvent) {
         User user = new User();
-        user.setFirstName(txtNombre.getText());
-        user.setLastName(txtApellidos.getText());
         user.setUsername(txtUsuario.getText());
+        user.setEmail(txtEmail.getText());
         user.setPassword(txtContrasena.getText());
 
         if(validarCampos()){
@@ -50,13 +47,14 @@ public class RegisterController {
                 lblMessage.setTextFill(Color.GREEN);
                 lblMessage.setText("Usuario registrado satisfactoriamente");
             }else{
-                Utilities.mostrarAlerta("Error","El usuario ya existe");
+                lblMessage.setTextFill(Color.RED);
+                lblMessage.setText("El usuario ya existe");
             }
         }
     }
 
     public boolean validarCampos(){
-        if(txtNombre.getText().isBlank()||txtApellidos.getText().isBlank()||txtUsuario.getText().isBlank()||txtContrasena.getText().isBlank()){
+        if(txtEmail.getText().isBlank()||txtUsuario.getText().isBlank()||txtContrasena.getText().isBlank()){
             lblMessage.setText("Verifique que todos los campos esten llenos.");
             return false;
         }

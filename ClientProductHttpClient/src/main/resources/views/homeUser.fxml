@@ -58,7 +58,7 @@
                <center>
                   <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <top>
-                        <AnchorPane prefHeight="33.0" prefWidth="1300.0" stylesheets="@../styles/dashboardDesigns.css" BorderPane.alignment="CENTER">
+                        <AnchorPane prefHeight="33.0" prefWidth="1300.0" styleClass="pnlNorte" stylesheets="@../styles/dashboardDesigns.css" BorderPane.alignment="CENTER">
                            <children>
                               <FontAwesomeIconView fill="#101305" glyphName="USER" layoutX="12.0" layoutY="35.0" size="3em" wrappingWidth="27.0" />
                               <Label layoutX="45.0" layoutY="10.0" prefHeight="26.0" prefWidth="80.0" text="Juan">
@@ -67,7 +67,7 @@
                                  </font>
                               </Label>
                               <Line endX="-18.0" endY="33.0" layoutX="151.0" layoutY="14.0" startX="-18.0" startY="-14.0" />
-                              <TextField fx:id="txtBuscarItem" layoutX="366.0" layoutY="9.0" prefHeight="30.0" prefWidth="458.0" promptText="Buscar por nombre" styleClass="search" stylesheets="@../styles/dashboardDesigns.css" />
+                              <TextField fx:id="txtBuscarItem" layoutX="366.0" layoutY="9.0" prefHeight="30.0" prefWidth="458.0" promptText="Buscar por nombre" styleClass="buscar" stylesheets="@../styles/dashboardDesigns.css" />
                               <FontAwesomeIconView glyphName="SEARCH" layoutX="373.0" layoutY="30.0" size="1.5em" />
                               <Line endX="-18.0" endY="33.0" layoutX="873.0" layoutY="14.0" startX="-18.0" startY="-14.0" />
                               <Button fx:id="btnVerCarrito" layoutX="863.0" layoutY="7.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="137.0" styleClass="nav-btn" stylesheets="@../styles/dashboardDesigns.css" text="Ver carrito">
@@ -97,10 +97,6 @@
                                  </font>
                               </Button>
                            </children>
-                           <styleClass>
-                              <String fx:value="shadow" />
-                              <String fx:value="white-bg" />
-                           </styleClass>
                         </AnchorPane>
                      </top>
                      <center>
@@ -121,8 +117,8 @@
                         <AnchorPane prefHeight="47.0" prefWidth="1300.0" stylesheets="@../styles/dashboardDesigns.css" BorderPane.alignment="CENTER">
                            <styleClass>
                               <String fx:value="semi-top-form" />
-                              <String fx:value="shadow" />
                               <String fx:value="white-bg" />
+                              <String fx:value="shadow" />
                            </styleClass>
                            <children>
                               <Button fx:id="btnInstagram" layoutX="14.0" layoutY="3.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="153.0" styleClass="nav-btn" stylesheets="@../styles/dashboardDesigns.css" text="hyunseda_">

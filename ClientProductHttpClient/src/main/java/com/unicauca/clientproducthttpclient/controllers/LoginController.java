@@ -1,5 +1,8 @@
 package com.unicauca.clientproducthttpclient.controllers;
 
+import com.unicauca.clientproducthttpclient.access.ClientRestRepository;
+import com.unicauca.clientproducthttpclient.access.UserRestRepository;
+import com.unicauca.clientproducthttpclient.domain.entities.Client;
 import com.unicauca.clientproducthttpclient.domain.entities.Role;
 import com.unicauca.clientproducthttpclient.domain.entities.User;
 import com.unicauca.clientproducthttpclient.domain.services.IUserService;
@@ -9,13 +12,11 @@ import com.unicauca.clientproducthttpclient.util.Utilities;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -67,6 +68,10 @@ public class LoginController {
                 stage.setScene(scene);
                 stage.initStyle(StageStyle.UNDECORATED);
                 stage.show();
+                ClientRestRepository clientRestRepository=new ClientRestRepository();
+
+                Client client2 = clientRestRepository.findClient();
+                System.out.println("El cliente es"+client2.getUsername());
 
                 cerrarVentana();
             }else{
@@ -89,6 +94,22 @@ public class LoginController {
                 homeUserController.setStage(stage);
                 stage.show();
                 cerrarVentana();
+                ClientRestRepository clientRestRepository=new ClientRestRepository();
+                Client client=new Client();
+                client.setFirstName("Primer nombre");
+                client.setLastName("Seguno nombre");
+                client.setAddress("Mi email");
+                if(clientRestRepository.findClient()!=null){
+                    clientRestRepository.updateClient(client);
+                    System.out.println("Cliente actualizado");
+                }else{
+                    User user1=clientRestRepository.findByUsername();
+                    client.setUsername(user1.getUsername());
+                    client.setPassword(user1.getPassword());
+                    client.setEmail(user1.getEmail());
+                    clientRestRepository.crearCliente(client);
+                    System.out.println("Cliente creado");
+                }
             }
 
         }else{

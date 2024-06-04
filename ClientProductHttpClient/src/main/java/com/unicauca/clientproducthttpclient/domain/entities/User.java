@@ -14,9 +14,6 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
 
-    @JsonProperty("id")
-    private Long id;
-
     @JsonProperty("username")
     private String username;
 
@@ -25,12 +22,6 @@ public class User {
 
     @JsonProperty("password")
     private String password;
-
-    @JsonProperty("firstName")
-    private String firstName;
-
-    @JsonProperty("lastName")
-    private String lastName;
 
     @JsonProperty("roleModel")
     private Role roleModel;
