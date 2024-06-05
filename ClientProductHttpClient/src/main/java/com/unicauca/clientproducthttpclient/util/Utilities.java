@@ -29,34 +29,7 @@ import javax.swing.table.DefaultTableCellRenderer;
  * @author jvuan
  */
 public class Utilities{
-    /*
-    @Override
-    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-        if (value instanceof String) {
-            String imageUrl = (String) value;
-            try {
-                URL url = new URL(imageUrl);
-                Image image = new ImageIcon(url).getImage();
-                setIcon(new ImageIcon(image));
-            } catch (Exception e) {
-                setIcon(null);
-            }
-        } else {
-            setIcon(null);
-        }
-        
-        if (isSelected) {
-            setBackground(table.getSelectionBackground());
-            setForeground(table.getSelectionForeground());
-        } else {
-            setBackground(table.getBackground());
-            setForeground(table.getForeground());
-        }
-        
-        setHorizontalAlignment(JLabel.CENTER);
-        
-        return this;
-    }*/
+
     /**
      * Carga una imagen a partir de la url
      * @param name url de la imagen

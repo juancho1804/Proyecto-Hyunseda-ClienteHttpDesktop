@@ -74,8 +74,11 @@ public class HomeUserController extends Window implements Initializable {
     private double yOffset=0;
 
 
-
+    @Getter
+    @Setter
     private IShoppingCartService shoppingCartService = new ShoppingCartService();
+    @Getter
+    @Setter
     private List<Item>items=new ArrayList<>();
     VerCarritoController carritoController = new VerCarritoController();
 
