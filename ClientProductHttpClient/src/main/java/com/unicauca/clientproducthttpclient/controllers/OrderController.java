@@ -20,9 +20,7 @@ public class OrderController {
     public Order createOrder(Order order) {
         return this.orderService.createOrder(order);
     }
-    public void createOrderClient(Integer clientId, Order order){
-        this.orderService.createOrderClient(clientId, order);
-    }
+
 
 
 }

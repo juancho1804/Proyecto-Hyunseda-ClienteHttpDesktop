@@ -74,6 +74,11 @@ public class ClientRestRepository implements IClientRestRepository{
     public Client crearCliente(Client client) {
         CloseableHttpClient httpClient = HttpClients.createDefault();
         try {
+            User user = findByUsername();
+            client.setUsername(user.getUsername());
+            client.setPassword(user.getPassword());
+            client.setRoleModel(user.getRoleModel());
+            client.setEmail(user.getEmail());
             String url = "http://localhost:8003/clients";
             HttpPost httpPost = new HttpPost(url);
             ObjectMapper objectMapper = new ObjectMapper();

@@ -4,11 +4,14 @@
  */
 package com.unicauca.clientproducthttpclient.domain.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.unicauca.clientproducthttpclient.designpatterns.state.State;
 import com.unicauca.clientproducthttpclient.designpatterns.state.StateEntregado;
 import com.unicauca.clientproducthttpclient.designpatterns.state.StateEnviado;
 import com.unicauca.clientproducthttpclient.designpatterns.state.StateSolicitado;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -18,6 +21,8 @@ import java.util.List;
  *
  * @author Juan
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
+@Data
 public class Order {
 
     @JsonProperty("id")
@@ -27,12 +32,15 @@ public class Order {
     @JsonProperty("state")
     State state;
     @JsonProperty("items")
-    List<Item> items;
+    String items;
+    @JsonProperty("idClient")
+    Integer idClient;
 
-    public Order() {
+    public Order(Integer idClient) {
         LocalDateTime fechaHoraActual = LocalDateTime.now();
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         this.date=fechaHoraActual.format(formato);
+        this.idClient=idClient;
         solicitado();
     }
     public void solicitado(){
@@ -45,36 +53,6 @@ public class Order {
         this.state=new StateEntregado();
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public State getState() {
-        return state;
-    }
-
-    public void setState(State state) {
-        this.state = state;
-    }
-
-    public List<Item> getItems() {
-        return items;
-    }
-    public void setItems(List<Item> items) {
-        this.items = items;
-    }
     
     
 }

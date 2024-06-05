@@ -1,10 +1,15 @@
 package com.unicauca.clientproducthttpclient.controllers;
 
 import com.unicauca.clientproducthttpclient.access.ClientRestRepository;
+import com.unicauca.clientproducthttpclient.access.IOrderRepository;
+import com.unicauca.clientproducthttpclient.access.OrderRestRepository;
 import com.unicauca.clientproducthttpclient.access.UserRestRepository;
 import com.unicauca.clientproducthttpclient.domain.entities.Client;
+import com.unicauca.clientproducthttpclient.domain.entities.Order;
 import com.unicauca.clientproducthttpclient.domain.entities.Role;
 import com.unicauca.clientproducthttpclient.domain.entities.User;
+import com.unicauca.clientproducthttpclient.domain.services.ClientService;
+import com.unicauca.clientproducthttpclient.domain.services.IClientService;
 import com.unicauca.clientproducthttpclient.domain.services.IUserService;
 import com.unicauca.clientproducthttpclient.domain.services.UserService;
 import com.unicauca.clientproducthttpclient.util.Resultado;
@@ -94,17 +99,20 @@ public class LoginController {
                 homeUserController.setStage(stage);
                 stage.show();
                 cerrarVentana();
-                ClientRestRepository clientRestRepository=new ClientRestRepository();
+                //ClientRestRepository clientRestRepository=new ClientRestRepository();
+                IClientService clientService=new ClientService();
                 Client client=new Client();
-                client.setFirstName("Primer PRUEBAAAAm");
+                client.setFirstName("Primer PRUEBAjsjsjs");
                 client.setLastName("Seguno nombre");
                 client.setAddress("Mi email");
-                User user1=clientRestRepository.findByUsername();
-                client.setUsername(user1.getUsername());
-                client.setPassword(user1.getPassword());
-                client.setEmail(user1.getEmail());
-                Client client1=clientRestRepository.crearCliente(client);
-                System.out.println(client1.getId()+client1.getPassword());
+                IOrderRepository orderRepository=new OrderRestRepository();
+                //User user1=clientRestRepository.findByUsername();
+                //client.setUsername(user1.getUsername());
+                //client.setPassword(user1.getPassword());
+                //client.setEmail(user1.getEmail());
+                //Client client1=clientService.guardarCliente(client);
+                Order order=orderRepository.createOrderClient(new Order(clientService.guardarCliente(client).getId()));
+                System.out.println(order.getIdClient());
                 /*
                 if(clientRestRepository.findClient()!=null){
                     clientRestRepository.updateClient(client);

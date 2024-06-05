@@ -2,6 +2,7 @@ package com.unicauca.clientproducthttpclient.domain.services;
 
 
 import com.unicauca.clientproducthttpclient.access.IOrderRepository;
+import com.unicauca.clientproducthttpclient.domain.entities.Client;
 import com.unicauca.clientproducthttpclient.domain.entities.Order;
 
 public class OrderService implements IOrderService {
@@ -15,7 +16,7 @@ public class OrderService implements IOrderService {
         return repo.create(order);
     }
 
-    public void createOrderClient(Integer clientId, Order order) {
-        repo.createOrderClient(clientId, order);
+    public Order createOrderClient(Order order) {
+        return repo.createOrderClient(order);
     }
 }

@@ -28,7 +28,7 @@ public class OrderRestRepository implements IOrderRepository{
             CloseableHttpClient httpClient = HttpClients.createDefault();
 
             // Especificar la URL a la que se enviará la solicitud POST
-            String url = "http://localhost:8002/order";
+            String url = "http://localhost:8002/order/";
 
             // Crear un objeto HttpPost con la URL especificada
             HttpPost httpPost = new HttpPost(url);
@@ -75,14 +75,14 @@ public class OrderRestRepository implements IOrderRepository{
         return null;
     }
 
-
-    public void createOrderClient(Integer id,Order order) {
+/*
+    public void createOrderClient(Order order) {
         try {
             // Crear un objeto CloseableHttpClient
             CloseableHttpClient httpClient = HttpClients.createDefault();
 
             // Especificar la URL a la que se enviará la solicitud POST
-            String url = "http://localhost:8002/order/"+id;
+            String url = "http://localhost:8002/order/"+order.getIdClient();
 
             // Crear un objeto HttpPost con la URL especificada
             HttpPost httpPost = new HttpPost(url);
@@ -131,5 +131,58 @@ public class OrderRestRepository implements IOrderRepository{
         }
 
     }
+
+ */
+public Order createOrderClient(Order order) {
+    Order createdOrder = null; // Aquí almacenaremos la orden creada
+
+    try {
+        // Crear un objeto CloseableHttpClient
+        CloseableHttpClient httpClient = HttpClients.createDefault();
+
+        // Especificar la URL a la que se enviará la solicitud POST
+        String url = "http://localhost:8002/order/"+order.getIdClient();
+
+        // Crear un objeto HttpPost con la URL especificada
+        HttpPost httpPost = new HttpPost(url);
+
+        // Crear un objeto ObjectMapper de Jackson
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        // Convertir el objeto a JSON
+        String jsonRequest = objectMapper.writeValueAsString(order);
+
+        // Configurar la entidad de la solicitud con el JSON
+        StringEntity entity = new StringEntity(jsonRequest);
+        httpPost.setEntity(entity);
+
+        // Configurar las cabeceras de la solicitud
+        httpPost.setHeader("Content-Type", "application/json");
+        // Si es necesario, puedes configurar otras cabeceras aquí
+
+        // Ejecutar la solicitud y obtener la respuesta
+        HttpResponse response = httpClient.execute(httpPost);
+
+        // Verificar si la respuesta es exitosa (código 200)
+        if (response.getStatusLine().getStatusCode() == 200) {
+            // Si la respuesta es exitosa, asignamos la orden creada a createdOrder
+            createdOrder = order;
+        }
+
+        // Cerrar el cliente HttpClient
+        httpClient.close();
+
+    } catch (JsonProcessingException ex) {
+        Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (UnsupportedEncodingException ex) {
+        Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (IOException ex) {
+        Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+    }
+
+    // Devolver la orden creada (puede ser null si hubo un error)
+    return createdOrder;
+}
+
 
 }
