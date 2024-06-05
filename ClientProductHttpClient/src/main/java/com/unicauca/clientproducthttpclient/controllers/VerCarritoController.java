@@ -143,13 +143,16 @@ public class VerCarritoController extends Window implements Initializable, Obser
 
     @FXML
     public void btnOnActionPagar(ActionEvent event){
-        this.scrollVerCarrito.setVisible(false);
-        this.pnlPago.setVisible(true);
-        this.btnVolver.setOnAction(this::btnOnActionVolver2);
-        this.btnPagar.setVisible(false);
-        this.btnConfirmarPago.setVisible(true);
-        updateLblItems();
-
+        if(shoppingCartService.getShoppingCart().getItems().isEmpty()){
+            Utilities.mostrarAlerta("Información","El carrito esta vacío");
+        }else{
+            this.scrollVerCarrito.setVisible(false);
+            this.pnlPago.setVisible(true);
+            this.btnVolver.setOnAction(this::btnOnActionVolver2);
+            this.btnPagar.setVisible(false);
+            this.btnConfirmarPago.setVisible(true);
+            updateLblItems();
+        }
 
     }
 

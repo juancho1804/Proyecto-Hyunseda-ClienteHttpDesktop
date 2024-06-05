@@ -6,6 +6,7 @@ import com.unicauca.clientproducthttpclient.designpatterns.strategy.OpenWhatsApp
 import com.unicauca.clientproducthttpclient.designpatterns.strategy.SendEmailStrategy;
 import com.unicauca.clientproducthttpclient.domain.entities.Item;
 import com.unicauca.clientproducthttpclient.domain.services.*;
+import com.unicauca.clientproducthttpclient.util.Utilities;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -164,31 +165,36 @@ public class HomeUserController extends Window implements Initializable {
 
 
     public void btnOnActionVerCarrito(ActionEvent event){
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(HomeUserController.class.getResource("/views/verCarrito.fxml"));
-            //VerCarritoController carritoController = new VerCarritoController();
-            fxmlLoader.setController(this.carritoController);
-            this.carritoController.setHomeUserController(this);
-            Scene scene = new Scene(fxmlLoader.load(), 1216, 714);
-            scene.setOnMousePressed(event1 -> {
-                xOffset = event1.getSceneX();
-                yOffset = event1.getSceneY();
-            });
-            scene.setOnMouseDragged(event1 -> {
-                Stage stage = (Stage) scene.getWindow();
-                stage.setX(event1.getScreenX() - xOffset);
-                stage.setY(event1.getScreenY() - yOffset);
-            });
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.initStyle(StageStyle.UNDECORATED);
-            carritoController.setStage(stage);//nueva linea
-            stage.show();
-            cerrarVentana();
+        if(shoppingCartService.getShoppingCart().getItems().isEmpty()){
+            Utilities.mostrarAlerta("Información","El carrito está vacío.");
+        }else {
 
-        } catch (IOException var9) {
-            IOException e = var9;
-            e.printStackTrace();
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(HomeUserController.class.getResource("/views/verCarrito.fxml"));
+                //VerCarritoController carritoController = new VerCarritoController();
+                fxmlLoader.setController(this.carritoController);
+                this.carritoController.setHomeUserController(this);
+                Scene scene = new Scene(fxmlLoader.load(), 1216, 714);
+                scene.setOnMousePressed(event1 -> {
+                    xOffset = event1.getSceneX();
+                    yOffset = event1.getSceneY();
+                });
+                scene.setOnMouseDragged(event1 -> {
+                    Stage stage = (Stage) scene.getWindow();
+                    stage.setX(event1.getScreenX() - xOffset);
+                    stage.setY(event1.getScreenY() - yOffset);
+                });
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.initStyle(StageStyle.UNDECORATED);
+                carritoController.setStage(stage);//nueva linea
+                stage.show();
+                cerrarVentana();
+
+            } catch (IOException var9) {
+                IOException e = var9;
+                e.printStackTrace();
+            }
         }
     }
 

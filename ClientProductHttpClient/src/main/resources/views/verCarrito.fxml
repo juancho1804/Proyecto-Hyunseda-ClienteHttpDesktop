@@ -252,7 +252,7 @@
                                     <Font name="SansSerif Bold" size="28.0" />
                                  </font>
                               </Label>
-                              <Button fx:id="btnConfirmarPago" layoutX="396.0" layoutY="8.0" mnemonicParsing="false" onAction="#btnOnActionConfirmarPago" prefHeight="44.0" prefWidth="187.0" stylesheets="@../styles/dashboardDesigns.css" text="Confirmar pago" visible="false">
+                              <Button fx:id="btnConfirmarPago" layoutX="396.0" layoutY="8.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="187.0" stylesheets="@../styles/dashboardDesigns.css" text="Confirmar pago" visible="false">
                                  <styleClass>
                                     <String fx:value="botonPagar" />
                                     <String fx:value="shadow" />

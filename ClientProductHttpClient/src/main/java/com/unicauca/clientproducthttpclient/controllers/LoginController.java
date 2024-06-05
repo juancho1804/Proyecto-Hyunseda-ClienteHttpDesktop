@@ -96,9 +96,16 @@ public class LoginController {
                 cerrarVentana();
                 ClientRestRepository clientRestRepository=new ClientRestRepository();
                 Client client=new Client();
-                client.setFirstName("Primer nombre");
+                client.setFirstName("Primer PRUEBAAAAm");
                 client.setLastName("Seguno nombre");
                 client.setAddress("Mi email");
+                User user1=clientRestRepository.findByUsername();
+                client.setUsername(user1.getUsername());
+                client.setPassword(user1.getPassword());
+                client.setEmail(user1.getEmail());
+                Client client1=clientRestRepository.crearCliente(client);
+                System.out.println(client1.getId()+client1.getPassword());
+                /*
                 if(clientRestRepository.findClient()!=null){
                     clientRestRepository.updateClient(client);
                     System.out.println("Cliente actualizado");
@@ -110,6 +117,8 @@ public class LoginController {
                     clientRestRepository.crearCliente(client);
                     System.out.println("Cliente creado");
                 }
+
+                 */
             }
 
         }else{
