@@ -111,8 +111,8 @@ public class LoginController {
                 //client.setPassword(user1.getPassword());
                 //client.setEmail(user1.getEmail());
                 //Client client1=clientService.guardarCliente(client);
-                Order order=orderRepository.createOrderClient(new Order(clientService.guardarCliente(client).getId()));
-                System.out.println(order.getIdClient());
+                //Order order=orderRepository.createOrderClient(new Order(clientService.guardarCliente(client).getId()));
+                //System.out.println(order.getIdClient());
                 /*
                 if(clientRestRepository.findClient()!=null){
                     clientRestRepository.updateClient(client);

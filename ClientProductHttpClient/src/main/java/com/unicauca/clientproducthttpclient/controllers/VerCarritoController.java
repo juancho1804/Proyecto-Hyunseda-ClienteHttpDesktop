@@ -2,11 +2,10 @@ package com.unicauca.clientproducthttpclient.controllers;
 
 import co.unicauca.microkernel.common.payhuynseda.Payment;
 import com.unicauca.clientproducthttpclient.access.ClientRestRepository;
+import com.unicauca.clientproducthttpclient.access.IOrderRepository;
+import com.unicauca.clientproducthttpclient.access.OrderRestRepository;
 import com.unicauca.clientproducthttpclient.designpatterns.observer.Observer;
-import com.unicauca.clientproducthttpclient.domain.entities.Client;
-import com.unicauca.clientproducthttpclient.domain.entities.Item;
-import com.unicauca.clientproducthttpclient.domain.entities.Product;
-import com.unicauca.clientproducthttpclient.domain.entities.User;
+import com.unicauca.clientproducthttpclient.domain.entities.*;
 import com.unicauca.clientproducthttpclient.domain.services.*;
 import com.unicauca.clientproducthttpclient.util.Messages;
 import com.unicauca.clientproducthttpclient.util.Utilities;
@@ -165,12 +164,13 @@ public class VerCarritoController extends Window implements Initializable, Obser
             lblAdvertenciaCampos.setVisible(false);
             String method= cboMetodoPago.getValue();
             try {
-                ClientRestRepository clientRestRepository=new ClientRestRepository();
+                IClientService clientService = new ClientService();
+                IOrderRepository orderRepository=new OrderRestRepository();
                 Client client=new Client();
-                client.setFirstName("Primer PRUEBAjsjsjs");
-                client.setLastName("Seguno nombre");
-                client.setAddress("Mi email");
-
+                client.setFirstName(txtNombres.getText());
+                client.setLastName(txtApellidos.getText());
+                client.setAddress(txtDireccion.getText());
+                orderRepository.createOrderClient(new Order(clientService.guardarCliente(client).getId(),this.items));
 
                 DeliveryPluginManager.init(basePath);
                 //Console presentationObject = new Console();
