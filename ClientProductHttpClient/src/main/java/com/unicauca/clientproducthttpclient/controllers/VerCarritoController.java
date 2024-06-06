@@ -8,6 +8,7 @@ import com.unicauca.clientproducthttpclient.designpatterns.observer.Observer;
 import com.unicauca.clientproducthttpclient.domain.entities.*;
 import com.unicauca.clientproducthttpclient.domain.services.*;
 import com.unicauca.clientproducthttpclient.util.Messages;
+import com.unicauca.clientproducthttpclient.util.ReceiptGenerator;
 import com.unicauca.clientproducthttpclient.util.Utilities;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
@@ -171,6 +172,15 @@ public class VerCarritoController extends Window implements Initializable, Obser
                 client.setLastName(txtApellidos.getText());
                 client.setAddress(txtDireccion.getText());
                 orderRepository.createOrderClient(new Order(clientService.guardarCliente(client).getId(),this.items));
+
+                ReceiptGenerator receiptGenerator = new ReceiptGenerator();
+                receiptGenerator.generateReceiptPDF(items, "D:\\pdfHyunseda\\Orden123.pdf");
+
+
+
+
+
+
 
                 DeliveryPluginManager.init(basePath);
                 //Console presentationObject = new Console();

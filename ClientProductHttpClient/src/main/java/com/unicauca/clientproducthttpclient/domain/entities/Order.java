@@ -11,6 +11,7 @@ import com.unicauca.clientproducthttpclient.designpatterns.state.StateEntregado;
 import com.unicauca.clientproducthttpclient.designpatterns.state.StateEnviado;
 import com.unicauca.clientproducthttpclient.designpatterns.state.StateSolicitado;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDateTime;
@@ -21,6 +22,7 @@ import java.util.List;
  *
  * @author Juan
  */
+@NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 public class Order {
@@ -35,6 +37,7 @@ public class Order {
     String items;
     @JsonProperty("idClient")
     Integer idClient;
+
 
     public Order(Integer idClient, List<Item>items) {
         LocalDateTime fechaHoraActual = LocalDateTime.now();

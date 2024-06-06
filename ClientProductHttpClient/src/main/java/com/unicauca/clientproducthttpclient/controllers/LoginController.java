@@ -25,7 +25,11 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class LoginController {
     private final IUserService userService;
@@ -106,6 +110,8 @@ public class LoginController {
                 client.setLastName("Seguno nombre");
                 client.setAddress("Mi email");
                 IOrderRepository orderRepository=new OrderRestRepository();
+                Order order=orderRepository.findOrderByClientId(460L);
+                System.out.println(order.getItems());
                 //User user1=clientRestRepository.findByUsername();
                 //client.setUsername(user1.getUsername());
                 //client.setPassword(user1.getPassword());
@@ -127,6 +133,30 @@ public class LoginController {
                 }
 
                  */
+
+                String enlaceCompartido = "https://dl.dropboxusercontent.com/scl/fi/y2ms30krzra7cfekdgj3v/Orden123.pdf?rlkey=2c7nsazmmusvr75amg9p6a4yv&dl=0";
+
+                try {
+                    URL url = new URL(enlaceCompartido);
+                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                    connection.setRequestMethod("GET");
+
+                    InputStream inputStream = connection.getInputStream();
+                    FileOutputStream outputStream = new FileOutputStream("archivo_descargado.pdf");
+
+                    byte[] buffer = new byte[1024];
+                    int bytesRead;
+                    while ((bytesRead = inputStream.read(buffer)) != -1) {
+                        outputStream.write(buffer, 0, bytesRead);
+                    }
+
+                    outputStream.close();
+                    inputStream.close();
+
+                    System.out.println("Archivo descargado exitosamente.");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
 
         }else{
