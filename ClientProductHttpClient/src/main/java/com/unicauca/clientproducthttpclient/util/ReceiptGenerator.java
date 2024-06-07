@@ -23,7 +23,7 @@ import com.unicauca.clientproducthttpclient.domain.entities.Order;
 
 public class ReceiptGenerator {
 
-    private static final String ACCESS_TOKEN = "your_access_token";
+    private static final String tokendrop = "your_access_token";
 
 
     public String generateReceiptPDF(List<Item> items, String filePath, Order order) {
@@ -67,7 +67,7 @@ public class ReceiptGenerator {
 
 private static String uploadToDropbox(String filePath) {
     DbxRequestConfig config = DbxRequestConfig.newBuilder("dropbox/Hyunseda").build();
-    DbxClientV2 client = new DbxClientV2(config, ACCESS_TOKEN);
+    DbxClientV2 client = new DbxClientV2(config, tokendrop);
     String enlaceWeb = null;
 
     try {
