@@ -61,7 +61,7 @@
                         <AnchorPane prefHeight="33.0" prefWidth="1300.0" styleClass="pnlNorte" stylesheets="@../styles/dashboardDesigns.css" BorderPane.alignment="CENTER">
                            <children>
                               <FontAwesomeIconView fill="#101305" glyphName="USER" layoutX="12.0" layoutY="35.0" size="3em" wrappingWidth="27.0" />
-                              <Label layoutX="45.0" layoutY="10.0" prefHeight="26.0" prefWidth="80.0" text="Juan">
+                              <Label fx:id="lblUsuario" layoutX="45.0" layoutY="10.0" prefHeight="26.0" prefWidth="80.0" text="Juan">
                                  <font>
                                     <Font name="SansSerif Bold" size="16.0" />
                                  </font>

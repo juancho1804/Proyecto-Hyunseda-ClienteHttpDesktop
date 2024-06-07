@@ -23,4 +23,7 @@ public class OrderService implements IOrderService {
     public List<Order> getOrdersByUsername(String username) {
         return repo.findOrdersByUserOfClients(username);
     }
+    public List<Order> findAll(){
+        return repo.findAll();
+    }
 }

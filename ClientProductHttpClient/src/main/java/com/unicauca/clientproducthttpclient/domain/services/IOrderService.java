@@ -10,4 +10,5 @@ public interface IOrderService {
     public Order createOrder(Order order);
     public Order createOrderClient(Order order, List<Item> items);
     public List<Order> getOrdersByUsername(String username);
+    public List<Order> findAll();
 }

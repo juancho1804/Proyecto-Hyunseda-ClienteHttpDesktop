@@ -23,7 +23,7 @@ import com.unicauca.clientproducthttpclient.domain.entities.Order;
 
 public class ReceiptGenerator {
 
-    private static final String tokendrop = "your access";
+    private static final String tokendrop = "sl.B2vnWVt-PSW_mgYOyXPRJMcQ5pmj_hLQqVlHchLkEnb2ACCRWTg93rVTYIuCfQVkepRisWAekXeG5P125acqhYSfXkZjmbbV3WJhx-uOKBf-hc2MGsVP0Yyy2BgmfVcRJ1m8Ql121hmwRGY";
 
 
     public String generateReceiptPDF(List<Item> items, String filePath, Order order) {

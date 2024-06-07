@@ -1,28 +1,14 @@
 package com.unicauca.clientproducthttpclient.controllers;
 
-import com.unicauca.clientproducthttpclient.domain.entities.Category;
-import com.unicauca.clientproducthttpclient.domain.services.IProductService;
-import com.unicauca.clientproducthttpclient.domain.services.IUserService;
-import com.unicauca.clientproducthttpclient.domain.services.ProductService;
-import com.unicauca.clientproducthttpclient.domain.services.UserService;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import com.unicauca.clientproducthttpclient.domain.services.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
-
-import java.io.IOException;
 import java.net.URL;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -43,6 +29,8 @@ public class HomeAdminController  extends Window implements Initializable{
     private Label lblCantidadProductos;
     @FXML
     private Label lblCantidadUsuarios;
+    @FXML
+    private Label lblCantidadOrdenes;
     @FXML
     private AnchorPane pnlInicio;
     @FXML
@@ -68,17 +56,13 @@ public class HomeAdminController  extends Window implements Initializable{
         this.btnClose.setOnAction(this::btnOnActionClose);
         this.lblCantidadProductos.setText(""+lblOnActionCantidadProductos());
         this.lblCantidadUsuarios.setText(""+lblOnActionCantidadUsuarios());
+        this.lblCantidadOrdenes.setText(""+lblOnActionCantidadOrdenes());
         initializelblUsuario();
         inicializarGraficaProductosPorCategoria();
 
 
 
     }
-
-    public void setLblUsuario(String text){
-        lblUsuario.setText(text);
-    }
-
 
     public void btnOnActionInicio(ActionEvent event){
         pnlCategorias.setVisible(false);
@@ -95,6 +79,10 @@ public class HomeAdminController  extends Window implements Initializable{
     public int lblOnActionCantidadUsuarios(){
         IUserService userService = new UserService();
         return userService.findAll().size();
+    }
+    public int lblOnActionCantidadOrdenes(){
+        IOrderService orderService = new OrderService();
+        return orderService.findAll().size();
     }
 
 

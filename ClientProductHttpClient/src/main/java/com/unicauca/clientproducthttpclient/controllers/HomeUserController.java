@@ -92,6 +92,7 @@ public class HomeUserController extends Window implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        this.initializelblUsuario();
         this.items.addAll(this.getData());
         btnClose.setOnAction(this::btnOnActionClose);
         btnMinimize.setOnAction(this::btnOnActionMinimize);

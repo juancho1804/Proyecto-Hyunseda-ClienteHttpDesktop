@@ -6,21 +6,20 @@ import java.util.Map;
 
 public interface IProductRepository {
 
-    public List<Product> findAll();
+    List<Product> findAll();
 
-    Product findById(int id);
-    
-    public List<Product> findByName(String name);
+    List<Product> findByName(String name);
 
-    public void create(Product product);
+    void create(Product product);
 
-    public boolean edit(int id, Product productUpdated);
+    boolean edit(int id, Product productUpdated);
 
-    public boolean delete(int id);
+    boolean delete(int id);
 
-    public Map<String, Integer> contarProductosPorCategoria();
+    Map<String, Integer> contarProductosPorCategoria();
 
-    public List<Product> findById(String id);
-    public List<Product> findByCategoryName(String name);
+    List<Product> findById(String id);
+
+    List<Product> findByCategoryName(String name);
 
 }
