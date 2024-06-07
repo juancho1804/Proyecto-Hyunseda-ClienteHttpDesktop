@@ -77,11 +77,6 @@ public class LoginController {
                 stage.setScene(scene);
                 stage.initStyle(StageStyle.UNDECORATED);
                 stage.show();
-                ClientRestRepository clientRestRepository=new ClientRestRepository();
-
-                Client client2 = clientRestRepository.findClient();
-                System.out.println("El cliente es"+client2.getUsername());
-
                 cerrarVentana();
             }else{
                 HomeUserController homeUserController=new HomeUserController();

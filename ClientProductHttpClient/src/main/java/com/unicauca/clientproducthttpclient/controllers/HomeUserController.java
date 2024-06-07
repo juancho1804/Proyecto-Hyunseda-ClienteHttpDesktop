@@ -218,7 +218,7 @@ public class HomeUserController extends Window implements Initializable {
                 FXMLLoader fxmlLoader = new FXMLLoader(HomeUserController.class.getResource("/views/orders.fxml"));
                 OrdersController ordersController = new OrdersController();
                 fxmlLoader.setController(ordersController);
-                Scene scene = new Scene(fxmlLoader.load(), 1030, 714);
+                Scene scene = new Scene(fxmlLoader.load(), 1197, 714);
                 scene.setOnMousePressed(event1 -> {
                     xOffset = event1.getSceneX();
                     yOffset = event1.getSceneY();

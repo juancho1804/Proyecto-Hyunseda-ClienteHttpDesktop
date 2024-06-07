@@ -96,7 +96,8 @@ public Order createOrderClient(Order order, List<Item> items) {
 
     try {
         ReceiptGenerator receiptGenerator = new ReceiptGenerator();
-        Long idOrden=this.findMaxId()+1;
+        Long idOrden=this.findMaxId();
+
         String rutaOrden="D:\\pdfHyunseda\\Orden"+idOrden+".pdf";
         String recibo =receiptGenerator.generateReceiptPDF(items,rutaOrden,order);
         order.setItems(recibo);
@@ -191,7 +192,7 @@ public Order createOrderClient(Order order, List<Item> items) {
 
 
     public Long findMaxId() {
-        Long maxId = null;
+        Long maxId=null;
 
         try {
             // Crear un objeto CloseableHttpClient
@@ -211,6 +212,8 @@ public Order createOrderClient(Order order, List<Item> items) {
                 // Leer la respuesta y obtener el máximo ID
                 String responseBody = EntityUtils.toString(response.getEntity());
                 maxId = Long.parseLong(responseBody);
+                System.out.println(maxId);
+
             }
 
             // Cerrar el cliente HttpClient
