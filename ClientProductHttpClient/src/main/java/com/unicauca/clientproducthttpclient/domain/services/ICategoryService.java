@@ -13,13 +13,13 @@ import java.util.List;
  */
 public interface ICategoryService {
     
-    public List<Category> findAll();
-    public void create(Category category);
-    public boolean edit(int id,Category categoryUpdated);
-    public void delete(int id);
-    public List<Category> findById(String id);
-    public List<Category> findByName(String name);
-    public Category findOneByName(String name);
-    public Category findOneById(int id);
+    List<Category> findAll();
+    void create(Category category);
+    boolean edit(int id,Category categoryUpdated);
+    void delete(int id);
+    List<Category> findById(String id);
+    List<Category> findByName(String name);
+    Category findOneByName(String name);
+    Category findOneById(int id);
     
 }

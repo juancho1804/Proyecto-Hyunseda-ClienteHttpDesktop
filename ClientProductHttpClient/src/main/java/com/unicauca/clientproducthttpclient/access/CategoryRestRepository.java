@@ -78,88 +78,6 @@ public class CategoryRestRepository implements ICategoryRepository{
         return list;
     }
 
-    public List<Category> findById(String id) {
-        HttpClient httpClient = HttpClients.createDefault();
-        ObjectMapper mapper = new ObjectMapper();
-        List<Category> categoryList = new ArrayList<>(); // Lista para almacenar los productos
-
-        try {
-            String apiUrl;
-            if (id.isEmpty()) {
-                // Si el campo de búsqueda está vacío, obtener todos los productos
-                apiUrl = "http://localhost:8001/CategoryModel";
-            } else {
-                // Si el campo de búsqueda tiene un valor, buscar por coincidencia de cadenas en el nombre
-                String encodedId= id.replace(" ","%20");
-                apiUrl = "http://localhost:8001/CategoryModel/findByMatchingId/" + encodedId;
-            }
-
-            // Crear una solicitud GET para obtener los productos
-            HttpGet request = new HttpGet(apiUrl);
-
-            // Ejecutar la solicitud y obtener la respuesta
-            HttpResponse response = httpClient.execute(request);
-
-            // Verificar el código de estado de la respuesta
-            int statusCode = response.getStatusLine().getStatusCode();
-            if (statusCode == 200) {
-                // La solicitud fue exitosa, procesar la respuesta
-                String jsonResponse = EntityUtils.toString(response.getEntity());
-
-                // Mapear la respuesta JSON a objetos Product
-                categoryList = Arrays.asList(mapper.readValue(jsonResponse, Category[].class));
-            } else {
-                // La solicitud falló, mostrar el código de estado
-                Logger.getLogger(CategoryRestRepository.class.getName()).log(Level.SEVERE, null, "Error al obtener productos. Código de estado: " + statusCode);
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(CategoryRestRepository.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return categoryList;
-    }
-
-    public List<Category> findByName(String name) {
-        HttpClient httpClient = HttpClients.createDefault();
-        ObjectMapper mapper = new ObjectMapper();
-        List<Category> categoryList = new ArrayList<>(); // Lista para almacenar los productos
-
-        try {
-            String apiUrl;
-            if (name.isEmpty()) {
-                // Si el campo de búsqueda está vacío, obtener todos los productos
-                apiUrl = "http://localhost:8001/CategoryModel";
-            } else {
-                String encodedName= name.replace(" ","%20");
-                // Si el campo de búsqueda tiene un valor, buscar por coincidencia de cadenas en el nombre
-                apiUrl = "http://localhost:8001/CategoryModel/findByMatchingName/" + encodedName;
-            }
-
-            // Crear una solicitud GET para obtener los productos
-            HttpGet request = new HttpGet(apiUrl);
-
-            // Ejecutar la solicitud y obtener la respuesta
-            HttpResponse response = httpClient.execute(request);
-
-            // Verificar el código de estado de la respuesta
-            int statusCode = response.getStatusLine().getStatusCode();
-            if (statusCode == 200) {
-                // La solicitud fue exitosa, procesar la respuesta
-                String jsonResponse = EntityUtils.toString(response.getEntity());
-
-                // Mapear la respuesta JSON a objetos Product
-                categoryList = Arrays.asList(mapper.readValue(jsonResponse, Category[].class));
-            } else {
-                // La solicitud falló, mostrar el código de estado
-                Logger.getLogger(CategoryRestRepository.class.getName()).log(Level.SEVERE, null, "Error al obtener productos. Código de estado: " + statusCode);
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(CategoryRestRepository.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return categoryList;
-    }
-
     @Override
     public void create(Category category) {
         try{
@@ -246,11 +164,11 @@ public class CategoryRestRepository implements ICategoryRepository{
             System.out.println("Status code: " + statusCode);
 
             // Si se desea, también se puede obtener y mostrar el cuerpo de la respuesta
-             String responseBody = EntityUtils.toString(response.getEntity());
-             System.out.println("Response body: " + responseBody);
-             if(statusCode==200){
-                 return true;
-             }
+            String responseBody = EntityUtils.toString(response.getEntity());
+            System.out.println("Response body: " + responseBody);
+            if(statusCode==200){
+                return true;
+            }
             // Cerrar el cliente HttpClient
             httpClient.close();
         } catch (JsonProcessingException ex) {
@@ -297,6 +215,97 @@ public class CategoryRestRepository implements ICategoryRepository{
                     .getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+
+    @Override
+    public List<Category> findByName(String name) {
+        HttpClient httpClient = HttpClients.createDefault();
+        ObjectMapper mapper = new ObjectMapper();
+        List<Category> categoryList = new ArrayList<>(); // Lista para almacenar los productos
+
+        try {
+            String apiUrl;
+            if (name.isEmpty()) {
+                // Si el campo de búsqueda está vacío, obtener todos los productos
+                apiUrl = "http://localhost:8001/CategoryModel";
+            } else {
+                String encodedName= name.replace(" ","%20");
+                // Si el campo de búsqueda tiene un valor, buscar por coincidencia de cadenas en el nombre
+                apiUrl = "http://localhost:8001/CategoryModel/findByMatchingName/" + encodedName;
+            }
+
+            // Crear una solicitud GET para obtener los productos
+            HttpGet request = new HttpGet(apiUrl);
+
+            // Ejecutar la solicitud y obtener la respuesta
+            HttpResponse response = httpClient.execute(request);
+
+            // Verificar el código de estado de la respuesta
+            int statusCode = response.getStatusLine().getStatusCode();
+            if (statusCode == 200) {
+                // La solicitud fue exitosa, procesar la respuesta
+                String jsonResponse = EntityUtils.toString(response.getEntity());
+
+                // Mapear la respuesta JSON a objetos Product
+                categoryList = Arrays.asList(mapper.readValue(jsonResponse, Category[].class));
+            } else {
+                // La solicitud falló, mostrar el código de estado
+                Logger.getLogger(CategoryRestRepository.class.getName()).log(Level.SEVERE, null, "Error al obtener productos. Código de estado: " + statusCode);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(CategoryRestRepository.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return categoryList;
+    }
+
+    @Override
+    public List<Category> findById(String id) {
+        HttpClient httpClient = HttpClients.createDefault();
+        ObjectMapper mapper = new ObjectMapper();
+        List<Category> categoryList = new ArrayList<>(); // Lista para almacenar los productos
+
+        try {
+            String apiUrl;
+            if (id.isEmpty()) {
+                // Si el campo de búsqueda está vacío, obtener todos los productos
+                apiUrl = "http://localhost:8001/CategoryModel";
+            } else {
+                // Si el campo de búsqueda tiene un valor, buscar por coincidencia de cadenas en el nombre
+                String encodedId= id.replace(" ","%20");
+                apiUrl = "http://localhost:8001/CategoryModel/findByMatchingId/" + encodedId;
+            }
+
+            // Crear una solicitud GET para obtener los productos
+            HttpGet request = new HttpGet(apiUrl);
+
+            // Ejecutar la solicitud y obtener la respuesta
+            HttpResponse response = httpClient.execute(request);
+
+            // Verificar el código de estado de la respuesta
+            int statusCode = response.getStatusLine().getStatusCode();
+            if (statusCode == 200) {
+                // La solicitud fue exitosa, procesar la respuesta
+                String jsonResponse = EntityUtils.toString(response.getEntity());
+
+                // Mapear la respuesta JSON a objetos Product
+                categoryList = Arrays.asList(mapper.readValue(jsonResponse, Category[].class));
+            } else {
+                // La solicitud falló, mostrar el código de estado
+                Logger.getLogger(CategoryRestRepository.class.getName()).log(Level.SEVERE, null, "Error al obtener productos. Código de estado: " + statusCode);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(CategoryRestRepository.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return categoryList;
+    }
+
+
+
+
+
+
 
     @Override
     public Category findOneByName(String name) {
