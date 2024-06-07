@@ -29,6 +29,7 @@ public class ReceiptGenerator {
     public String generateReceiptPDF(List<Item> items, String filePath, Order order) {
         Document document = new Document(PageSize.A4);
 
+
         try {
             PdfWriter.getInstance(document, new FileOutputStream(filePath));
             document.open();
