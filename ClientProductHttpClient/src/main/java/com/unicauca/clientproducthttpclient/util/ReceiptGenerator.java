@@ -23,7 +23,7 @@ import com.unicauca.clientproducthttpclient.domain.entities.Order;
 
 public class ReceiptGenerator {
 
-    private static final String ACCESS_TOKEN = "sl.B2suKgF7i0ZCsN4EA129OE4JofjwUiij1168jS-ey6DhA2PJVccYnYgcpoUGmsp5rISDTNsR6Xa9Uawa9bNGluBAvmxZ33cTNCjy7QIpM54fp5VG9TibBAbiAdQ684-BP7ivlLMO0FS6ZZY";
+    private static final String ACCESS_TOKEN = "your_access_token";
 
     public String generateReceiptPDF(List<Item> items, String filePath, Order order) {
         Document document = new Document(PageSize.A4);
@@ -64,34 +64,6 @@ public class ReceiptGenerator {
         return uploadToDropbox(filePath);
     }
 
-/*
-    private static void uploadToDropbox(String filePath) {
-        DbxRequestConfig config = DbxRequestConfig.newBuilder("dropbox/Hyunseda").build();
-        DbxClientV2 client = new DbxClientV2(config, ACCESS_TOKEN);
-
-        try {
-            java.io.File file = new java.io.File(filePath);
-            InputStream inputStream = new FileInputStream(file);
-
-            client.files().uploadBuilder("/" + file.getName())
-                    .withMode(WriteMode.ADD)
-                    .uploadAndFinish(inputStream);
-
-            System.out.println("PDF subido exitosamente a Dropbox.");
-
-
-            // Eliminar el archivo local después de subirlo a Dropbox
-            if (file.delete()) {
-                System.out.println("Archivo local eliminado: " + filePath);
-            } else {
-                System.out.println("No se pudo eliminar el archivo local: " + filePath);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
- */
 private static String uploadToDropbox(String filePath) {
     DbxRequestConfig config = DbxRequestConfig.newBuilder("dropbox/Hyunseda").build();
     DbxClientV2 client = new DbxClientV2(config, ACCESS_TOKEN);
