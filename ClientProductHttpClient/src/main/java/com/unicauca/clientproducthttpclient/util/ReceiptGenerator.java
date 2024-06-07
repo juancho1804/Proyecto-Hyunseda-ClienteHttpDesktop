@@ -30,6 +30,7 @@ public class ReceiptGenerator {
         Document document = new Document(PageSize.A4);
 
 
+
         try {
             PdfWriter.getInstance(document, new FileOutputStream(filePath));
             document.open();
