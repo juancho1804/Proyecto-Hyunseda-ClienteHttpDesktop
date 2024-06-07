@@ -21,7 +21,7 @@
          <children>
             <BorderPane layoutX="357.0" layoutY="239.0" prefHeight="714.0" prefWidth="1030.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <top>
-                  <AnchorPane prefHeight="42.0" prefWidth="1030.0" styleClass="semi-top-form" stylesheets="@../styles/dashboardDesigns.css" BorderPane.alignment="CENTER">
+                  <AnchorPane prefHeight="42.0" prefWidth="1198.0" styleClass="semi-top-form" stylesheets="@../styles/dashboardDesigns.css" BorderPane.alignment="CENTER">
                      <children>
                         <AnchorPane layoutX="174.0" layoutY="-4.0" prefHeight="36.0" prefWidth="1030.0" styleClass="top-form" stylesheets="@../styles/dashboardDesigns.css" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
@@ -33,6 +33,11 @@
                               <Button fx:id="btnClose" layoutX="1134.0" layoutY="1.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="36.0" styleClass="close" stylesheets="@../styles/dashboardDesigns.css">
                                  <graphic>
                                     <FontAwesomeIconView glyphName="CLOSE" size="20" />
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="btnVolver" layoutX="1050.0" layoutY="3.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="36.0" styleClass="minimize" stylesheets="@../styles/dashboardDesigns.css">
+                                 <graphic>
+                                    <FontAwesomeIconView glyphName="UNDO" size="20" />
                                  </graphic>
                               </Button>
                            </children>

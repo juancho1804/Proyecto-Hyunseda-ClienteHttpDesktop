@@ -218,6 +218,7 @@ public class HomeUserController extends Window implements Initializable {
                 FXMLLoader fxmlLoader = new FXMLLoader(HomeUserController.class.getResource("/views/orders.fxml"));
                 OrdersController ordersController = new OrdersController();
                 fxmlLoader.setController(ordersController);
+                ordersController.setHomeUserController(this);
                 Scene scene = new Scene(fxmlLoader.load(), 1197, 714);
                 scene.setOnMousePressed(event1 -> {
                     xOffset = event1.getSceneX();
@@ -231,7 +232,7 @@ public class HomeUserController extends Window implements Initializable {
                 Stage stage = new Stage();
                 stage.setScene(scene);
                 stage.initStyle(StageStyle.UNDECORATED);
-                //carritoController.setStage(stage);//nueva linea
+                ordersController.setStage(stage);//nueva linea
                 stage.show();
                 cerrarVentana();
 

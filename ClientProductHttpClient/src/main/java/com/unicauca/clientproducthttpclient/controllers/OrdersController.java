@@ -7,6 +7,7 @@ import com.unicauca.clientproducthttpclient.designpatterns.strategy.SendEmailStr
 import com.unicauca.clientproducthttpclient.domain.entities.Item;
 import com.unicauca.clientproducthttpclient.domain.entities.Order;
 import com.unicauca.clientproducthttpclient.domain.services.*;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -14,6 +15,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -31,6 +33,8 @@ public class OrdersController extends Window implements Initializable {
 
     @FXML
     private Button btnClose;
+    @FXML
+    private Button btnVolver;
 
     @FXML
     private Button btnEmail;
@@ -50,7 +54,9 @@ public class OrdersController extends Window implements Initializable {
     @FXML
     private GridPane grid;
 
-
+    @FXML
+    private Stage stage;
+    private HomeUserController homeUserController;
     private IOrderService orderService = new OrderService();
     private List<Order> orders=new ArrayList<>();
 
@@ -64,6 +70,7 @@ public class OrdersController extends Window implements Initializable {
         btnFacebook.setOnAction(new OpenFacebookPageStrategy()::execute);
         btnInstagram.setOnAction(new OpenInstagramProfile()::execute);
         btnEmail.setOnAction(new SendEmailStrategy()::execute);
+        btnVolver.setOnAction(this::btnOnActionVolver);
         updateGridWithResults(orders);
     }
 
@@ -107,5 +114,13 @@ public class OrdersController extends Window implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    public void btnOnActionVolver(ActionEvent event)  {
+        Stage stage = (Stage) btnVolver.getScene().getWindow();
+        stage.close();
+        homeUserController.getStage().show();
+
     }
 }
