@@ -25,6 +25,7 @@ public class ReceiptGenerator {
 
     private static final String ACCESS_TOKEN = "your_access_token";
 
+
     public String generateReceiptPDF(List<Item> items, String filePath, Order order) {
         Document document = new Document(PageSize.A4);
 
