@@ -35,16 +35,15 @@ public class Order {
     State state;
     @JsonProperty("items")
     String items;
-    @JsonProperty("idClient")
-    Integer idClient;
+    @JsonProperty("clientModel")
+    Client client;
 
 
-    public Order(Integer idClient, List<Item>items) {
+    public Order(Client client) {
         LocalDateTime fechaHoraActual = LocalDateTime.now();
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         this.date=fechaHoraActual.format(formato);
-        this.idClient=idClient;
-        this.items=generateReceipt(items);
+        this.client = client;
         solicitado();
     }
     public void solicitado(){
@@ -55,37 +54,6 @@ public class Order {
     }
     public void entregar(){
         this.state=new StateEntregado();
-    }
-
-    public String generateReceipt(List<Item> items) {
-        StringBuilder receipt = new StringBuilder();
-        receipt.append("Producto\t\t\t\tCantidad\t\tSubtotal\n"); // Ajuste de las tabulaciones
-        //receipt.append("-------------------------------------------------\n"); // Se ajusta el número de guiones
-
-        // Encontrar la longitud máxima del nombre del producto
-        int maxLength = 0;
-        for (Item item : items) {
-            int length = item.getProduct().getName().length();
-            if (length > maxLength) {
-                maxLength = length;
-            }
-        }
-
-        // Construir el recibo
-        for (Item item : items) {
-            String productName = item.getProduct().getName();
-            // Calcular el número de tabulaciones necesarias para mantener el formato
-            int tabs = (int)Math.ceil((double)(maxLength - productName.length()) / 8); // 8 es el ancho de una tabulación en caracteres
-            receipt.append(productName);
-            // Añadir las tabulaciones necesarias para alinear la columna de cantidad
-            for (int i = 0; i < tabs + 2; i++) { // Se añaden dos tabulaciones adicionales para ajustar la apariencia
-                receipt.append("\t");
-            }
-            receipt.append(item.getCantidad()).append("\t\t");
-            receipt.append("$").append(item.getSubtotal()).append(" COP\n");
-        }
-
-        return receipt.toString();
     }
 
 

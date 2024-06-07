@@ -170,16 +170,10 @@ public class VerCarritoController extends Window implements Initializable, Obser
                 Client client=new Client();
                 client.setFirstName(txtNombres.getText());
                 client.setLastName(txtApellidos.getText());
-                client.setAddress(txtDireccion.getText());
-                orderRepository.createOrderClient(new Order(clientService.guardarCliente(client).getId(),this.items));
+                String direccion=txtCiudad.getText()+","+txtBarrio.getText()+","+txtDireccion.getText();
+                client.setAddress(direccion);
 
-                ReceiptGenerator receiptGenerator = new ReceiptGenerator();
-                receiptGenerator.generateReceiptPDF(items, "D:\\pdfHyunseda\\Orden123.pdf");
-
-
-
-
-
+                orderRepository.createOrderClient(new Order(clientService.guardarCliente(client)),this.items);
 
 
                 DeliveryPluginManager.init(basePath);
@@ -191,7 +185,7 @@ public class VerCarritoController extends Window implements Initializable, Obser
                 boolean paymentVerified = payServices.verifyPayment(pay);
 
                 if (paymentVerified) {
-                    Utilities.mostrarAlerta("Información","Ha realizado su pago con éxito, puede revisar su pedido en Ordenes");// Mostrar mensaje de éxito
+                    //Utilities.mostrarAlerta("Información","Ha realizado su pago con éxito, puede revisar su pedido en Ordenes");// Mostrar mensaje de éxito
                     //Messages.sendPaymentConfirmationMessage("jua" , email, phoneNumber);
 
                 } else {

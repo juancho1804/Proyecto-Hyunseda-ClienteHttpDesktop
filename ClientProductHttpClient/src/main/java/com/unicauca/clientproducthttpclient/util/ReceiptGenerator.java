@@ -11,6 +11,7 @@ import com.itextpdf.text.Element;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
+import com.unicauca.clientproducthttpclient.domain.entities.Client;
 import com.unicauca.clientproducthttpclient.domain.entities.Item;
 
 import java.io.*;
@@ -18,16 +19,28 @@ import java.util.List;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.unicauca.clientproducthttpclient.domain.entities.Order;
+
 public class ReceiptGenerator {
 
-    private static final String ACCESS_TOKEN = "sl.B2qKH9K5Fava0qgWtcRPRWkrNx9T4agTwj8zR0h7DOecZ0ianh3VIdLL2Fzn_LhU0LunRctcnC11PYULyPmYlWeaNHTbPZSC8CufO4KuVdnLCsomjsuiRHDatSTcV1x4YGucj-aW0Nx4GdM";
+    private static final String ACCESS_TOKEN = "sl.B2pPK6x_Jczve-7S1uUTzGCjPnoi2INcK73aEMC4H7zLeM7e2jxbmx4MAz9H38IuwVdO8KSfYF6xih9oOB_ms24ozyj4Qlz14Po3m7M66_yqfjNxIiXwaiLDXqv60QrEcecCPwxzBBYoxwI";
 
-    public void generateReceiptPDF(List<Item> items, String filePath) {
+    public String generateReceiptPDF(List<Item> items, String filePath, Order order) {
         Document document = new Document(PageSize.A4);
 
         try {
             PdfWriter.getInstance(document, new FileOutputStream(filePath));
             document.open();
+
+            Paragraph clientParagraph = new Paragraph("Información del cliente: ");
+            clientParagraph.add(new Paragraph("Nombre completo : " + order.getClient().getFirstName()+" "+order.getClient().getLastName()));
+            clientParagraph.add(new Paragraph("Dirección : "+order.getClient().getAddress()));
+            clientParagraph.setAlignment(Element.ALIGN_LEFT);
+            document.add(clientParagraph);
+            document.add(new Paragraph("Fecha de la orden :"+order.getDate()));
+            document.add(new Paragraph("\n"));
+
+
 
             PdfPTable table = new PdfPTable(3); // 3 columnas para Producto, Cantidad y Subtotal
             table.setWidthPercentage(100); // Ancho de la tabla es 100% del ancho de la página
@@ -44,10 +57,11 @@ public class ReceiptGenerator {
             document.close();
             System.out.println("PDF generado exitosamente en: " + filePath);
 
-            uploadToDropbox(filePath);
+           // uploadToDropbox(filePath);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return uploadToDropbox(filePath);
     }
 
 /*

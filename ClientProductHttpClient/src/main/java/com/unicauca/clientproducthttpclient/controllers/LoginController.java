@@ -103,60 +103,6 @@ public class LoginController {
                 homeUserController.setStage(stage);
                 stage.show();
                 cerrarVentana();
-                //ClientRestRepository clientRestRepository=new ClientRestRepository();
-                IClientService clientService=new ClientService();
-                Client client=new Client();
-                client.setFirstName("Primer PRUEBAjsjsjs");
-                client.setLastName("Seguno nombre");
-                client.setAddress("Mi email");
-                IOrderRepository orderRepository=new OrderRestRepository();
-                Order order=orderRepository.findOrderByClientId(460L);
-                System.out.println(order.getItems());
-                //User user1=clientRestRepository.findByUsername();
-                //client.setUsername(user1.getUsername());
-                //client.setPassword(user1.getPassword());
-                //client.setEmail(user1.getEmail());
-                //Client client1=clientService.guardarCliente(client);
-                //Order order=orderRepository.createOrderClient(new Order(clientService.guardarCliente(client).getId()));
-                //System.out.println(order.getIdClient());
-                /*
-                if(clientRestRepository.findClient()!=null){
-                    clientRestRepository.updateClient(client);
-                    System.out.println("Cliente actualizado");
-                }else{
-                    User user1=clientRestRepository.findByUsername();
-                    client.setUsername(user1.getUsername());
-                    client.setPassword(user1.getPassword());
-                    client.setEmail(user1.getEmail());
-                    clientRestRepository.crearCliente(client);
-                    System.out.println("Cliente creado");
-                }
-
-                 */
-
-                String enlaceCompartido = "https://dl.dropboxusercontent.com/scl/fi/y2ms30krzra7cfekdgj3v/Orden123.pdf?rlkey=2c7nsazmmusvr75amg9p6a4yv&dl=0";
-
-                try {
-                    URL url = new URL(enlaceCompartido);
-                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                    connection.setRequestMethod("GET");
-
-                    InputStream inputStream = connection.getInputStream();
-                    FileOutputStream outputStream = new FileOutputStream("archivo_descargado.pdf");
-
-                    byte[] buffer = new byte[1024];
-                    int bytesRead;
-                    while ((bytesRead = inputStream.read(buffer)) != -1) {
-                        outputStream.write(buffer, 0, bytesRead);
-                    }
-
-                    outputStream.close();
-                    inputStream.close();
-
-                    System.out.println("Archivo descargado exitosamente.");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
             }
 
         }else{
