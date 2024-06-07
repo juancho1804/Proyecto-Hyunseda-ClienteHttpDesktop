@@ -6,6 +6,8 @@ package com.unicauca.clientproducthttpclient.domain.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.unicauca.clientproducthttpclient.designpatterns.observerItem.ItemObserver;
+import com.unicauca.clientproducthttpclient.designpatterns.observerOrder.OrderObserver;
 import com.unicauca.clientproducthttpclient.designpatterns.state.State;
 import com.unicauca.clientproducthttpclient.designpatterns.state.StateEntregado;
 import com.unicauca.clientproducthttpclient.designpatterns.state.StateEnviado;
@@ -16,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -39,6 +42,9 @@ public class Order {
     Client client;
 
 
+    private List<OrderObserver> observers = new ArrayList<>();
+
+
     public Order(Client client) {
         LocalDateTime fechaHoraActual = LocalDateTime.now();
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -57,6 +63,23 @@ public class Order {
     }
 
 
-    
-    
+    public void addObserver(OrderObserver observer) {
+        observers.add(observer);
+    }
+
+    // Método para eliminar observadores
+    public void removeObserver(OrderObserver observer) {
+        observers.remove(observer);
+    }
+
+    // Método para notificar a los observadores
+    private void notifyObservers() {
+        for (OrderObserver observer : observers) {
+            observer.onOrderStateChanged(this);
+        }
+    }
+
+
+
+
 }

@@ -166,14 +166,14 @@ public class VerCarritoController extends Window implements Initializable, Obser
             String method= cboMetodoPago.getValue();
             try {
                 IClientService clientService = new ClientService();
-                IOrderRepository orderRepository=new OrderRestRepository();
+                IOrderService orderService=new OrderService();
                 Client client=new Client();
                 client.setFirstName(txtNombres.getText());
                 client.setLastName(txtApellidos.getText());
                 String direccion=txtCiudad.getText()+","+txtBarrio.getText()+","+txtDireccion.getText();
                 client.setAddress(direccion);
 
-                orderRepository.createOrderClient(new Order(clientService.guardarCliente(client)),this.items);
+                orderService.createOrderClient(new Order(clientService.guardarCliente(client)),this.items);
 
 
                 DeliveryPluginManager.init(basePath);

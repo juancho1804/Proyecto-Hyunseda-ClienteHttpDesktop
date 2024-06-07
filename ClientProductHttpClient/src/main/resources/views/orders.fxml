@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="714.0" prefWidth="1030.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <BorderPane layoutX="357.0" layoutY="239.0" prefHeight="714.0" prefWidth="1030.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <top>
+                  <AnchorPane prefHeight="42.0" prefWidth="1030.0" styleClass="semi-top-form" stylesheets="@../styles/dashboardDesigns.css" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane layoutX="174.0" layoutY="-4.0" prefHeight="36.0" prefWidth="1030.0" styleClass="top-form" stylesheets="@../styles/dashboardDesigns.css" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Button fx:id="btnMinimize" layoutX="941.0" layoutY="4.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="36.0" styleClass="minimize" stylesheets="@../styles/dashboardDesigns.css">
+                                 <graphic>
+                                    <FontAwesomeIconView glyphName="MINUS" size="20" />
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                        <ImageView fitHeight="40.0" fitWidth="35.0" layoutX="-278.0" layoutY="-139.0" pickOnBounds="true" preserveRatio="true" x="290.0" y="140.0">
+                           <image>
+                              <Image url="@../hyunsedaimages/logo.png" />
+                           </image>
+                           <viewport>
+                              <Rectangle2D minX="230.0" minY="140.0" width="1.0" />
+                           </viewport>
+                        </ImageView>
+                        <Label layoutX="47.0" layoutY="11.0" prefHeight="2.0" prefWidth="338.0" text="Hyun Seda">
+                           <font>
+                              <Font name="SansSerif Regular" size="14.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="btnClose" layoutX="985.0" layoutY="3.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="36.0" styleClass="close" stylesheets="@../styles/dashboardDesigns.css">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="CLOSE" size="20" />
+                           </graphic>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+               </top>
+               <bottom>
+                  <AnchorPane prefHeight="47.0" prefWidth="1030.0" stylesheets="@../styles/dashboardDesigns.css" BorderPane.alignment="CENTER">
+                     <children>
+                        <Button fx:id="btnInstagram" layoutX="6.0" layoutY="2.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="153.0" styleClass="nav-btn" stylesheets="@../styles/dashboardDesigns.css" text="hyunseda_">
+                           <graphic>
+                              <ImageView fitHeight="37.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../hyunsedaimages/instagram.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="btnFacebook" layoutX="170.0" layoutY="2.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="153.0" styleClass="nav-btn" stylesheets="@../styles/dashboardDesigns.css" text="Hyun Seda">
+                           <graphic>
+                              <ImageView fitHeight="37.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../hyunsedaimages/facebook.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="btnWhatsapp" layoutX="323.0" layoutY="2.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="202.0" styleClass="nav-btn" stylesheets="@../styles/dashboardDesigns.css" text="+57 3147889201">
+                           <graphic>
+                              <ImageView fitHeight="37.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../hyunsedaimages/whatsapp.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="btnEmail" layoutX="515.0" layoutY="2.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="246.0" styleClass="nav-btn" stylesheets="@../styles/dashboardDesigns.css" text="contact@hyun.com.co">
+                           <graphic>
+                              <ImageView fitHeight="37.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../hyunsedaimages/outlook.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                     <styleClass>
+                        <String fx:value="white-bg" />
+                        <String fx:value="semi-top-form" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                  </AnchorPane>
+               </bottom>
+               <center>
+                  <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <content>
+                        <GridPane fx:id="grid">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                        </GridPane>
+                     </content>
+                  </ScrollPane>
+               </center>
+            </BorderPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

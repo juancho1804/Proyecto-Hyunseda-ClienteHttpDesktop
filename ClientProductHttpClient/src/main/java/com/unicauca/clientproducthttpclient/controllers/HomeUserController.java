@@ -30,6 +30,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import static com.unicauca.clientproducthttpclient.access.UserRestRepository.usuarioIngresado;
+
 public class HomeUserController extends Window implements Initializable {
     @FXML
     private Button btnCerrarSesion;
@@ -66,6 +68,10 @@ public class HomeUserController extends Window implements Initializable {
 
     @FXML
     private Button btnBuscar;
+
+    @FXML
+    private Button btnOrdenes;
+
     @FXML
     @Getter
     @Setter
@@ -97,6 +103,7 @@ public class HomeUserController extends Window implements Initializable {
         btnVerCarrito.setOnAction(this::btnOnActionVerCarrito);
         updateGridWithResults(items);
         btnBuscar.setOnAction(this::handleSearch);
+        btnOrdenes.setOnAction(this::btnOnActionOrdenes);
         this.shoppingCartService.addObserver(carritoController);
 
 
@@ -196,6 +203,45 @@ public class HomeUserController extends Window implements Initializable {
                 e.printStackTrace();
             }
         }
+
+
+    }
+
+
+    public void btnOnActionOrdenes(ActionEvent event){
+        IOrderService orderService=new OrderService();
+        if(orderService.getOrdersByUsername(usuarioIngresado.getUsername()).isEmpty()){
+            Utilities.mostrarAlerta("Información","No has hecho ninguna orden.");
+        }else {
+
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(HomeUserController.class.getResource("/views/orders.fxml"));
+                OrdersController ordersController = new OrdersController();
+                fxmlLoader.setController(ordersController);
+                Scene scene = new Scene(fxmlLoader.load(), 1030, 714);
+                scene.setOnMousePressed(event1 -> {
+                    xOffset = event1.getSceneX();
+                    yOffset = event1.getSceneY();
+                });
+                scene.setOnMouseDragged(event1 -> {
+                    Stage stage = (Stage) scene.getWindow();
+                    stage.setX(event1.getScreenX() - xOffset);
+                    stage.setY(event1.getScreenY() - yOffset);
+                });
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.initStyle(StageStyle.UNDECORATED);
+                //carritoController.setStage(stage);//nueva linea
+                stage.show();
+                cerrarVentana();
+
+            } catch (IOException var9) {
+                IOException e = var9;
+                e.printStackTrace();
+            }
+        }
+
+
     }
 
     public void cerrarVentana(){

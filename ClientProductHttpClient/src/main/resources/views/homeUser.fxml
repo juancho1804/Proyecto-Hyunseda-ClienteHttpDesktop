@@ -76,7 +76,7 @@
                                  </graphic>
                               </Button>
                               <Line endX="-18.0" endY="33.0" layoutX="1027.0" layoutY="14.0" startX="-18.0" startY="-14.0" />
-                              <Button fx:id="btnProductos1" layoutX="1027.0" layoutY="8.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="178.0" styleClass="nav-btn" stylesheets="@../styles/dashboardDesigns.css" text="Mis órdenes">
+                              <Button fx:id="btnOrdenes" layoutX="1027.0" layoutY="8.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="178.0" styleClass="nav-btn" stylesheets="@../styles/dashboardDesigns.css" text="Mis órdenes">
                                  <graphic>
                                     <FontAwesomeIconView glyphName="FILE_TEXT" size="1.5em" />
                                  </graphic>

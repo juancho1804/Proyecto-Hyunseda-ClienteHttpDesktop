@@ -192,3 +192,16 @@
 .transparent-button:pressed {
     -fx-background-color: transparent; /* Color de fondo transparente cuando presionado */
 }
+
+.botonDescargarRecibo{
+    -fx-background-color: transparent;
+    -fx-font-family: SansSerif;
+    -fx-font-size: 22;
+    -fx-text-fill: #0789cd; /* Color del texto azul */
+    -fx-border-color: transparent; /* Color del borde transparente */
+    -fx-border-width: 0; /* Ancho del borde 0 */
+    -fx-border-radius: 0; /* Radio del borde 0 */
+    -fx-background-radius: 0; /* Radio del fondo 0 */
+    -fx-padding: 0; /* Relleno 0 */
+    -fx-cursor: hand;
+}

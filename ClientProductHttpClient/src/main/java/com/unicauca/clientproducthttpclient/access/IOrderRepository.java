@@ -11,4 +11,5 @@ public interface IOrderRepository {
     public Order findOrderByClientId(Long id);
     public Order createOrderClient(Order order,List<Item> items);
     public Long findMaxId();
+    public List<Order> findOrdersByUserOfClients(String username);
 }

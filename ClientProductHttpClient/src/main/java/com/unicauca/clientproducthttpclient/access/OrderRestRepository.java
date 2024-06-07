@@ -28,6 +28,7 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.http.HttpRequest;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Level;
@@ -221,6 +222,47 @@ public Order createOrderClient(Order order, List<Item> items) {
 
         // Devolver el máximo ID (puede ser null si hubo un error)
         return maxId;
+    }
+
+    @Override
+    public List<Order> findOrdersByUserOfClients(String username) {
+        List<Order> orders = new ArrayList<>();
+
+        try {
+            // Crear un cliente HttpClient
+            CloseableHttpClient httpClient = HttpClients.createDefault();
+
+            // URL del endpoint
+            String apiUrl = "http://localhost:8002/order/findByUser/" + username;
+
+            // Crear una solicitud GET con la URL
+            HttpGet request = new HttpGet(apiUrl);
+
+            // Ejecutar la solicitud y obtener la respuesta
+            HttpResponse response = httpClient.execute(request);
+
+            // Verificar el código de estado de la respuesta
+            int statusCode = response.getStatusLine().getStatusCode();
+            if (statusCode == 200) {
+                // La solicitud fue exitosa, procesar la respuesta
+                String jsonResponse = EntityUtils.toString(response.getEntity());
+
+                // Convertir la respuesta JSON a objetos Order
+                ObjectMapper mapper = new ObjectMapper();
+                orders = mapper.readValue(jsonResponse, mapper.getTypeFactory().constructCollectionType(List.class, Order.class));
+            } else {
+                // La solicitud falló, mostrar el código de estado
+                Logger.getLogger(OrderRestRepository.class.getName()).log(Level.SEVERE, "Error al obtener órdenes. Código de estado: " + statusCode);
+            }
+
+            // Cerrar el cliente HttpClient
+            httpClient.close();
+
+        } catch (IOException ex) {
+            Logger.getLogger(OrderRestRepository.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return orders;
     }
 
 
