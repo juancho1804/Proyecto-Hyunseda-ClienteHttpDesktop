@@ -7,6 +7,6 @@ import java.io.IOException;
 import java.util.List;
 
 public interface IItemRestRepository {
-    public Item create(Product product, int cantidad) throws IOException;
-    public List<Item> findAll();
+    Item create(Product product, int cantidad) throws IOException;
+    List<Item> findAll();
 }
