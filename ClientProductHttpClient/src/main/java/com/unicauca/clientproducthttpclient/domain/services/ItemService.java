@@ -26,7 +26,7 @@ public class ItemService implements IItemService{
         this.itemRestRepository=itemRestRepository;
     }
     
-    public Item  crearItem(Product product, int cantidad) throws IOException {
+    public Item crearItem(Product product, int cantidad) throws IOException {
          return itemRestRepository.create(product, cantidad);
     }
     public List<Item> obtenerItems(){

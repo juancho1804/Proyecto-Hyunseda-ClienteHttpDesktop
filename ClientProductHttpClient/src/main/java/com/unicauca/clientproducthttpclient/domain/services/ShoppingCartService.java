@@ -6,9 +6,7 @@ package com.unicauca.clientproducthttpclient.domain.services;
 
 import com.unicauca.clientproducthttpclient.designpatterns.observer.Subject;
 import com.unicauca.clientproducthttpclient.domain.entities.Item;
-import com.unicauca.clientproducthttpclient.domain.entities.Product;
 import com.unicauca.clientproducthttpclient.domain.entities.ShoppingCart;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,14 +21,8 @@ public class ShoppingCartService  extends Subject implements IShoppingCartServic
         this.shoppingCart = new ShoppingCart();
     }
 
-    public void agregarProducto(Product producto, int cantidad) {
-        Item item = new Item(producto, cantidad);
-        List<Item> items = shoppingCart.getItems();
-        items.add(item);
-        shoppingCart.setItems(items);
-        actualizarSubTotal();
-    }
 
+    @Override
     public void agregarItem(Item item){
         List<Item> items = shoppingCart.getItems();
         if(items.contains(item)){
@@ -44,17 +36,8 @@ public class ShoppingCartService  extends Subject implements IShoppingCartServic
 
     }
 
-    public void modificarItem(Item item){
 
-    }
-
-    public void eliminarProducto(Item item) {
-        List<Item> items = shoppingCart.getItems();
-        items.remove(item);
-        shoppingCart.setItems(items);
-        actualizarSubTotal();
-    }
-    
+    @Override
     public void eliminarItem(Item item) {
         List<Item> items = shoppingCart.getItems();
         if(item.getCantidad()>1){
@@ -67,21 +50,9 @@ public class ShoppingCartService  extends Subject implements IShoppingCartServic
         actualizarSubTotal();
         
     }
-    
-    public Item obtenerItem(Product producto){
-        for(Item item:shoppingCart.getItems()){
-            if(item.getProduct().getId()==producto.getId()){
-                return item;
-            }
-        }
-        return null;
-    }
 
-    public void limpiarCarrito() {
-        shoppingCart.setItems(new ArrayList<>());
-        shoppingCart.setSubtotal(0.0);
-    }
 
+    @Override
     public void actualizarSubTotal() {
         int subtotal = 0;
         for (Item item : shoppingCart.getItems()) {
@@ -92,27 +63,19 @@ public class ShoppingCartService  extends Subject implements IShoppingCartServic
 
     }
 
+    @Override
     public ShoppingCart getShoppingCart() {
         return shoppingCart;
     }
 
-    public boolean actualizarCantidadItem(Product producto, int cantidad) {
-        List<Item> items = shoppingCart.getItems();
-        for (Item item : items) {
-            if (item.getProduct().equals(producto)) {
-                item.setCantidad(item.getCantidad() + cantidad);
-                item.setSubtotal(item.getProduct().getPrice() * item.getCantidad());
-                return true;
-            }
-        }
-        return false;
-    }
 
+    @Override
     public double obtenerIva() {
         double iva = 0.19;
         return this.getShoppingCart().getSubtotal() * iva;
     }
 
+    @Override
     public double obtenerTotal() {
         double total = this.getShoppingCart().getSubtotal() + this.obtenerIva();
         return total;

@@ -7,6 +7,6 @@ import java.io.IOException;
 import java.util.List;
 
 public interface IItemService {
-    public Item crearItem(Product product, int cantidad) throws IOException;
-    public List<Item> obtenerItems();
+    Item crearItem(Product product, int cantidad) throws IOException;
+    List<Item> obtenerItems();
 }
