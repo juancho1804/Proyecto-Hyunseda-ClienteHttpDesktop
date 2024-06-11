@@ -300,24 +300,11 @@ public class VerCarritoController extends Window implements Initializable, Obser
         this.shoppingCartService=(ShoppingCartService)o;
         if(shoppingCartService.getShoppingCart().getItems().isEmpty()){
             this.items=new ArrayList<>();
-            System.out.println("La lista esta vacia");
             totalProperty.set(0);
         }else {
             this.items=shoppingCartService.getShoppingCart().getItems();
-            //items.addAll(this.getData());
-            System.out.println("--ACTUALIZACION DE OBSERVER-------------------");
-
-            for (Item item : this.items) {
-                System.out.println(item.getProduct().getName());
-                System.out.println(item.getCantidad());
-            }
-            System.out.println("Total =" + shoppingCartService.obtenerTotal());
-
-            System.out.println("--finalizacion OBSEVRER-------------------------");
             double newTotal=shoppingCartService.obtenerTotal();
             totalProperty.set(newTotal);
-            //initializeTablaItems();
-
         }
 
     }

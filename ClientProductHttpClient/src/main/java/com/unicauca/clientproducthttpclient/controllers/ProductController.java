@@ -236,7 +236,7 @@ public class ProductController extends Window implements Initializable{
         txtPrecioProd.setText("");
         txtDescProd.setText("");
         imgProducto.setImage(null);
-        cboCategorias.getItems().clear();
+        cboCategorias.setValue(null);
     }
 
   public void initializeCboCategorias() {

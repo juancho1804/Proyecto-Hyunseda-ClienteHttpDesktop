@@ -16,6 +16,8 @@ import javafx.scene.layout.AnchorPane;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.File;
+
 public class ItemController implements ItemObserver {
     @Setter
     private IShoppingCartService shoppingCartService;
@@ -92,7 +94,7 @@ public class ItemController implements ItemObserver {
         }
 
 
-        // Load image from resources
+        /*
         String imagePath = item.getProduct().getImage();
         if (imagePath != null && !imagePath.isEmpty()) {
             try {
@@ -103,6 +105,25 @@ public class ItemController implements ItemObserver {
                 System.out.println("Error loading image: " + imagePath);
             }
         }
+
+         */
+        String imageUrl = item.getProduct().getImage(); // Obtener la URL de la imagen desde el producto seleccionado
+        Image image = null;
+        if (imageUrl != null && !imageUrl.isEmpty()) {
+            try {
+                image = new Image(imageUrl, true); // Intentar cargar la imagen desde la URL
+            } catch (Exception e) {
+                // Si hay un error al cargar la imagen desde la URL, manejarlo y buscar localmente
+            }
+        }
+        if (image == null) {
+            // Si la imagen no se cargó desde la URL, buscar localmente
+            File localImageFile = new File(item.getProduct().getImage());
+            if (localImageFile.exists()) {
+                image = new Image(localImageFile.toURI().toString(), true); // Cargar la imagen localmente
+            }
+        }
+        imgItem.setImage(image);
     }
 
     }
@@ -110,12 +131,6 @@ public class ItemController implements ItemObserver {
     public void agregarItem(ActionEvent actionEvent) {
         shoppingCartService.agregarItem(item);
         lblItem.setText(item.getCantidad()+" en el carrito");
-        System.out.println("ACTUALIZACION -----------------");
-        for(Item item1:shoppingCartService.getShoppingCart().getItems()) {
-            System.out.println(item1.getProduct().getName());
-            System.out.println(item1.getCantidad());
-            System.out.println(item1.getSubtotal());
-        }
         btnEliminarItem.setVisible(true);
     }
     public void eliminarItem(ActionEvent actionEvent) {
