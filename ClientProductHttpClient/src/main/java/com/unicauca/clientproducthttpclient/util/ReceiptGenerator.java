@@ -24,7 +24,6 @@ public class ReceiptGenerator {
 
     private static final String tokendrop = "tut0k3n";
 
-
     public String generateReceiptPDF(List<Item> items, String filePath, Order order) {
         Document document = new Document(PageSize.A4);
 
