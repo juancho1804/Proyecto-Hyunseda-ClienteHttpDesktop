@@ -20,13 +20,6 @@ public class Category {
 
     public Category() {
     }
-    public Category(String name){
-        this.name=name;
-    }
-    public Category(int categoryId, String name) {
-        this.categoryId = categoryId;
-        this.name = name;
-    }
     
     
     public int getCategoryId() {

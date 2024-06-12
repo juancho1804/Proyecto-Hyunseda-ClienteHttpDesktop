@@ -21,23 +21,6 @@ public class ShoppingCart {
         this.subtotal = 0;
     }
 
-    public String imprimirItems() {
-        if (items != null) {
-            for (Item each : items) {
-                return each.getProduct().getName();
-            }
-        }
-        return ".";
-
-    }
-
-    public String getLastItem() {
-        if (!items.isEmpty()) {
-            return items.get(items.size() - 1).getProduct().getName(); // Retorna el último elemento del carrito
-        } else {
-            return "El carrito de compras está vacío";
-        }
-    }
 
     public List<Item> getItems() {
         return items;

@@ -20,9 +20,6 @@ public class CategoryService implements ICategoryService{
         this.repo=new CategoryRestRepository();
     }
 
-    public CategoryService(ICategoryRepository repo) {
-        this.repo = repo;
-    }
 
     @Override
     public List<Category> findAll() {

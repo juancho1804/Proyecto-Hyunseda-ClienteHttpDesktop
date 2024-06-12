@@ -93,20 +93,6 @@ public class ItemController implements ItemObserver {
 
         }
 
-
-        /*
-        String imagePath = item.getProduct().getImage();
-        if (imagePath != null && !imagePath.isEmpty()) {
-            try {
-                String ruta= Utilities.convertirARutaValidaImagen(imagePath);
-                Image image = new Image(getClass().getResourceAsStream(ruta));
-                imgItem.setImage(image);
-            } catch (NullPointerException e) {
-                System.out.println("Error loading image: " + imagePath);
-            }
-        }
-
-         */
         String imageUrl = item.getProduct().getImage(); // Obtener la URL de la imagen desde el producto seleccionado
         Image image = null;
         if (imageUrl != null && !imageUrl.isEmpty()) {
