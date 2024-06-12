@@ -15,7 +15,8 @@ public class PagoPse implements IPaymentPlugin {
         double charge = payment.getCharge();
 
         //Esto influye desde donde guarda cada uno al clonar el proyecto
-        String path = "D:\\Hyunseda-FrontEnd\\Microkernel-pago-pse\\src\\main\\resources";
+        String path = "D:\\ProyectoHyunseda\\Proyecto-Hyunseda-ClienteHttpDesktop\\Microkernel-pago-pse\\src\\main\\resources";
+
         System.out.println("Pago exitoso hecho con:  " + typePayment +" | " + path);
 
         try
